@@ -1,0 +1,531 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Explore product details, sizing and fit for VOID District streetwear. Wear your own rules."
+    />
+
+    <title>Product Details | VOID District</title>
+
+    <!-- Google Fonts: same as homepage -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared homepage styles -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Product page styles -->
+    <link rel="stylesheet" href="./product.css" />
+
+    <!-- Shared and product-specific JavaScript -->
+    <script src="./script.js" defer></script>
+    <script src="./products.js" defer></script>
+    <script src="./product.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Announcement bar -->
+    <div class="announcement-bar">
+      <p>
+        YOUR STYLE. YOUR RULES.
+        <span>WELCOME TO THE DISTRICT.</span>
+      </p>
+    </div>
+
+    <!-- Main navigation -->
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <a
+          class="brand-logo"
+          href="./index.html#home"
+          aria-label="VOID District home"
+        >
+          VOID<span>®</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="./index.html#home">Home</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#featured">New drops</a>
+          <a href="./index.html#about">Our story</a>
+        </div>
+
+        <div class="nav-actions">
+          <a
+            class="nav-search"
+            href="./index.html#featured"
+            aria-label="Browse products"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 5 5"></path>
+            </svg>
+          </a>
+
+          <button
+            class="bag-button"
+            id="bagButton"
+            type="button"
+            aria-label="Shopping bag, 0 items"
+          >
+            BAG <span id="bagCount">0</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Breadcrumb navigation -->
+      <nav class="product-breadcrumb container" aria-label="Breadcrumb">
+        <a href="./index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="./index.html#featured">New drops</a>
+        <span aria-hidden="true">/</span>
+        <span id="breadcrumbProduct" aria-current="page">
+          Product details
+        </span>
+      </nav>
+
+      <!-- Product details -->
+      <section class="product-page-section container">
+        <div class="product-layout">
+
+          <!-- Product image -->
+          <div class="product-gallery">
+            <div class="product-main-image">
+              <span class="product-page-badge" id="productBadge">
+                COLLECTION 001
+              </span>
+
+              <img
+                id="productImage"
+                src="./images/product-tee.jpg"
+                alt="VOID District product"
+                fetchpriority="high"
+              />
+
+              <span class="product-image-caption">
+                VOID DISTRICT — COLLECTION 001
+              </span>
+            </div>
+
+            <p class="product-image-note">
+              EVERYDAY ESSENTIALS. NO UNIFORM.
+            </p>
+          </div>
+
+          <!-- Product information -->
+          <div class="product-information">
+            <p class="eyebrow">
+              <span class="status-dot"></span>
+              VOID DISTRICT / PRODUCT DETAILS
+            </p>
+
+            <h1 id="productName">Essential Oversized Tee</h1>
+
+            <p class="product-subtitle" id="productSubtitle">
+              RELAXED FIT / UNISEX
+            </p>
+
+            <p class="product-detail-price" id="productPrice">
+              Rs. 1,890
+            </p>
+
+            <div
+              class="product-rating-summary"
+              aria-label="Product rating information"
+            >
+              <span class="rating-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <a href="#customerReviews" id="ratingLink">
+                <span id="ratingSummary">Sample reviews</span>
+              </a>
+            </div>
+
+            <div class="product-info-divider"></div>
+
+            <p class="product-description" id="productDescription">
+              Everyday comfort with a relaxed silhouette. A versatile
+              streetwear essential designed to fit your own style.
+            </p>
+
+            <!-- Size selection -->
+            <div class="product-option-group">
+              <div class="product-option-heading">
+                <label for="productSize">SELECT SIZE</label>
+
+                <button
+                  class="size-guide-trigger"
+                  id="openSizeGuide"
+                  type="button"
+                >
+                  SIZE GUIDE ↗
+                </button>
+              </div>
+
+              <div
+                class="product-size-options"
+                id="productSizeOptions"
+                role="group"
+                aria-label="Choose product size"
+              >
+                <button type="button" class="size-option" data-size="S">
+                  S
+                </button>
+                <button type="button" class="size-option" data-size="M">
+                  M
+                </button>
+                <button type="button" class="size-option" data-size="L">
+                  L
+                </button>
+                <button type="button" class="size-option" data-size="XL">
+                  XL
+                </button>
+              </div>
+
+              <input type="hidden" id="productSize" value="" />
+
+              <p class="product-selection-message" id="sizeMessage">
+                Please select a size.
+              </p>
+            </div>
+
+            <!-- Quantity selector -->
+            <div class="product-option-group">
+              <label class="quantity-label" for="productQuantity">
+                QUANTITY
+              </label>
+
+              <div class="quantity-control">
+                <button
+                  type="button"
+                  id="decreaseQuantity"
+                  aria-label="Decrease quantity"
+                >
+                  −
+                </button>
+
+                <input
+                  type="number"
+                  id="productQuantity"
+                  value="1"
+                  min="1"
+                  max="10"
+                  inputmode="numeric"
+                  aria-label="Product quantity"
+                />
+
+                <button
+                  type="button"
+                  id="increaseQuantity"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <!-- Add to bag -->
+            <button
+              class="button button-primary product-add-button"
+              id="productAddToBag"
+              type="button"
+            >
+              ADD TO BAG <span aria-hidden="true">+</span>
+            </button>
+
+            <p
+              class="product-action-message"
+              id="productActionMessage"
+              aria-live="polite"
+            ></p>
+
+            <div class="product-purchase-note">
+              <span aria-hidden="true">↗</span>
+              <p>
+                DEMO STORE — Checkout and online payments are not connected yet.
+              </p>
+            </div>
+
+            <!-- Product highlights -->
+            <div class="product-highlights">
+              <div>
+                <span class="highlight-number">01</span>
+                <p>EVERYDAY WEAR</p>
+              </div>
+
+              <div>
+                <span class="highlight-number">02</span>
+                <p>YOUR OWN STYLE</p>
+              </div>
+
+              <div>
+                <span class="highlight-number">03</span>
+                <p>VOID DISTRICT</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product information notes -->
+      <section class="product-extra-section">
+        <div class="container product-extra-grid">
+          <article class="product-extra-card">
+            <p class="eyebrow">01 / THE DETAILS</p>
+            <h2>MADE FOR <span>YOUR ROTATION.</span></h2>
+            <p id="productDetailsText">
+              A versatile everyday piece designed to complement your
+              personal streetwear rotation.
+            </p>
+          </article>
+
+          <article class="product-extra-card">
+            <p class="eyebrow">02 / FIT & SIZING</p>
+            <h2>FIND YOUR <span>FIT.</span></h2>
+            <p id="productFitText">
+              Review the available sizes and consult the size guide before
+              choosing your fit.
+            </p>
+
+            <button
+              class="text-link product-size-guide-link"
+              id="openSizeGuideSecondary"
+              type="button"
+            >
+              VIEW SIZE GUIDE ↗
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Customer reviews -->
+      <section
+        class="customer-reviews-section container"
+        id="customerReviews"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THE DISTRICT COMMUNITY</p>
+            <h2>THE <span>REVIEWS.</span></h2>
+          </div>
+
+          <p class="section-aside" id="reviewCount">
+            SAMPLE REVIEWS
+          </p>
+        </div>
+
+        <div class="review-demo-notice">
+          <p>
+            DEMO CONTENT — The review examples below are illustrative,
+            not verified customer feedback.
+          </p>
+        </div>
+
+        <div class="review-summary">
+          <div class="review-score-block">
+            <span class="review-score" id="averageRating">—</span>
+            <span class="rating-stars" aria-hidden="true">★★★★★</span>
+            <p id="reviewSummaryText">Sample review data</p>
+          </div>
+
+          <div class="review-summary-note">
+            <p class="eyebrow">REAL PEOPLE. REAL FEEDBACK.</p>
+            <p>
+              Customer ratings can be added when genuine customer reviews
+              are available.
+            </p>
+          </div>
+        </div>
+
+        <div class="review-list" id="reviewList">
+          <!-- Sample review cards will be rendered by product.js. -->
+        </div>
+      </section>
+
+      <!-- Size guide modal -->
+      <div
+        class="size-guide-modal"
+        id="sizeGuideModal"
+        aria-hidden="true"
+      >
+        <div
+          class="size-guide-backdrop"
+          id="sizeGuideBackdrop"
+        ></div>
+
+        <section
+          class="size-guide-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="sizeGuideTitle"
+        >
+          <div class="size-guide-header">
+            <div>
+              <p class="eyebrow">FIND YOUR FIT</p>
+              <h2 id="sizeGuideTitle">SIZE <span>GUIDE.</span></h2>
+            </div>
+
+            <button
+              type="button"
+              class="size-guide-close"
+              id="closeSizeGuide"
+              aria-label="Close size guide"
+            >
+              ×
+            </button>
+          </div>
+
+          <p class="size-guide-intro">
+            Use these illustrative measurements as a starting point.
+            Actual garment measurements have not yet been verified.
+          </p>
+
+          <div class="size-guide-table-wrap">
+            <table class="size-guide-table">
+              <caption id="sizeGuideCaption">
+                Sample garment measurements in centimetres (cm)
+              </caption>
+
+              <thead id="sizeGuideHead">
+                <tr>
+                  <th scope="col">SIZE</th>
+                  <th scope="col">CHEST</th>
+                  <th scope="col">LENGTH</th>
+                  <th scope="col">SHOULDER</th>
+                </tr>
+              </thead>
+
+              <tbody id="sizeGuideBody">
+                <!-- Measurements will be populated by product.js. -->
+              </tbody>
+            </table>
+          </div>
+
+          <p class="size-guide-footnote" id="sizeGuideFootnote">
+            SAMPLE MEASUREMENTS ONLY — Confirm measurements against the
+            actual garment before publishing a live store.
+          </p>
+
+          <button
+            class="button button-primary size-guide-done"
+            id="sizeGuideDone"
+            type="button"
+          >
+            GOT IT
+          </button>
+        </section>
+      </div>
+
+      <!-- Newsletter: shared homepage section -->
+      <section class="newsletter-section">
+        <div class="container newsletter-content">
+          <div>
+            <p class="eyebrow">STAY IN THE LOOP</p>
+            <h2>FIRST IN.<br />NEVER <span>ORDINARY.</span></h2>
+            <p>New drops and District updates. No unnecessary noise.</p>
+          </div>
+
+          <form class="newsletter-form" id="newsletterForm">
+            <label for="newsletterEmail">YOUR EMAIL ADDRESS</label>
+
+            <div class="newsletter-input-row">
+              <input
+                type="email"
+                id="newsletterEmail"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+
+              <button type="submit" aria-label="Join newsletter">
+                JOIN ↗
+              </button>
+            </div>
+
+            <p
+              id="newsletterMessage"
+              class="form-message"
+              aria-live="polite"
+            >
+              Newsletter sign-up is a frontend demo for now.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer: shared homepage section -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a
+            class="brand-logo footer-logo"
+            href="./index.html#home"
+          >
+            VOID<span>®</span>
+          </a>
+
+          <p>WEAR YOUR OWN RULES.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>EXPLORE</h3>
+          <a href="./index.html#home">Home</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#featured">New drops</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE BRAND</h3>
+          <a href="./index.html#about">Our story</a>
+          <a href="./index.html#about">Our philosophy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE DISTRICT</h3>
+          <p>Independent style.<br />Everyday expression.</p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © <span id="currentYear"></span> VOID District. All rights reserved.
+        </p>
+
+        <a href="#top">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+
+    <!-- Accessible feedback for cart interactions -->
+    <div
+      class="sr-only"
+      id="cartMessage"
+      aria-live="polite"
+    ></div>
+  </body>
+</html>
