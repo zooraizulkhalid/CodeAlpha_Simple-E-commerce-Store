@@ -223,3 +223,22 @@ if (currentYear) {
 updateBagCount();
 
 console.info("VOID District homepage interactions initialized.");
+
+
+/* =========================================
+   IMAGE FALLBACK — BROKEN IMAGE PROTECTION
+========================================= */
+
+document.querySelectorAll("img").forEach((img) => {
+    img.addEventListener("error", () => {
+        // Avoid repeatedly trying to load the fallback.
+        if (img.dataset.fallbackApplied === "true") {
+            return;
+        }
+
+        img.dataset.fallbackApplied = "true";
+
+        // Show the local placeholder if the original image fails.
+        img.src = "./images/image-placeholder.jpg";
+    });
+});
