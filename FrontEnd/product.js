@@ -272,6 +272,7 @@ function renderReviews(product) {
 }
 
 // Validate size and show a demo confirmation
+
 productAddToBag.addEventListener("click", () => {
     const selectedSize = productSize.value;
     const quantity = getValidQuantity();
@@ -287,10 +288,42 @@ productAddToBag.addEventListener("click", () => {
 
     sizeMessage.textContent = "";
 
+    // Get the current bag count saved in the browser.
+    const savedCount =
+        Number(localStorage.getItem("voidDistrictCartCount")) || 0;
+
+    // Add the selected quantity to the bag count.
+    const newCount = savedCount + quantity;
+
+    // Save the updated count.
+    localStorage.setItem(
+        "voidDistrictCartCount",
+        String(newCount)
+    );
+
+    // Update the navbar bag count.
+    const bagCountDisplay = document.getElementById("bagCount");
+    const bagButtonDisplay = document.getElementById("bagButton");
+
+    if (bagCountDisplay) {
+        bagCountDisplay.textContent = String(newCount);
+    }
+
+    if (bagButtonDisplay) {
+        bagButtonDisplay.setAttribute(
+            "aria-label",
+            `Shopping bag, ${newCount} ${
+                newCount === 1 ? "item" : "items"
+            }`
+        );
+    }
+
+    // Show confirmation.
     productActionMessage.textContent =
         `${quantity} × ${currentProduct.name} (Size ${selectedSize}) ` +
         `— ${formatPrice(currentProduct.price * quantity)}. ` +
-        "This is a demo confirmation; cart storage is not connected yet.";
+        `Added to your sample bag. Total items: ${newCount}. ` +
+        "Full cart and checkout functionality will be added later.";
 });
 
 // Load the selected product
