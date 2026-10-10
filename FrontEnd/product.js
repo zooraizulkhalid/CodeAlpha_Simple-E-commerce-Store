@@ -273,6 +273,7 @@ function renderReviews(product) {
 
 // Validate size and show a demo confirmation
 
+
 productAddToBag.addEventListener("click", () => {
     const selectedSize = productSize.value;
     const quantity = getValidQuantity();
@@ -288,32 +289,31 @@ productAddToBag.addEventListener("click", () => {
 
     sizeMessage.textContent = "";
 
-    // Get the current bag count saved in the browser.
-    const savedCount =
-        Number(localStorage.getItem("voidDistrictCartCount")) || 0;
-
-    // Add the selected quantity to the bag count.
-    const newCount = savedCount + quantity;
-
-    // Save the updated count.
-    localStorage.setItem(
-        "voidDistrictCartCount",
-        String(newCount)
+    // Add the actual product to the shared cart.
+    const result = addToCart(
+        currentProduct,
+        selectedSize,
+        quantity
     );
+
+    if (!result.success) {
+        productActionMessage.textContent = result.message;
+        return;
+    }
 
     // Update the navbar bag count.
     const bagCountDisplay = document.getElementById("bagCount");
     const bagButtonDisplay = document.getElementById("bagButton");
 
     if (bagCountDisplay) {
-        bagCountDisplay.textContent = String(newCount);
+        bagCountDisplay.textContent = String(result.count);
     }
 
     if (bagButtonDisplay) {
         bagButtonDisplay.setAttribute(
             "aria-label",
-            `Shopping bag, ${newCount} ${
-                newCount === 1 ? "item" : "items"
+            `Shopping bag, ${result.count} ${
+                result.count === 1 ? "item" : "items"
             }`
         );
     }
@@ -322,8 +322,7 @@ productAddToBag.addEventListener("click", () => {
     productActionMessage.textContent =
         `${quantity} × ${currentProduct.name} (Size ${selectedSize}) ` +
         `— ${formatPrice(currentProduct.price * quantity)}. ` +
-        `Added to your sample bag. Total items: ${newCount}. ` +
-        "Full cart and checkout functionality will be added later.";
+        "Added to your sample bag successfully.";
 });
 
 // Load the selected product

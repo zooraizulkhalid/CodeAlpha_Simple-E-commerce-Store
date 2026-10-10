@@ -203,63 +203,32 @@ function showCartMessage(message) {
 
 // Event delegation: one listener handles all product buttons,
 // including cards generated dynamically by renderProducts().
+
 if (productGrid) {
-  productGrid.addEventListener("click", (event) => {
-    const addButton = event.target.closest(".quick-add");
+    productGrid.addEventListener("click", (event) => {
+        const addButton = event.target.closest(".quick-add");
 
-    if (!addButton || !productGrid.contains(addButton)) {
-      return;
-    }
+        if (!addButton || !productGrid.contains(addButton)) {
+            return;
+        }
 
-    const productName = addButton.dataset.product;
-    const rawPrice = addButton.dataset.price;
-    const productPrice = Number(rawPrice);
+        // Open the product detail page to select a size.
+        const productName = addButton.dataset.product;
 
-    // Validate product data.
-    if (
-      !productName ||
-      rawPrice === undefined ||
-      rawPrice.trim() === "" ||
-      !Number.isFinite(productPrice) ||
-      productPrice <= 0
-    ) {
-      showCartMessage("Sorry, this product cannot be added right now.");
+        const selectedProduct = products.find(
+            (product) => product.name === productName
+        );
 
-      console.error("VOID District: Invalid product information.");
-      return;
-    }
+        if (!selectedProduct) {
+            showCartMessage("Sorry, this product could not be found.");
+            return;
+        }
 
-    // Prevent repeated clicks while processing.
-    if (addButton.disabled) {
-      return;
-    }
+        window.location.href =
+            `./product.html?product=${encodeURIComponent(selectedProduct.id)}`;
 
-    addButton.disabled = true;
-
-    try {
-      cartCount += 1;
-
-      localStorage.setItem("voidDistrictCartCount", String(cartCount));
-
-      updateBagCount();
-
-      showCartMessage(`${productName} added to your sample bag.`);
-
-      const originalText = addButton.innerHTML;
-      addButton.textContent = "ADDED TO BAG ✓";
-
-      window.setTimeout(() => {
-        addButton.innerHTML = originalText;
-        addButton.disabled = false;
-      }, 800);
-    } catch (error) {
-      console.error("VOID District: Could not update the bag.", error);
-
-      showCartMessage("Something went wrong. Please try again.");
-
-      addButton.disabled = false;
-    }
-  });
+        return;
+    });
 }
 
 // Bag button feedback.
