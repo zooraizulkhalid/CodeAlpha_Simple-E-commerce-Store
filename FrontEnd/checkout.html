@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f7f2" />
+
+    <title>VOID® | Checkout</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./checkout.css" />
+
+    <script src="./cart.js" defer></script>
+    <script src="./checkout.js" defer></script>
+  </head>
+
+  <body>
+    <header class="checkout-header">
+      <a class="header-back" href="./cart.html">← <span>Back to bag</span></a>
+
+      <a class="brand" href="./index.html" aria-label="VOID home">
+        VOID<sup>®</sup>
+      </a>
+
+      <a class="bag-link" href="./cart.html" aria-label="Shopping bag">
+        <svg
+          class="bag-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 8h14l1 13H4L5 8Z"></path>
+          <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+        </svg>
+        <span id="checkoutBagCount" class="bag-count" hidden>0</span>
+      </a>
+    </header>
+
+    <main class="checkout-layout">
+      <section class="checkout-form-section">
+        <form id="checkoutForm" novalidate>
+          <section class="checkout-section">
+            <div class="section-heading-row">
+              <h2>Contact</h2>
+              <a href="#" id="signInLink" class="sign-in-link">Sign in</a>
+            </div>
+
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Email or mobile phone number"
+              aria-label="Email or mobile phone number"
+              autocomplete="email"
+              required
+            />
+
+            <label class="checkbox-option">
+              <input type="checkbox" id="emailOffers" name="emailOffers" />
+              <span>Email me with news and offers</span>
+            </label>
+          </section>
+
+          <section class="checkout-section">
+            <h2>Delivery</h2>
+
+            <select
+              id="country"
+              name="country"
+              aria-label="Country or region"
+              autocomplete="country-name"
+              required
+            >
+              <option value="Pakistan" selected>Pakistan</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Oman">Oman</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Kuwait">Kuwait</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States">United States</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Turkey">Turkey</option>
+              <option value="China">China</option>
+              <option value="Other">Other international destination</option>
+            </select>
+
+            <div class="form-row">
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="First name"
+                aria-label="First name"
+                autocomplete="given-name"
+                required
+              />
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Last name"
+                aria-label="Last name"
+                autocomplete="family-name"
+                required
+              />
+            </div>
+
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Address"
+              aria-label="Address"
+              autocomplete="street-address"
+              required
+            />
+
+            <input
+              type="text"
+              id="apartment"
+              name="apartment"
+              placeholder="Apartment, suite, etc. (optional)"
+              aria-label="Apartment, suite, etc. (optional)"
+              autocomplete="address-line2"
+            />
+
+            <div class="form-row">
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="City"
+                aria-label="City"
+                autocomplete="address-level2"
+                required
+              />
+              <input
+                type="text"
+                id="postalCode"
+                name="postalCode"
+                placeholder="Postal code (optional)"
+                aria-label="Postal code"
+                autocomplete="postal-code"
+              />
+            </div>
+
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Phone number"
+              aria-label="Phone number"
+              autocomplete="tel"
+              required
+            />
+
+            <label class="checkbox-option">
+              <input
+                type="checkbox"
+                id="saveInformation"
+                name="saveInformation"
+              />
+              <span>Save my information for next time</span>
+            </label>
+
+            <label class="checkbox-option">
+              <input type="checkbox" id="smsOffers" name="smsOffers" />
+              <span>Text me with news and offers</span>
+            </label>
+          </section>
+
+          <section class="checkout-section">
+            <h2>Shipping method</h2>
+
+            <div class="shipping-option">
+              <div>
+                <strong>Standard shipping</strong>
+                <p id="shippingMessage">Free shipping within Pakistan.</p>
+              </div>
+              <strong id="shippingPrice">FREE</strong>
+            </div>
+
+            <p class="small-note">
+              International charges shown here are demo estimates.
+            </p>
+          </section>
+
+          <section class="checkout-section">
+            <h2>Payment</h2>
+            <p class="section-description">
+              All transactions are secure and encrypted.
+            </p>
+
+            <label class="payment-option" id="cardPaymentOption">
+              <input type="radio" name="paymentMethod" value="card" required />
+              <span class="payment-option-name">Credit / Debit Card</span>
+              <span class="card-brands" aria-label="Card brand examples">
+                <span class="card-brand visa">VISA</span>
+                <span class="card-brand mastercard">MC</span>
+              </span>
+            </label>
+
+            <div id="cardFields" class="payment-fields" hidden>
+              <input
+                type="text"
+                id="cardNumber"
+                name="cardNumber"
+                inputmode="numeric"
+                autocomplete="cc-number"
+                placeholder="Card number"
+                aria-label="Card number"
+                maxlength="23"
+              />
+
+              <div class="form-row">
+                <input
+                  type="text"
+                  id="cardExpiry"
+                  name="cardExpiry"
+                  autocomplete="cc-exp"
+                  placeholder="Expiration date (MM/YY)"
+                  aria-label="Expiration date"
+                  maxlength="5"
+                />
+
+                <input
+                  type="password"
+                  id="cardSecurityCode"
+                  name="cardSecurityCode"
+                  inputmode="numeric"
+                  autocomplete="cc-csc"
+                  placeholder="Security code"
+                  aria-label="Security code"
+                  maxlength="4"
+                />
+              </div>
+
+              <input
+                type="text"
+                id="cardholderName"
+                name="cardholderName"
+                autocomplete="cc-name"
+                placeholder="Name on card"
+                aria-label="Name on card"
+              />
+
+              <p class="demo-payment-note">
+                Demo only: no card details are stored and no real payment is
+                processed.
+              </p>
+            </div>
+
+            <label class="payment-option" id="codPaymentOption">
+              <input type="radio" name="paymentMethod" value="cod" required />
+              <span class="payment-option-name">Cash on Delivery (COD)</span>
+            </label>
+          </section>
+
+          <section
+            class="checkout-section billing-section"
+            id="billingAddressSection"
+            hidden
+          >
+            <h2>Billing address</h2>
+
+            <label class="checkbox-option billing-same-option">
+              <input
+                type="checkbox"
+                id="billingSameAsShipping"
+                name="billingSameAsShipping"
+                checked
+              />
+              <span>Use shipping address as billing address</span>
+            </label>
+
+            <div id="differentBillingFields" hidden>
+              <select
+                id="billingCountry"
+                name="billingCountry"
+                aria-label="Billing country or region"
+                autocomplete="billing country-name"
+              >
+                <option value="Pakistan" selected>Pakistan</option>
+                <option value="United Arab Emirates">
+                  United Arab Emirates
+                </option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="Qatar">Qatar</option>
+                <option value="Oman">Oman</option>
+                <option value="Bahrain">Bahrain</option>
+                <option value="Kuwait">Kuwait</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Turkey">Turkey</option>
+                <option value="China">China</option>
+                <option value="Other">Other international destination</option>
+              </select>
+
+              <div class="form-row">
+                <input
+                  type="text"
+                  id="billingFirstName"
+                  name="billingFirstName"
+                  placeholder="First name"
+                  aria-label="Billing first name"
+                  autocomplete="billing given-name"
+                />
+                <input
+                  type="text"
+                  id="billingLastName"
+                  name="billingLastName"
+                  placeholder="Last name"
+                  aria-label="Billing last name"
+                  autocomplete="billing family-name"
+                />
+              </div>
+
+              <input
+                type="text"
+                id="billingAddress"
+                name="billingAddress"
+                placeholder="Address"
+                aria-label="Billing address"
+                autocomplete="billing street-address"
+              />
+
+              <input
+                type="text"
+                id="billingApartment"
+                name="billingApartment"
+                placeholder="Apartment, suite, etc. (optional)"
+                aria-label="Billing apartment (optional)"
+                autocomplete="billing address-line2"
+              />
+
+              <div class="form-row">
+                <input
+                  type="text"
+                  id="billingCity"
+                  name="billingCity"
+                  placeholder="City"
+                  aria-label="Billing city"
+                  autocomplete="billing address-level2"
+                />
+                <input
+                  type="text"
+                  id="billingPostalCode"
+                  name="billingPostalCode"
+                  placeholder="Postal code (optional)"
+                  aria-label="Billing postal code"
+                  autocomplete="billing postal-code"
+                />
+              </div>
+
+              <input
+                type="tel"
+                id="billingPhone"
+                name="billingPhone"
+                placeholder="Phone number"
+                aria-label="Billing phone number"
+                autocomplete="billing tel"
+              />
+            </div>
+          </section>
+
+          <section class="checkout-section">
+            <h2>Order note</h2>
+            <textarea
+              id="orderNote"
+              name="orderNote"
+              maxlength="500"
+              rows="3"
+              placeholder="Special instructions (optional)"
+              aria-label="Order note"
+            ></textarea>
+          </section>
+
+          <!-- Desktop order button stays at the end of the form -->
+          <div class="desktop-order-action">
+            <button
+              type="submit"
+              id="placeOrderButton"
+              class="place-order-button"
+            >
+              COMPLETE ORDER
+            </button>
+            <p
+              id="checkoutMessage"
+              class="checkout-message"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </div>
+        </form>
+      </section>
+
+      <aside class="order-summary" aria-labelledby="orderSummaryTitle">
+        <div class="summary-inner">
+          <h2 id="orderSummaryTitle">Your order</h2>
+
+          <div id="checkoutItems" class="checkout-items">
+            <!-- Items are rendered from the existing cart by checkout.js -->
+          </div>
+
+          <div class="discount-row">
+            <label for="discountCode">Discount code</label>
+            <div class="discount-input-row">
+              <input
+                type="text"
+                id="discountCode"
+                placeholder="Enter discount code"
+                aria-label="Discount code"
+              />
+              <button type="button" id="applyDiscountButton">Apply</button>
+            </div>
+            <p id="discountMessage" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="checkoutSubtotal">Rs. 0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Discount</span>
+            <span id="checkoutDiscount">− Rs. 0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span id="checkoutShipping">FREE</span>
+          </div>
+
+          <div class="summary-row total-row">
+            <strong>Total</strong>
+            <strong id="checkoutTotal">Rs. 0</strong>
+          </div>
+
+          <p class="currency-note">
+            Prices are displayed in Pakistani Rupees (PKR). International
+            shipping charges are demo estimates, not live courier rates.
+          </p>
+
+          <a href="./cart.html" class="return-to-bag-link">Return to bag</a>
+
+          <!-- Mobile order button appears after the complete order summary -->
+          <div class="mobile-order-action">
+            <button
+              type="submit"
+              form="checkoutForm"
+              id="mobilePlaceOrderButton"
+              class="place-order-button"
+            >
+              COMPLETE ORDER
+            </button>
+            <p
+              id="mobileCheckoutMessage"
+              class="checkout-message"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="checkout-footer">
+      <a href="./index.html">VOID®</a>
+      <span>Secure checkout demo</span>
+    </footer>
+  </body>
+</html>
