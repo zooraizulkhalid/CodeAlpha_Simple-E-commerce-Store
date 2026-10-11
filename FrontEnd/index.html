@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,8 +20,11 @@
     />
 
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./cart-drawer.css" />
+
     <script src="./products.js" defer></script>
     <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
     <script src="./script.js" defer></script>
   </head>
 
@@ -311,5 +314,77 @@
 
     <!-- Accessible feedback for cart interactions -->
     <div class="sr-only" id="cartMessage" aria-live="polite"></div>
+    <!-- Cart drawer will go here -->
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" hidden></div>
+
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartDrawerTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cart-drawer-header">
+        <h2 id="cartDrawerTitle">CART (<span id="drawerItemCount">0</span>)</h2>
+
+        <button
+          class="cart-drawer-close"
+          id="closeCartDrawer"
+          type="button"
+          aria-label="Close shopping cart"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent">
+        <!-- Cart products will be rendered here by JavaScript. -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <button
+          class="cart-order-note-toggle"
+          id="orderNoteToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="orderNoteSection"
+        >
+          <span>Add order note</span>
+          <span aria-hidden="true">+</span>
+        </button>
+
+        <div class="cart-order-note" id="orderNoteSection" hidden>
+          <label for="orderNote">Order note</label>
+          <textarea
+            id="orderNote"
+            rows="3"
+            maxlength="500"
+            placeholder="Add a note about your order"
+          ></textarea>
+        </div>
+
+        <p class="cart-drawer-disclaimer">
+          Taxes and shipping calculated at checkout.
+        </p>
+
+        <a class="cart-drawer-button cart-drawer-view" href="./cart.html">
+          VIEW CART
+        </a>
+
+        <button
+          class="cart-drawer-button cart-drawer-checkout"
+          id="drawerCheckoutButton"
+          type="button"
+        >
+          <span>CHECKOUT</span>
+          <span class="checkout-total" id="drawerCheckoutTotal">Rs. 0</span>
+        </button>
+      </div>
+    </aside>
+    <!-- End Cart Drawer -->
   </body>
 </html>

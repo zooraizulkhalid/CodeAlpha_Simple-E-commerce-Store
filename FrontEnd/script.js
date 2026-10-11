@@ -232,19 +232,16 @@ if (productGrid) {
 }
 
 // Bag button feedback.
+
+/* Open the shared cart drawer when the bag is clicked. */
 if (bagButton) {
   bagButton.addEventListener("click", () => {
-    if (cartCount === 0) {
-      showCartMessage("Your sample bag is empty. Explore the latest drop.");
-    } else {
-      showCartMessage(
-        `Your sample bag has ${cartCount} ${
-          cartCount === 1 ? "item" : "items"
-        }. Full cart functionality is coming later.`,
-      );
+    if (typeof window.openCartDrawer === "function") {
+      window.openCartDrawer();
     }
   });
 }
+
 
 /* =========================================
    NEWSLETTER — FRONTEND DEMO
