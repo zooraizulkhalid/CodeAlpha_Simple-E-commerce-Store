@@ -1,51 +1,44 @@
 
 "use strict";
 
-/*
- * VOID® CHECKOUT — FRONTEND DEMO
- *
- * Uses the existing cart.js functions:
- * getCart(), saveCart(), saveOrderNote(), getOrderNote()
- *
- * No real payments are processed.
- * Card details are never saved.
- */
+/* =========================================
+   VOID DISTRICT — CHECKOUT SYSTEM
+   Frontend Demo | Backend-Ready Structure
+========================================= */
 
-// ============================================
+// =========================================
 // 1. CONFIGURATION
-// ============================================
+// =========================================
 
 const CHECKOUT_CONFIG = {
-    shippingRates: {
-        Pakistan: 0,
-        "United Arab Emirates": 1800,
-        "Saudi Arabia": 2000,
-        Qatar: 1800,
-        Oman: 1800,
-        Bahrain: 1800,
-        Kuwait: 2000,
-        "United Kingdom": 3500,
-        "United States": 4500,
-        Canada: 4500,
-        Australia: 5000,
-        Turkey: 3000,
-        China: 2500,
-        Other: 5000
-    },
+  shippingRates: {
+    Pakistan: 0,
+    "United Arab Emirates": 1800,
+    "Saudi Arabia": 2000,
+    Qatar: 1800,
+    Oman: 1800,
+    Bahrain: 1800,
+    Kuwait: 2000,
+    "United Kingdom": 3500,
+    "United States": 4500,
+    Canada: 4500,
+    Australia: 5000,
+    Turkey: 3000,
+    China: 2500,
+    Other: 5000
+  },
 
-    discountCodes: {
-        VOID10: {
-            type: "percent",
-            value: 10
-        }
-    },
-
-    maxDiscount: 1000000
+  discountCodes: {
+    VOID10: {
+      type: "percent",
+      value: 10
+    }
+  }
 };
 
-// ============================================
+// =========================================
 // 2. DOM ELEMENTS
-// ============================================
+// =========================================
 
 const checkoutForm = document.getElementById("checkoutForm");
 const checkoutItems = document.getElementById("checkoutItems");
@@ -64,800 +57,889 @@ const applyDiscountButton = document.getElementById("applyDiscountButton");
 const discountMessage = document.getElementById("discountMessage");
 
 const checkoutMessage = document.getElementById("checkoutMessage");
-const mobileCheckoutMessage = document.getElementById("mobileCheckoutMessage");
+const mobileCheckoutMessage = document.getElementById(
+  "mobileCheckoutMessage"
+);
 
 const placeOrderButton = document.getElementById("placeOrderButton");
 const mobilePlaceOrderButton = document.getElementById(
-    "mobilePlaceOrderButton"
+  "mobilePlaceOrderButton"
 );
-
-const placeOrderButtons = [
-    placeOrderButton,
-    mobilePlaceOrderButton
-].filter(Boolean);
 
 const checkoutBagCount = document.getElementById("checkoutBagCount");
 
 const cardFields = document.getElementById("cardFields");
 const billingAddressSection = document.getElementById(
-    "billingAddressSection"
+  "billingAddressSection"
 );
+
 const billingSameAsShipping = document.getElementById(
-    "billingSameAsShipping"
+  "billingSameAsShipping"
 );
+
 const differentBillingFields = document.getElementById(
-    "differentBillingFields"
+  "differentBillingFields"
 );
 
-const signInLink = document.getElementById("signInLink");
 const orderNoteInput = document.getElementById("orderNote");
+const signInLink = document.getElementById("signInLink");
+const orderConfirmation = document.getElementById(
+  "orderConfirmation"
+);
 
-// ============================================
+const mobileOrderAction = document.querySelector(
+  ".mobile-order-action"
+);
+
+const placeOrderButtons = [
+  placeOrderButton,
+  mobilePlaceOrderButton
+].filter(Boolean);
+
+// =========================================
 // 3. CHECKOUT STATE
-// ============================================
+// =========================================
 
 let cartItems = [];
 let subtotal = 0;
 let shippingCost = 0;
 let discountAmount = 0;
 let appliedDiscountCode = "";
+let orderCompleted = false;
 
-// ============================================
+// =========================================
 // 4. HELPER FUNCTIONS
-// ============================================
+// =========================================
 
 function formatPrice(amount) {
-    return `Rs. ${Math.round(amount).toLocaleString("en-PK")}`;
+  return `Rs. ${Math.round(amount).toLocaleString("en-PK")}`;
 }
 
 function getSelectedPaymentMethod() {
-    const selected = document.querySelector(
-        'input[name="paymentMethod"]:checked'
-    );
+  const selected = document.querySelector(
+    'input[name="paymentMethod"]:checked'
+  );
 
-    return selected ? selected.value : "";
+  return selected ? selected.value : "";
 }
 
 function getShippingCost(country) {
-    if (
-        Object.prototype.hasOwnProperty.call(
-            CHECKOUT_CONFIG.shippingRates,
-            country
-        )
-    ) {
-        return CHECKOUT_CONFIG.shippingRates[country];
-    }
-
-    return CHECKOUT_CONFIG.shippingRates.Other;
-}
-
-// General message helper (used by the discount message).
-function showMessage(element, message, type = "info") {
-    if (!element) return;
-
-    element.textContent = message;
-    element.className = type;
-}
-
-// Show the same checkout message in both responsive layouts.
-function showCheckoutMessage(message, type = "info") {
-    [checkoutMessage, mobileCheckoutMessage].forEach((element) => {
-        if (!element) return;
-
-        element.textContent = message;
-        element.className = `checkout-message ${type}`;
-    });
-}
-
-// Clear both checkout messages.
-function clearCheckoutMessage() {
-    [checkoutMessage, mobileCheckoutMessage].forEach((element) => {
-        if (!element) return;
-
-        element.textContent = "";
-        element.className = "checkout-message";
-    });
-}
-
-// Keep the desktop and mobile order buttons synchronized.
-function updateOrderButtons(
-    text = "COMPLETE ORDER",
-    disabled = false
-) {
-    placeOrderButtons.forEach((button) => {
-        button.textContent = text;
-        button.disabled = disabled;
-    });
+  return Object.prototype.hasOwnProperty.call(
+    CHECKOUT_CONFIG.shippingRates,
+    country
+  )
+    ? CHECKOUT_CONFIG.shippingRates[country]
+    : CHECKOUT_CONFIG.shippingRates.Other;
 }
 
 function getCartSafely() {
-    try {
-        if (typeof getCart !== "function") {
-            throw new Error("The existing cart.js file was not loaded.");
-        }
-
-        const result = getCart();
-
-        return Array.isArray(result) ? result : [];
-    } catch (error) {
-        console.error("Could not read the cart:", error);
-
-        showCheckoutMessage(
-            "We could not load your cart. Please return to your bag and try again.",
-            "error"
-        );
-
-        return [];
-    }
+  try {
+    const cart = getCart();
+    return Array.isArray(cart) ? cart : [];
+  } catch (error) {
+    console.error("Cart loading failed:", error);
+    return [];
+  }
 }
 
-// ============================================
-// 5. READ AND DISPLAY EXISTING CART ITEMS
-// ============================================
+function showCheckoutMessage(message, type = "info") {
+  [checkoutMessage, mobileCheckoutMessage].forEach((element) => {
+    if (!element) return;
 
-function renderCheckoutItems() {
-    cartItems = getCartSafely();
-
-    checkoutItems.replaceChildren();
-
-    if (cartItems.length === 0) {
-        const emptyMessage = document.createElement("div");
-        emptyMessage.className = "empty-cart";
-
-        const message = document.createElement("p");
-        message.textContent = "Your shopping bag is currently empty.";
-
-        const link = document.createElement("a");
-        link.href = "./index.html";
-        link.textContent = "Continue shopping";
-
-        emptyMessage.append(message, link);
-        checkoutItems.appendChild(emptyMessage);
-
-        updateOrderButtons("YOUR BAG IS EMPTY", true);
-
-        checkoutBagCount.textContent = "0";
-        checkoutBagCount.hidden = true;
-
-        updateTotals();
-        return;
-    }
-
-    let itemCount = 0;
-
-    cartItems.forEach((item) => {
-        if (!item || typeof item !== "object") {
-            return;
-        }
-
-        const quantity = Number(item.quantity);
-        const price = Number(item.price);
-
-        if (
-            !Number.isFinite(quantity) ||
-            !Number.isFinite(price) ||
-            quantity < 1 ||
-            price < 0
-        ) {
-            return;
-        }
-
-        itemCount += quantity;
-
-        const itemRow = document.createElement("article");
-        itemRow.className = "checkout-item";
-
-        const imageWrap = document.createElement("div");
-        imageWrap.className = "checkout-item-image-wrap";
-
-        const image = document.createElement("img");
-        image.className = "checkout-item-image";
-        image.src = item.image || "./images/image-placeholder.jpg";
-        image.alt = item.name || "Product";
-        image.loading = "lazy";
-
-        image.addEventListener(
-            "error",
-            () => {
-                image.removeAttribute("src");
-                image.alt = "Product image unavailable";
-                image.style.objectFit = "contain";
-            },
-            { once: true }
-        );
-
-        const quantityBadge = document.createElement("span");
-        quantityBadge.className = "quantity-badge";
-        quantityBadge.textContent = String(quantity);
-        quantityBadge.setAttribute("aria-label", `Quantity ${quantity}`);
-
-        imageWrap.append(image, quantityBadge);
-
-        const details = document.createElement("div");
-        details.className = "checkout-item-details";
-
-        const name = document.createElement("span");
-        name.className = "checkout-item-name";
-        name.textContent = item.name || "Product";
-
-        const variant = document.createElement("p");
-        variant.className = "checkout-item-variant";
-        variant.textContent = item.size
-            ? `Size: ${item.size}`
-            : "Standard";
-
-        details.append(name, variant);
-
-        const itemPrice = document.createElement("span");
-        itemPrice.className = "checkout-item-price";
-        itemPrice.textContent = formatPrice(price * quantity);
-
-        itemRow.append(imageWrap, details, itemPrice);
-        checkoutItems.appendChild(itemRow);
-    });
-
-    checkoutBagCount.textContent = String(itemCount);
-    checkoutBagCount.hidden = itemCount === 0;
-
-    if (itemCount === 0) {
-        updateOrderButtons("YOUR BAG IS EMPTY", true);
-    } else {
-        updateOrderButtons();
-    }
-
-    updateTotals();
+    element.textContent = message;
+    element.className = `checkout-message ${type}`;
+  });
 }
 
-// ============================================
-// 6. SHIPPING AND TOTAL CALCULATIONS
-// ============================================
+function clearCheckoutMessage() {
+  [checkoutMessage, mobileCheckoutMessage].forEach((element) => {
+    if (!element) return;
+
+    element.textContent = "";
+    element.className = "checkout-message";
+  });
+}
+
+function updateOrderButtons() {
+  const isEmpty = cartItems.length === 0;
+  const isCard = getSelectedPaymentMethod() === "card";
+
+  let buttonText = "COMPLETE ORDER";
+
+  if (isEmpty) {
+    buttonText = "YOUR BAG IS EMPTY";
+  } else if (isCard) {
+    buttonText = "ONLINE PAYMENT UNAVAILABLE";
+  }
+
+  placeOrderButtons.forEach((button) => {
+    button.textContent = buttonText;
+    button.disabled = isEmpty || isCard || orderCompleted;
+  });
+}
+
+// =========================================
+// 5. SHIPPING CALCULATION
+// =========================================
 
 function updateShipping() {
-    const country = countrySelect.value;
+  const country = countrySelect.value;
 
-    shippingCost = getShippingCost(country);
+  shippingCost = getShippingCost(country);
 
-    if (shippingCost === 0) {
-        shippingPrice.textContent = "FREE";
-        shippingMessage.textContent = "Free shipping within Pakistan.";
-    } else {
-        shippingPrice.textContent = formatPrice(shippingCost);
-        shippingMessage.textContent =
-            `Estimated international shipping to ${country}.`;
-    }
+  if (shippingCost === 0) {
+    shippingPrice.textContent = "FREE";
+    shippingMessage.textContent =
+      "Free shipping within Pakistan.";
+  } else {
+    shippingPrice.textContent = formatPrice(shippingCost);
+
+    shippingMessage.textContent =
+      `Estimated international shipping to ${country}.`;
+  }
+
+  updateTotals();
 }
 
+// =========================================
+// 6. SUBTOTAL AND GRAND TOTAL
+// =========================================
+
 function calculateSubtotal() {
-    return cartItems.reduce((total, item) => {
-        if (!item || typeof item !== "object") {
-            return total;
-        }
+  return cartItems.reduce((total, item) => {
+    const price = Number(item.price);
+    const quantity = Number(item.quantity);
 
-        const price = Number(item.price);
-        const quantity = Number(item.quantity);
+    if (
+      !Number.isFinite(price) ||
+      !Number.isInteger(quantity) ||
+      price < 0 ||
+      quantity < 1
+    ) {
+      return total;
+    }
 
-        if (
-            !Number.isFinite(price) ||
-            !Number.isFinite(quantity) ||
-            price < 0 ||
-            quantity < 1
-        ) {
-            return total;
-        }
-
-        return total + price * quantity;
-    }, 0);
+    return total + price * quantity;
+  }, 0);
 }
 
 function updateTotals() {
-    subtotal = calculateSubtotal();
+  subtotal = calculateSubtotal();
 
-    // A discount cannot exceed the current subtotal.
-    discountAmount = Math.min(
-        Math.max(0, discountAmount),
-        subtotal,
-        CHECKOUT_CONFIG.maxDiscount
-    );
+  discountAmount = 0;
 
-    const total = Math.max(
-        0,
-        subtotal - discountAmount + shippingCost
-    );
+  if (appliedDiscountCode === "VOID10") {
+    discountAmount = Math.round(subtotal * 0.10);
+  }
 
-    checkoutSubtotal.textContent = formatPrice(subtotal);
+  discountAmount = Math.min(discountAmount, subtotal);
 
-    checkoutDiscount.textContent =
-        `− ${formatPrice(discountAmount)}`;
+  const total = Math.max(
+    0,
+    subtotal - discountAmount + shippingCost
+  );
 
-    checkoutShipping.textContent = shippingCost === 0
-        ? "FREE"
-        : formatPrice(shippingCost);
+  checkoutSubtotal.textContent = formatPrice(subtotal);
 
-    checkoutTotal.textContent = formatPrice(total);
+  checkoutDiscount.textContent =
+    `− ${formatPrice(discountAmount)}`;
+
+  checkoutShipping.textContent =
+    shippingCost === 0
+      ? "FREE"
+      : formatPrice(shippingCost);
+
+  checkoutTotal.textContent = formatPrice(total);
+
+  return total;
 }
 
-countrySelect.addEventListener("change", () => {
-    updateShipping();
-    updateTotals();
-    clearCheckoutMessage();
-});
+// =========================================
+// 7. RENDER CART PRODUCTS
+// =========================================
 
-// ============================================
-// 7. DEMO DISCOUNT CODE
-// ============================================
+function renderCheckoutItems() {
+  cartItems = getCartSafely();
+
+  checkoutItems.replaceChildren();
+
+  if (cartItems.length === 0) {
+    const emptyState = document.createElement("div");
+    emptyState.className = "empty-cart";
+
+    const message = document.createElement("p");
+    message.textContent =
+      "Your shopping bag is currently empty.";
+
+    const shopLink = document.createElement("a");
+    shopLink.href = "./shop.html";
+    shopLink.textContent = "Continue shopping";
+
+    emptyState.append(message, shopLink);
+    checkoutItems.appendChild(emptyState);
+
+    checkoutBagCount.textContent = "0";
+    checkoutBagCount.hidden = true;
+
+    updateTotals();
+    updateOrderButtons();
+    return;
+  }
+
+  let itemCount = 0;
+
+  cartItems.forEach((item) => {
+    const quantity = Number(item.quantity);
+    const price = Number(item.price);
+
+    itemCount += quantity;
+
+    const article = document.createElement("article");
+    article.className = "checkout-item";
+
+    // Product image
+    const imageWrap = document.createElement("div");
+    imageWrap.className = "checkout-item-image-wrap";
+
+    const image = document.createElement("img");
+    image.className = "checkout-item-image";
+    image.src =
+      item.image || "./images/image-placeholder.jpg";
+    image.alt = item.name || "Product";
+    image.loading = "lazy";
+
+    image.addEventListener(
+      "error",
+      () => {
+        image.removeAttribute("src");
+        image.alt = "Product image unavailable";
+      },
+      { once: true }
+    );
+
+    const quantityBadge = document.createElement("span");
+    quantityBadge.className = "quantity-badge";
+    quantityBadge.textContent = String(quantity);
+
+    imageWrap.append(image, quantityBadge);
+
+    // Product details
+    const details = document.createElement("div");
+    details.className = "checkout-item-details";
+
+    const name = document.createElement("span");
+    name.className = "checkout-item-name";
+    name.textContent = item.name;
+
+    const size = document.createElement("p");
+    size.className = "checkout-item-variant";
+    size.textContent = `Size: ${item.size}`;
+
+    details.append(name, size);
+
+    // Product total
+    const priceElement = document.createElement("span");
+    priceElement.className = "checkout-item-price";
+    priceElement.textContent = formatPrice(
+      price * quantity
+    );
+
+    article.append(imageWrap, details, priceElement);
+    checkoutItems.appendChild(article);
+  });
+
+  checkoutBagCount.textContent = String(itemCount);
+  checkoutBagCount.hidden = itemCount === 0;
+
+  updateTotals();
+  updateOrderButtons();
+}
+
+// =========================================
+// 8. DISCOUNT CODE
+// =========================================
 
 function applyDiscount() {
-    const enteredCode = discountCodeInput.value.trim().toUpperCase();
+  if (orderCompleted) return;
 
-    discountAmount = 0;
-    appliedDiscountCode = "";
+  const code = discountCodeInput.value
+    .trim()
+    .toUpperCase();
 
-    if (!enteredCode) {
-        updateTotals();
+  appliedDiscountCode = "";
 
-        showMessage(
-            discountMessage,
-            "Please enter a discount code.",
-            "error"
-        );
-
-        return;
-    }
-
-    const rule = CHECKOUT_CONFIG.discountCodes[enteredCode];
-
-    if (!rule) {
-        updateTotals();
-
-        showMessage(
-            discountMessage,
-            "This demo discount code is not valid.",
-            "error"
-        );
-
-        return;
-    }
-
-    if (subtotal <= 0) {
-        updateTotals();
-
-        showMessage(
-            discountMessage,
-            "Add a product to your bag before applying a discount.",
-            "error"
-        );
-
-        return;
-    }
-
-    if (rule.type === "percent") {
-        discountAmount = subtotal * (rule.value / 100);
-    } else if (rule.type === "fixed") {
-        discountAmount = rule.value;
-    }
-
-    discountAmount = Math.min(
-        Math.max(0, discountAmount),
-        subtotal,
-        CHECKOUT_CONFIG.maxDiscount
-    );
-
-    appliedDiscountCode = enteredCode;
+  if (!code) {
+    discountMessage.textContent =
+      "Please enter a discount code.";
+    discountMessage.className = "error";
 
     updateTotals();
+    return;
+  }
 
-    showMessage(
-        discountMessage,
-        `${enteredCode} applied. You saved ${formatPrice(discountAmount)}.`,
-        "success"
-    );
+  if (cartItems.length === 0) {
+    discountMessage.textContent =
+      "Add a product before applying a discount.";
+    discountMessage.className = "error";
+
+    updateTotals();
+    return;
+  }
+
+  const discountRule =
+    CHECKOUT_CONFIG.discountCodes[code];
+
+  if (!discountRule) {
+    discountMessage.textContent =
+      "Invalid discount code.";
+    discountMessage.className = "error";
+
+    updateTotals();
+    return;
+  }
+
+  appliedDiscountCode = code;
+
+  updateTotals();
+
+  discountMessage.textContent =
+    `${code} applied! You saved ${formatPrice(discountAmount)}.`;
+
+  discountMessage.className = "success";
 }
 
-applyDiscountButton.addEventListener("click", applyDiscount);
+applyDiscountButton.addEventListener(
+  "click",
+  applyDiscount
+);
 
-discountCodeInput.addEventListener("keydown", (event) => {
+discountCodeInput.addEventListener(
+  "keydown",
+  (event) => {
     if (event.key === "Enter") {
-        event.preventDefault();
-        applyDiscount();
+      event.preventDefault();
+      applyDiscount();
     }
-});
+  }
+);
 
-// ============================================
-// 8. PAYMENT AND BILLING FIELD VISIBILITY
-// ============================================
-
-function updateBillingFields() {
-    const isSameAddress = billingSameAsShipping.checked;
-
-    differentBillingFields.hidden = isSameAddress;
-
-    const billingInputs = differentBillingFields.querySelectorAll(
-        "input, select"
-    );
-
-    billingInputs.forEach((input) => {
-        const isOptional =
-            input.id === "billingApartment" ||
-            input.id === "billingPostalCode";
-
-        input.required = !isSameAddress && !isOptional;
-        input.disabled = isSameAddress;
-    });
-}
+// =========================================
+// 9. PAYMENT METHOD SELECTION
+// =========================================
 
 function updatePaymentFields() {
-    const paymentMethod = getSelectedPaymentMethod();
-    const isCard = paymentMethod === "card";
+  const paymentMethod = getSelectedPaymentMethod();
 
-    cardFields.hidden = !isCard;
-    billingAddressSection.hidden = !paymentMethod;
+  const isCard = paymentMethod === "card";
 
-    const cardInputs = cardFields.querySelectorAll("input");
+  cardFields.hidden = !isCard;
 
-    cardInputs.forEach((input) => {
-        input.required = isCard;
-        input.disabled = !isCard;
-    });
+  billingAddressSection.hidden = !paymentMethod;
 
-    updateBillingFields();
-
-    if (isCard) {
-        updateOrderButtons("PAY NOW — DEMO ONLY");
-    } else {
-        updateOrderButtons();
-    }
-
-    clearCheckoutMessage();
+  updateBillingFields();
+  updateOrderButtons();
+  clearCheckoutMessage();
 }
 
 document
-    .querySelectorAll('input[name="paymentMethod"]')
-    .forEach((radio) => {
-        radio.addEventListener("change", updatePaymentFields);
-    });
+  .querySelectorAll('input[name="paymentMethod"]')
+  .forEach((radio) => {
+    radio.addEventListener(
+      "change",
+      updatePaymentFields
+    );
+  });
+
+// =========================================
+// 10. BILLING ADDRESS
+// =========================================
+
+function updateBillingFields() {
+  const sameAddress = billingSameAsShipping.checked;
+
+  differentBillingFields.hidden = sameAddress;
+
+  const inputs = differentBillingFields.querySelectorAll(
+    "input, select"
+  );
+
+  inputs.forEach((input) => {
+    const optional =
+      input.id === "billingApartment" ||
+      input.id === "billingPostalCode";
+
+    input.required = !sameAddress && !optional;
+    input.disabled = sameAddress;
+  });
+}
 
 billingSameAsShipping.addEventListener(
-    "change",
-    updateBillingFields
+  "change",
+  updateBillingFields
 );
 
-// ============================================
-// 9. BASIC INPUT VALIDATION
-// ============================================
+// =========================================
+// 11. FORM VALIDATION
+// =========================================
 
 function validateCheckout() {
-    clearCheckoutMessage();
+  clearCheckoutMessage();
 
-    if (cartItems.length === 0 || calculateSubtotal() <= 0) {
-        showCheckoutMessage(
-            "Your bag is empty. Add a product before continuing.",
-            "error"
-        );
+  if (cartItems.length === 0 || subtotal <= 0) {
+    showCheckoutMessage(
+      "Your bag is empty. Add products before checkout.",
+      "error"
+    );
+    return false;
+  }
 
-        return false;
+  // Email or mobile number
+  const contactInput = document.getElementById("email");
+
+  const contact = contactInput.value.trim();
+
+  const validEmail =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+
+  const digits = contact.replace(/\D/g, "");
+
+  const validPhone =
+    /^\+?[\d\s().-]+$/.test(contact) &&
+    digits.length >= 7 &&
+    digits.length <= 15;
+
+  if (!validEmail && !validPhone) {
+    showCheckoutMessage(
+      "Please enter a valid email or mobile number.",
+      "error"
+    );
+
+    contactInput.focus();
+    return false;
+  }
+
+  // Required delivery fields
+  const requiredFields = [
+    ["firstName", "Please enter your first name."],
+    ["lastName", "Please enter your last name."],
+    ["address", "Please enter your address."],
+    ["city", "Please enter your city."],
+    ["phone", "Please enter your phone number."]
+  ];
+
+  for (const [id, message] of requiredFields) {
+    const input = document.getElementById(id);
+
+    if (!input.value.trim()) {
+      showCheckoutMessage(message, "error");
+      input.focus();
+      return false;
     }
+  }
 
-    const emailOrPhone = document
-        .getElementById("email")
-        .value.trim();
+  // Delivery phone validation
+  const deliveryPhone = document
+    .getElementById("phone")
+    .value.replace(/\D/g, "");
 
-    if (!emailOrPhone) {
-        showCheckoutMessage(
-            "Please enter your email address or mobile phone number.",
-            "error"
-        );
+  if (
+    deliveryPhone.length < 7 ||
+    deliveryPhone.length > 15
+  ) {
+    showCheckoutMessage(
+      "Please enter a valid delivery phone number.",
+      "error"
+    );
 
-        document.getElementById("email").focus();
-        return false;
-    }
+    document.getElementById("phone").focus();
+    return false;
+  }
 
-    const looksLikeEmail =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailOrPhone);
+  // Payment method
+  const paymentMethod = getSelectedPaymentMethod();
 
-    const digits = emailOrPhone.replace(/\D/g, "");
+  if (!paymentMethod) {
+    showCheckoutMessage(
+      "Please select a payment method.",
+      "error"
+    );
 
-    const looksLikePhone =
-        /^\+?[\d\s().-]+$/.test(emailOrPhone) &&
-        digits.length >= 7 &&
-        digits.length <= 15;
+    document.querySelector(
+      'input[name="paymentMethod"]'
+    ).focus();
 
-    if (!looksLikeEmail && !looksLikePhone) {
-        showCheckoutMessage(
-            "Enter a valid email address or mobile phone number.",
-            "error"
-        );
+    return false;
+  }
 
-        document.getElementById("email").focus();
-        return false;
-    }
+  if (paymentMethod === "card") {
+    showCheckoutMessage(
+      "Online card payment is not available yet.",
+      "info"
+    );
 
-    const requiredFields = [
-        ["firstName", "Please enter your first name."],
-        ["lastName", "Please enter your last name."],
-        ["address", "Please enter your delivery address."],
-        ["city", "Please enter your city."],
-        ["phone", "Please enter your phone number."]
+    return false;
+  }
+
+  // Billing validation
+  if (!billingSameAsShipping.checked) {
+    const billingFields = [
+      "billingFirstName",
+      "billingLastName",
+      "billingAddress",
+      "billingCity",
+      "billingPhone"
     ];
 
-    for (const [id, message] of requiredFields) {
-        const field = document.getElementById(id);
+    for (const id of billingFields) {
+      const field = document.getElementById(id);
 
-        if (!field.value.trim()) {
-            showCheckoutMessage(message, "error");
-            field.focus();
-            return false;
-        }
-    }
-
-    const phoneDigits = document
-        .getElementById("phone")
-        .value.replace(/\D/g, "");
-
-    if (phoneDigits.length < 7 || phoneDigits.length > 15) {
+      if (!field.value.trim()) {
         showCheckoutMessage(
-            "Please enter a valid delivery phone number.",
-            "error"
+          "Please complete your billing address.",
+          "error"
         );
 
-        document.getElementById("phone").focus();
+        field.focus();
         return false;
+      }
     }
 
-    const paymentMethod = getSelectedPaymentMethod();
+    const billingPhone = document
+      .getElementById("billingPhone")
+      .value.replace(/\D/g, "");
 
-    if (!paymentMethod) {
-        showCheckoutMessage(
-            "Please select a payment method.",
-            "error"
-        );
+    if (
+      billingPhone.length < 7 ||
+      billingPhone.length > 15
+    ) {
+      showCheckoutMessage(
+        "Please enter a valid billing phone number.",
+        "error"
+      );
 
-        document.querySelector(
-            'input[name="paymentMethod"]'
-        ).focus();
-
-        return false;
+      document.getElementById("billingPhone").focus();
+      return false;
     }
+  }
 
-    if (paymentMethod === "card") {
-        const cardNumber = document
-            .getElementById("cardNumber")
-            .value.replace(/\s/g, "");
-
-        const expiry = document
-            .getElementById("cardExpiry")
-            .value.trim();
-
-        const securityCode = document
-            .getElementById("cardSecurityCode")
-            .value.trim();
-
-        const cardholderName = document
-            .getElementById("cardholderName")
-            .value.trim();
-
-        if (!/^\d{12,19}$/.test(cardNumber)) {
-            showCheckoutMessage(
-                "Enter a demo card number containing 12–19 digits. No payment will be processed.",
-                "error"
-            );
-
-            document.getElementById("cardNumber").focus();
-            return false;
-        }
-
-        const expiryMatch = expiry.match(
-            /^(0[1-9]|1[0-2])\/(\d{2})$/
-        );
-
-        if (!expiryMatch) {
-            showCheckoutMessage(
-                "Enter the expiration date in MM/YY format.",
-                "error"
-            );
-
-            document.getElementById("cardExpiry").focus();
-            return false;
-        }
-
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear() % 100;
-        const currentMonth = currentDate.getMonth() + 1;
-
-        const expiryMonth = Number(expiryMatch[1]);
-        const expiryYear = Number(expiryMatch[2]);
-
-        if (
-            expiryYear < currentYear ||
-            (expiryYear === currentYear && expiryMonth < currentMonth)
-        ) {
-            showCheckoutMessage(
-                "The expiration date must be in the future.",
-                "error"
-            );
-
-            document.getElementById("cardExpiry").focus();
-            return false;
-        }
-
-        if (!/^\d{3,4}$/.test(securityCode)) {
-            showCheckoutMessage(
-                "Enter a 3- or 4-digit security code.",
-                "error"
-            );
-
-            document.getElementById("cardSecurityCode").focus();
-            return false;
-        }
-
-        if (!cardholderName) {
-            showCheckoutMessage(
-                "Enter the name shown on the card.",
-                "error"
-            );
-
-            document.getElementById("cardholderName").focus();
-            return false;
-        }
-    }
-
-    if (!billingSameAsShipping.checked) {
-        const billingRequiredFields = [
-            ["billingFirstName", "Enter the billing first name."],
-            ["billingLastName", "Enter the billing last name."],
-            ["billingAddress", "Enter the billing address."],
-            ["billingCity", "Enter the billing city."],
-            ["billingPhone", "Enter the billing phone number."]
-        ];
-
-        for (const [id, message] of billingRequiredFields) {
-            const field = document.getElementById(id);
-
-            if (!field.value.trim()) {
-                showCheckoutMessage(message, "error");
-                field.focus();
-                return false;
-            }
-        }
-
-        const billingPhoneDigits = document
-            .getElementById("billingPhone")
-            .value.replace(/\D/g, "");
-
-        if (
-            billingPhoneDigits.length < 7 ||
-            billingPhoneDigits.length > 15
-        ) {
-            showCheckoutMessage(
-                "Enter a valid billing phone number.",
-                "error"
-            );
-
-            document.getElementById("billingPhone").focus();
-            return false;
-        }
-    }
-
-    return true;
+  return true;
 }
 
-// ============================================
-// 10. ORDER NOTE
-// ============================================
+// =========================================
+// 12. ORDER DATA STRUCTURE
+// =========================================
 
-function saveCheckoutNote() {
-    const note = orderNoteInput.value.trim();
+function createDemoOrder() {
+  const total = updateTotals();
 
-    // Reuse the existing cart helper if it is available.
-    // Card details are never saved.
-    if (typeof saveOrderNote === "function") {
-        try {
-            saveOrderNote(note);
-        } catch (error) {
-            console.warn("Order note could not be saved.", error);
-        }
-    }
+  const firstName = document
+    .getElementById("firstName")
+    .value.trim();
+
+  const lastName = document
+    .getElementById("lastName")
+    .value.trim();
+
+  const address = document
+    .getElementById("address")
+    .value.trim();
+
+  const apartment = document
+    .getElementById("apartment")
+    .value.trim();
+
+  const city = document
+    .getElementById("city")
+    .value.trim();
+
+  const postalCode = document
+    .getElementById("postalCode")
+    .value.trim();
+
+  return {
+    reference:
+      "VOID-DEMO-" + Date.now().toString().slice(-8),
+
+    customer: {
+      firstName,
+      lastName,
+      contact: document.getElementById("email").value.trim(),
+      phone: document.getElementById("phone").value.trim()
+    },
+
+    shippingAddress: {
+      country: countrySelect.value,
+      address,
+      apartment,
+      city,
+      postalCode
+    },
+
+    items: cartItems.map((item) => ({
+      id: item.id,
+      name: item.name,
+      size: item.size,
+      quantity: item.quantity,
+      price: item.price
+    })),
+
+    paymentMethod: "cod",
+    paymentStatus: "unpaid",
+    orderStatus: "demo",
+
+    pricing: {
+      subtotal,
+      discount: discountAmount,
+      shipping: shippingCost,
+      total
+    },
+
+    discountCode: appliedDiscountCode,
+
+    note: orderNoteInput.value.trim(),
+
+    createdAt: new Date().toISOString()
+  };
 }
 
-// ============================================
-// 11. SUBMIT ORDER / PAYMENT DEMO
-// ============================================
+// =========================================
+// 13. ORDER CONFIRMATION SCREEN
+// =========================================
+
+function showDemoConfirmation(order) {
+  orderConfirmation.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = "YOUR DEMO ORDER IS CONFIRMED.";
+
+  const description = document.createElement("p");
+  description.textContent =
+    "This is a frontend demonstration. No real order has been placed or sent to a store.";
+
+  const reference = document.createElement("p");
+  reference.textContent =
+    `Order reference: ${order.reference}`;
+
+  const customer = document.createElement("p");
+  customer.textContent =
+    `Customer: ${order.customer.firstName} ${order.customer.lastName}`;
+
+  const payment = document.createElement("p");
+  payment.textContent =
+    "Payment: Cash on Delivery (Demo)";
+
+  const address = document.createElement("p");
+
+  address.textContent = [
+    order.shippingAddress.address,
+    order.shippingAddress.apartment,
+    order.shippingAddress.city,
+    order.shippingAddress.postalCode,
+    order.shippingAddress.country
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  const itemsHeading = document.createElement("h3");
+  itemsHeading.textContent = "ORDER ITEMS";
+
+  const itemList = document.createElement("ul");
+
+  order.items.forEach((item) => {
+    const listItem = document.createElement("li");
+
+    listItem.textContent =
+      `${item.name} — Size ${item.size} × ${item.quantity}`;
+
+    itemList.appendChild(listItem);
+  });
+
+  const subtotalText = document.createElement("p");
+  subtotalText.textContent =
+    `Subtotal: ${formatPrice(order.pricing.subtotal)}`;
+
+  const discountText = document.createElement("p");
+  discountText.textContent =
+    `Discount: − ${formatPrice(order.pricing.discount)}`;
+
+  const shippingText = document.createElement("p");
+  shippingText.textContent =
+    `Shipping: ${formatPrice(order.pricing.shipping)}`;
+
+  const totalText = document.createElement("p");
+  totalText.className = "confirmation-total";
+  totalText.textContent =
+    `TOTAL: ${formatPrice(order.pricing.total)}`;
+
+  const shopLink = document.createElement("a");
+  shopLink.href = "./shop.html";
+  shopLink.className = "confirmation-shop-link";
+  shopLink.textContent = "CONTINUE SHOPPING";
+
+  orderConfirmation.append(
+    heading,
+    description,
+    reference,
+    customer,
+    payment,
+    address,
+    itemsHeading,
+    itemList,
+    subtotalText,
+    discountText,
+    shippingText,
+    totalText,
+    shopLink
+  );
+
+  checkoutForm.hidden = true;
+  orderConfirmation.hidden = false;
+
+  // The mobile button sits outside the form.
+  if (mobileOrderAction) {
+    mobileOrderAction.hidden = true;
+  }
+
+  // Disable discount after completion.
+  discountCodeInput.disabled = true;
+  applyDiscountButton.disabled = true;
+
+  orderConfirmation.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+// =========================================
+// 14. COMPLETE ORDER — DEMO COD
+// =========================================
 
 checkoutForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!validateCheckout()) {
-        return;
-    }
+  if (orderCompleted) return;
 
-    saveCheckoutNote();
+  // Refresh cart before submitting.
+  cartItems = getCartSafely();
+  updateTotals();
+  updateOrderButtons();
 
-    const paymentMethod = getSelectedPaymentMethod();
-
-    const total = Math.max(
-        0,
-        subtotal - discountAmount + shippingCost
-    );
-
-    if (paymentMethod === "card") {
-        // No card details are stored or transmitted.
-        // A secure payment provider is required for real payments.
-        showCheckoutMessage(
-            "Payment gateway not connected. No payment was taken and no order was submitted. Connect a secure payment provider to enable online payments.",
-            "info"
-        );
-
-        document.getElementById("cardNumber").value = "";
-        document.getElementById("cardExpiry").value = "";
-        document.getElementById("cardSecurityCode").value = "";
-        document.getElementById("cardholderName").value = "";
-
-        return;
-    }
-
-    // COD demo: confirmation is local to this browser.
-    // No order is created on a server.
-    const confirmed = window.confirm(
-        "Confirm this demo Cash on Delivery order?\n\n" +
-        `Order total: ${formatPrice(total)}\n\n` +
-        "This is a frontend demonstration only. No real order will be sent to a store."
-    );
-
-    if (!confirmed) {
-        showCheckoutMessage(
-            "Order confirmation cancelled. You can review your details and try again.",
-            "info"
-        );
-
-        return;
-    }
-
-    const demoOrderReference =
-        "VOID-DEMO-" + Date.now().toString().slice(-8);
-
+  if (cartItems.length === 0) {
     showCheckoutMessage(
-        `Demo order confirmed! Reference: ${demoOrderReference}. Total: ${formatPrice(total)}. This confirmation exists only in this browser; no order has been sent to a server.`,
-        "success"
+      "Your bag is empty. Please add products.",
+      "error"
     );
+    return;
+  }
 
-    updateOrderButtons("DEMO ORDER CONFIRMED", true);
+  const paymentMethod = getSelectedPaymentMethod();
+
+  if (paymentMethod === "card") {
+    showCheckoutMessage(
+      "Online payment is not connected yet. No payment was taken.",
+      "info"
+    );
+    return;
+  }
+
+  if (!validateCheckout()) return;
+
+  // Prepare frontend demo order.
+  const order = createDemoOrder();
+
+  const confirmed = window.confirm(
+    `Confirm DEMO Cash on Delivery order?\n\n` +
+    `Total: ${formatPrice(order.pricing.total)}\n\n` +
+    "No real order will be placed."
+  );
+
+  if (!confirmed) return;
+
+  // Clear the cart only after confirmation.
+  const saved = saveCart([]);
+
+  if (!saved) {
+    showCheckoutMessage(
+      "Unable to update your cart. Please try again.",
+      "error"
+    );
+    return;
+  }
+
+  orderCompleted = true;
+
+  // Clear the saved order note.
+  if (typeof saveOrderNote === "function") {
+    saveOrderNote("");
+  }
+
+  showDemoConfirmation(order);
+
+  // Refresh the order summary.
+  renderCheckoutItems();
 });
 
-// ============================================
-// 12. SIGN-IN LINK DEMO
-// ============================================
+// =========================================
+// 15. SIGN-IN PLACEHOLDER
+// =========================================
 
 signInLink.addEventListener("click", (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    showCheckoutMessage(
-        "Customer sign-in is not connected yet. Add your authentication page or service to enable sign-in.",
-        "info"
-    );
+  showCheckoutMessage(
+    "Customer sign-in will be available after backend integration.",
+    "info"
+  );
 
-    checkoutForm.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+  checkoutForm.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 });
 
-// ============================================
-// 13. INITIALIZE CHECKOUT
-// ============================================
+// =========================================
+// 16. COUNTRY CHANGE
+// =========================================
+
+countrySelect.addEventListener("change", () => {
+  updateShipping();
+  clearCheckoutMessage();
+});
+
+// =========================================
+// 17. CROSS-TAB CART UPDATES
+// =========================================
+
+window.addEventListener("storage", (event) => {
+  if (
+    event.key === CART_STORAGE_KEY &&
+    !orderCompleted
+  ) {
+    renderCheckoutItems();
+  }
+});
+
+// =========================================
+// 18. INITIALIZE CHECKOUT
+// =========================================
 
 function initializeCheckout() {
-    updateShipping();
-    updatePaymentFields();
+  updateShipping();
 
-    // Restore the saved order note if cart.js supports it.
-    if (typeof getOrderNote === "function") {
-        try {
-            orderNoteInput.value = getOrderNote() || "";
-        } catch (error) {
-            console.warn("Could not read the saved order note.", error);
-        }
+  // Restore saved order note.
+  if (typeof getOrderNote === "function") {
+    try {
+      orderNoteInput.value = getOrderNote() || "";
+    } catch (error) {
+      console.warn(
+        "Could not restore order note.",
+        error
+      );
     }
+  }
 
-    renderCheckoutItems();
+  renderCheckoutItems();
+  updatePaymentFields();
 }
 
 initializeCheckout();
