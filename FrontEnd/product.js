@@ -217,20 +217,66 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Display sample customer reviews
+
+/* =========================================
+   PRODUCT REVIEWS — CONSISTENT DEMO DISPLAY
+========================================= */
+
 function renderReviews(product) {
-	const reviews = product.reviews || [];
+	const reviews = Array.isArray(product.reviews) ? product.reviews : [];
 
 	reviewList.replaceChildren();
 
 	const totalReviews = reviews.length;
 
-	const average = totalReviews > 0 ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews : 0;
+	const average = totalReviews ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews : 0;
 
-	reviewCount.textContent = String(totalReviews);
-	averageRating.textContent = totalReviews > 0 ? average.toFixed(1) : '—';
+	// Review count and average.
+	reviewCount.textContent = `${totalReviews} SAMPLE ${totalReviews === 1 ? 'REVIEW' : 'REVIEWS'}`;
 
-	reviewSummaryText.textContent = totalReviews > 0 ? `Based on ${totalReviews} sample reviews.` : 'No reviews yet.';
+	averageRating.textContent = totalReviews ? average.toFixed(1) : '—';
 
+	reviewSummaryText.textContent = totalReviews
+		? `Based on ${totalReviews} illustrative demo reviews.`
+		: 'No sample reviews available.';
+
+	// Update rating summary near product title.
+	const ratingSummary = document.getElementById('ratingSummary');
+
+	const ratingStars = document.querySelector('.product-rating-summary .rating-stars');
+
+	const reviewScoreStars = document.querySelector('.review-score-block .rating-stars');
+
+	const roundedRating = Math.round(average);
+
+	const starsText = totalReviews ? '★'.repeat(roundedRating) + '☆'.repeat(5 - roundedRating) : '☆☆☆☆☆';
+
+	if (ratingSummary) {
+		ratingSummary.textContent = totalReviews
+			? `${average.toFixed(1)}/5 · ${totalReviews} sample reviews`
+			: 'No sample reviews yet';
+	}
+
+	if (ratingStars) {
+		ratingStars.textContent = starsText;
+	}
+
+	if (reviewScoreStars) {
+		reviewScoreStars.textContent = starsText;
+	}
+
+	// Show an empty state when there are no reviews.
+	if (!totalReviews) {
+		const emptyMessage = document.createElement('p');
+
+		emptyMessage.className = 'review-empty-message';
+		emptyMessage.textContent = 'Sample reviews are not available for this product.';
+
+		reviewList.appendChild(emptyMessage);
+		return;
+	}
+
+	// Create review cards.
 	reviews.forEach((review) => {
 		const article = document.createElement('article');
 		article.className = 'review-card';
@@ -240,16 +286,21 @@ function renderReviews(product) {
 
 		const reviewer = document.createElement('p');
 		reviewer.className = 'review-author';
-		reviewer.textContent = `${review.name} · ${review.date}`;
+
+		reviewer.textContent = `${review.name} · DEMO REVIEW`;
 
 		const stars = document.createElement('p');
 		stars.className = 'review-rating';
-		stars.textContent = `${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)} ` + `${review.rating}/5`;
+
+		const rating = Math.max(0, Math.min(5, Math.round(review.rating)));
+
+		stars.textContent = `${'★'.repeat(rating)}` + `${'☆'.repeat(5 - rating)} ${rating}/5`;
 
 		const comment = document.createElement('p');
 		comment.textContent = review.comment;
 
 		article.append(heading, reviewer, stars, comment);
+
 		reviewList.appendChild(article);
 	});
 }
