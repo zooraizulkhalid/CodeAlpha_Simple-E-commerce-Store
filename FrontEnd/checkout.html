@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +23,9 @@
 
   <body>
     <header class="checkout-header">
-      <a class="header-back" href="./cart.html">← <span>Back to bag</span></a>
+      <a class="header-back" href="./cart.html">
+        ← <span>Back to bag</span>
+      </a>
 
       <a class="brand" href="./index.html" aria-label="VOID home">
         VOID<sup>®</sup>
@@ -49,10 +52,14 @@
     <main class="checkout-layout">
       <section class="checkout-form-section">
         <form id="checkoutForm" novalidate>
+
+          <!-- CONTACT INFORMATION -->
           <section class="checkout-section">
             <div class="section-heading-row">
               <h2>Contact</h2>
-              <a href="#" id="signInLink" class="sign-in-link">Sign in</a>
+              <a href="#" id="signInLink" class="sign-in-link">
+                Sign in
+              </a>
             </div>
 
             <input
@@ -66,11 +73,16 @@
             />
 
             <label class="checkbox-option">
-              <input type="checkbox" id="emailOffers" name="emailOffers" />
+              <input
+                type="checkbox"
+                id="emailOffers"
+                name="emailOffers"
+              />
               <span>Email me with news and offers</span>
             </label>
           </section>
 
+          <!-- DELIVERY INFORMATION -->
           <section class="checkout-section">
             <h2>Delivery</h2>
 
@@ -107,6 +119,7 @@
                 autocomplete="given-name"
                 required
               />
+
               <input
                 type="text"
                 id="lastName"
@@ -147,6 +160,7 @@
                 autocomplete="address-level2"
                 required
               />
+
               <input
                 type="text"
                 id="postalCode"
@@ -177,19 +191,27 @@
             </label>
 
             <label class="checkbox-option">
-              <input type="checkbox" id="smsOffers" name="smsOffers" />
+              <input
+                type="checkbox"
+                id="smsOffers"
+                name="smsOffers"
+              />
               <span>Text me with news and offers</span>
             </label>
           </section>
 
+          <!-- SHIPPING -->
           <section class="checkout-section">
             <h2>Shipping method</h2>
 
             <div class="shipping-option">
               <div>
                 <strong>Standard shipping</strong>
-                <p id="shippingMessage">Free shipping within Pakistan.</p>
+                <p id="shippingMessage">
+                  Free shipping within Pakistan.
+                </p>
               </div>
+
               <strong id="shippingPrice">FREE</strong>
             </div>
 
@@ -198,15 +220,27 @@
             </p>
           </section>
 
+          <!-- PAYMENT METHODS -->
           <section class="checkout-section">
             <h2>Payment</h2>
+
             <p class="section-description">
-              All transactions are secure and encrypted.
+              Choose a payment method. Online card payments are not yet enabled.
             </p>
 
+            <!-- ONLINE CARD PAYMENT -->
             <label class="payment-option" id="cardPaymentOption">
-              <input type="radio" name="paymentMethod" value="card" required />
-              <span class="payment-option-name">Credit / Debit Card</span>
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="card"
+                required
+              />
+
+              <span class="payment-option-name">
+                Credit / Debit Card
+              </span>
+
               <span class="card-brands" aria-label="Card brand examples">
                 <span class="card-brand visa">VISA</span>
                 <span class="card-brand mastercard">MC</span>
@@ -214,61 +248,30 @@
             </label>
 
             <div id="cardFields" class="payment-fields" hidden>
-              <input
-                type="text"
-                id="cardNumber"
-                name="cardNumber"
-                inputmode="numeric"
-                autocomplete="cc-number"
-                placeholder="Card number"
-                aria-label="Card number"
-                maxlength="23"
-              />
-
-              <div class="form-row">
-                <input
-                  type="text"
-                  id="cardExpiry"
-                  name="cardExpiry"
-                  autocomplete="cc-exp"
-                  placeholder="Expiration date (MM/YY)"
-                  aria-label="Expiration date"
-                  maxlength="5"
-                />
-
-                <input
-                  type="password"
-                  id="cardSecurityCode"
-                  name="cardSecurityCode"
-                  inputmode="numeric"
-                  autocomplete="cc-csc"
-                  placeholder="Security code"
-                  aria-label="Security code"
-                  maxlength="4"
-                />
-              </div>
-
-              <input
-                type="text"
-                id="cardholderName"
-                name="cardholderName"
-                autocomplete="cc-name"
-                placeholder="Name on card"
-                aria-label="Name on card"
-              />
-
               <p class="demo-payment-note">
-                Demo only: no card details are stored and no real payment is
-                processed.
+                <strong>Online card payments are coming soon.</strong>
+                A secure payment provider will handle card details when
+                the backend is connected. Do not enter any card
+                information on this demo site.
               </p>
             </div>
 
+            <!-- CASH ON DELIVERY -->
             <label class="payment-option" id="codPaymentOption">
-              <input type="radio" name="paymentMethod" value="cod" required />
-              <span class="payment-option-name">Cash on Delivery (COD)</span>
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="cod"
+                required
+              />
+
+              <span class="payment-option-name">
+                Cash on Delivery (COD)
+              </span>
             </label>
           </section>
 
+          <!-- BILLING ADDRESS -->
           <section
             class="checkout-section billing-section"
             id="billingAddressSection"
@@ -308,7 +311,9 @@
                 <option value="Australia">Australia</option>
                 <option value="Turkey">Turkey</option>
                 <option value="China">China</option>
-                <option value="Other">Other international destination</option>
+                <option value="Other">
+                  Other international destination
+                </option>
               </select>
 
               <div class="form-row">
@@ -320,6 +325,7 @@
                   aria-label="Billing first name"
                   autocomplete="billing given-name"
                 />
+
                 <input
                   type="text"
                   id="billingLastName"
@@ -357,6 +363,7 @@
                   aria-label="Billing city"
                   autocomplete="billing address-level2"
                 />
+
                 <input
                   type="text"
                   id="billingPostalCode"
@@ -378,8 +385,10 @@
             </div>
           </section>
 
+          <!-- ORDER NOTE -->
           <section class="checkout-section">
             <h2>Order note</h2>
+
             <textarea
               id="orderNote"
               name="orderNote"
@@ -390,7 +399,7 @@
             ></textarea>
           </section>
 
-          <!-- Desktop order button stays at the end of the form -->
+          <!-- DESKTOP ORDER BUTTON -->
           <div class="desktop-order-action">
             <button
               type="submit"
@@ -399,6 +408,7 @@
             >
               COMPLETE ORDER
             </button>
+
             <p
               id="checkoutMessage"
               class="checkout-message"
@@ -407,18 +417,33 @@
             ></p>
           </div>
         </form>
+
+        <!-- ORDER CONFIRMATION -->
+        <section
+          id="orderConfirmation"
+          class="order-confirmation"
+          hidden
+          aria-live="polite"
+          aria-label="Order confirmation"
+        ></section>
       </section>
 
-      <aside class="order-summary" aria-labelledby="orderSummaryTitle">
+      <!-- ORDER SUMMARY -->
+      <aside
+        class="order-summary"
+        aria-labelledby="orderSummaryTitle"
+      >
         <div class="summary-inner">
           <h2 id="orderSummaryTitle">Your order</h2>
 
           <div id="checkoutItems" class="checkout-items">
-            <!-- Items are rendered from the existing cart by checkout.js -->
+            <!-- Cart items rendered by checkout.js -->
           </div>
 
+          <!-- DISCOUNT -->
           <div class="discount-row">
             <label for="discountCode">Discount code</label>
+
             <div class="discount-input-row">
               <input
                 type="text"
@@ -426,39 +451,57 @@
                 placeholder="Enter discount code"
                 aria-label="Discount code"
               />
-              <button type="button" id="applyDiscountButton">Apply</button>
+
+              <button
+                type="button"
+                id="applyDiscountButton"
+              >
+                Apply
+              </button>
             </div>
-            <p id="discountMessage" role="status" aria-live="polite"></p>
+
+            <p
+              id="discountMessage"
+              role="status"
+              aria-live="polite"
+            ></p>
           </div>
 
+          <!-- SUBTOTAL -->
           <div class="summary-row">
             <span>Subtotal</span>
             <span id="checkoutSubtotal">Rs. 0</span>
           </div>
 
+          <!-- DISCOUNT AMOUNT -->
           <div class="summary-row">
             <span>Discount</span>
             <span id="checkoutDiscount">− Rs. 0</span>
           </div>
 
+          <!-- SHIPPING AMOUNT -->
           <div class="summary-row">
             <span>Shipping</span>
             <span id="checkoutShipping">FREE</span>
           </div>
 
+          <!-- GRAND TOTAL -->
           <div class="summary-row total-row">
             <strong>Total</strong>
             <strong id="checkoutTotal">Rs. 0</strong>
           </div>
 
           <p class="currency-note">
-            Prices are displayed in Pakistani Rupees (PKR). International
-            shipping charges are demo estimates, not live courier rates.
+            Prices are displayed in Pakistani Rupees (PKR).
+            International shipping charges are demo estimates,
+            not live courier rates.
           </p>
 
-          <a href="./cart.html" class="return-to-bag-link">Return to bag</a>
+          <a href="./cart.html" class="return-to-bag-link">
+            Return to bag
+          </a>
 
-          <!-- Mobile order button appears after the complete order summary -->
+          <!-- MOBILE ORDER BUTTON -->
           <div class="mobile-order-action">
             <button
               type="submit"
@@ -468,6 +511,7 @@
             >
               COMPLETE ORDER
             </button>
+
             <p
               id="mobileCheckoutMessage"
               class="checkout-message"
@@ -479,6 +523,7 @@
       </aside>
     </main>
 
+    <!-- FOOTER -->
     <footer class="checkout-footer">
       <a href="./index.html">VOID®</a>
       <span>Secure checkout demo</span>
