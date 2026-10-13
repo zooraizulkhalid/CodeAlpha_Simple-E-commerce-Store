@@ -26,6 +26,10 @@
     <script src="./products.js" defer></script>
     <script src="./cart.js" defer></script>
     <script src="./cart-drawer.js" defer></script>
+
+    <!-- Wishlist system -->
+    <script src="./wishlist.js" defer></script>
+
     <script src="./script.js" defer></script>
   </head>
 
@@ -62,12 +66,75 @@
         </div>
 
         <div class="nav-actions">
-          <a class="nav-search" href="./shop.html" aria-label="Browse products">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="10.8" cy="10.8" r="6.8"></circle>
-              <path d="m16 16 5 5"></path>
+          <!-- Expandable Navbar Search -->
+          <div class="nav-search-container" id="navSearchContainer">
+            <form
+              class="nav-search-form"
+              id="navSearchForm"
+              role="search"
+              action="./shop.html"
+              method="get"
+            >
+              <label class="sr-only" for="navSearchInput">
+                Search VOID District products
+              </label>
+
+              <input
+                type="search"
+                id="navSearchInput"
+                name="search"
+                placeholder="Search products..."
+                autocomplete="off"
+                aria-label="Search products"
+                tabindex="-1"
+              />
+            </form>
+
+            <button
+              type="button"
+              class="nav-search"
+              id="navSearchToggle"
+              aria-label="Open product search"
+              aria-expanded="false"
+              aria-controls="navSearchForm"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Wishlist Navbar Icon -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="Wishlist, 0 saved products"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              />
             </svg>
+
+            <!-- Counter appears over the heart's top-right corner -->
+            <span
+              class="wishlist-count"
+              aria-hidden="true"
+              hidden
+            >0</span>
           </a>
+          <!-- End Wishlist Navbar Icon -->
 
           <button
             class="bag-button"
@@ -144,6 +211,7 @@
             <p class="eyebrow">FIND YOUR FIT</p>
             <h2>THE <span>ROTATION.</span></h2>
           </div>
+
           <p class="section-aside">THE PIECES YOU KEEP REACHING FOR.</p>
         </div>
 
@@ -157,12 +225,15 @@
               alt="Minimal everyday T-shirt"
               loading="lazy"
             />
+
             <span class="category-number">01</span>
+
             <div class="category-info">
               <div>
                 <p>THE EVERYDAY ESSENTIAL</p>
                 <h3>TEES</h3>
               </div>
+
               <span class="category-arrow" aria-hidden="true">↗</span>
             </div>
           </a>
@@ -176,12 +247,15 @@
               alt="Casual hoodie streetwear"
               loading="lazy"
             />
+
             <span class="category-number">02</span>
+
             <div class="category-info">
               <div>
                 <p>COMFORT WITH ATTITUDE</p>
                 <h3>HOODIES</h3>
               </div>
+
               <span class="category-arrow" aria-hidden="true">↗</span>
             </div>
           </a>
@@ -195,12 +269,15 @@
               alt="Urban casual clothing style"
               loading="lazy"
             />
+
             <span class="category-number">03</span>
+
             <div class="category-info">
               <div>
                 <p>MADE TO MOVE</p>
                 <h3>CARGOS</h3>
               </div>
+
               <span class="category-arrow" aria-hidden="true">↗</span>
             </div>
           </a>
@@ -314,6 +391,7 @@
           <a class="brand-logo footer-logo" href="#home">
             VOID<span>®</span>
           </a>
+
           <p>WEAR YOUR OWN RULES.</p>
         </div>
 
@@ -342,6 +420,7 @@
           © <span id="currentYear"></span> VOID District.
           All rights reserved.
         </p>
+
         <a href="#home">BACK TO TOP ↑</a>
       </div>
     </footer>
@@ -409,6 +488,7 @@
           hidden
         >
           <label for="orderNote">Order note</label>
+
           <textarea
             id="orderNote"
             rows="3"
@@ -434,6 +514,7 @@
           type="button"
         >
           <span>CHECKOUT</span>
+
           <span
             class="checkout-total"
             id="drawerCheckoutTotal"

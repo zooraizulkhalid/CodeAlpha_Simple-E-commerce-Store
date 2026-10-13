@@ -1281,3 +1281,346 @@ input:focus-visible {
   width: auto;
   z-index: 3;
 }
+
+
+/* =========================================
+   EXPANDABLE NAVBAR SEARCH
+========================================= */
+
+.nav-search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.nav-search-container .nav-search {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-dark);
+    cursor: pointer;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.nav-search-container .nav-search:hover {
+    color: #657c00;
+}
+
+/* Search input is hidden by default */
+
+.nav-search-form {
+    position: absolute;
+    top: calc(100% + 22px);
+    right: 0;
+    z-index: 30;
+    width: min(340px, calc(100vw - 32px));
+    padding: 10px;
+    border: 1px solid var(--color-line);
+    background: var(--color-paper);
+    box-shadow: 0 12px 30px rgb(0 0 0 / 12%);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+/* Open search bar */
+
+.nav-search-container.is-open .nav-search-form {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Search field */
+
+.nav-search-form input {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-line);
+    border-radius: 0;
+    background: var(--color-bg);
+    color: var(--color-dark);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.nav-search-form input:focus {
+    border-color: var(--color-dark);
+}
+
+.nav-search-form input::placeholder {
+    color: var(--color-muted);
+}
+
+/* Search icon active state */
+
+.nav-search-container.is-open .nav-search {
+    color: #657c00;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 700px) {
+    .nav-search-form {
+        position: fixed;
+        top: 110px;
+        right: 5%;
+        left: 5%;
+        width: 90%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .nav-search-container .nav-search {
+        width: 24px;
+        height: 24px;
+    }
+
+    .nav-search-container .nav-search svg {
+        width: 19px;
+    }
+}
+
+
+
+/* =========================================
+   VOID DISTRICT — NAVBAR WISHLIST
+========================================= */
+
+/* Heart icon container */
+.wishlist-nav-link {
+    position: relative;
+    display: inline-flex;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Heart SVG */
+.wishlist-nav-icon {
+    display: block;
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    transition:
+        fill 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Hover effect */
+.wishlist-nav-link:hover {
+    color: #657c00;
+}
+
+.wishlist-nav-link:hover .wishlist-nav-icon {
+    transform: scale(1.1);
+}
+
+/* Wishlist number badge */
+.wishlist-count {
+    position: absolute;
+    top: -5px;
+    right: -6px;
+    display: flex;
+    min-width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid var(--color-bg);
+    border-radius: 999px;
+    background: #dc2626;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* Hide counter when wishlist is empty */
+.wishlist-count[hidden] {
+    display: none !important;
+}
+
+/* Keyboard accessibility */
+.wishlist-nav-link:focus-visible {
+    outline: 3px solid #7c9c00;
+    outline-offset: 4px;
+}
+
+/* =========================================
+   WISHLIST — MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 700px) {
+    .nav-actions {
+        gap: 12px;
+    }
+
+    .wishlist-nav-link {
+        width: 30px;
+        height: 30px;
+    }
+
+    .wishlist-nav-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .wishlist-count {
+        top: -5px;
+        right: -6px;
+    }
+}
+
+/* Extra-small screens */
+@media (max-width: 380px) {
+    .nav-actions {
+        gap: 9px;
+    }
+
+    .wishlist-nav-link {
+        width: 27px;
+        height: 27px;
+    }
+
+    .wishlist-nav-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .wishlist-count {
+        top: -6px;
+        right: -6px;
+        min-width: 17px;
+        height: 17px;
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================
+   VOID DISTRICT — PRODUCT WISHLIST HEART
+========================================= */
+
+/* Circular heart button on product image */
+.product-wishlist-btn {
+    position: absolute;
+    z-index: 5;
+    top: 12px;
+    right: 12px;
+
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+
+    background: var(--color-paper);
+    color: var(--color-dark);
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Heart SVG */
+.product-wishlist-btn svg {
+    display: block;
+    width: 21px;
+    height: 21px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+
+    transition:
+        fill 0.2s ease,
+        stroke 0.2s ease;
+}
+
+/* Hover effect */
+.product-wishlist-btn:hover {
+    transform: scale(1.08);
+}
+
+/* Saved product — red filled heart */
+.product-wishlist-btn.is-saved {
+    color: #dc2626;
+}
+
+/* Fill heart when saved */
+.product-wishlist-btn.is-saved svg {
+    fill: #dc2626;
+    stroke: #dc2626;
+}
+
+/* Keyboard accessibility */
+.product-wishlist-btn:focus-visible {
+    outline: 3px solid #7c9c00;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   MOBILE WISHLIST HEART
+========================================= */
+
+@media (max-width: 700px) {
+    .product-wishlist-btn {
+        top: 8px;
+        right: 8px;
+
+        width: 34px;
+        height: 34px;
+    }
+
+    .product-wishlist-btn svg {
+        width: 19px;
+        height: 19px;
+    }
+}
+
+@media (max-width: 380px) {
+    .product-wishlist-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .product-wishlist-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}

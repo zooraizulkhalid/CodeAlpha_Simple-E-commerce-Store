@@ -1,402 +1,543 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description"
-    content="Shop tees, hoodies and cargos from VOID District.">
+    <meta
+      name="description"
+      content="Shop tees, hoodies and cargos from VOID District."
+    />
 
-  <title>Shop All | VOID District</title>
+    <title>Shop All | VOID District</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Shared styles -->
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./cart-drawer.css">
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./cart-drawer.css" />
 
-  <!-- Shop-specific styles -->
-  <link rel="stylesheet" href="./shop.css">
+    <!-- Shop-specific styles -->
+    <link rel="stylesheet" href="./shop.css" />
 
-  <!-- Shared product and cart logic -->
-  <script src="./products.js" defer></script>
-  <script src="./cart.js" defer></script>
-  <script src="./cart-drawer.js" defer></script>
+    <!-- Shared product, cart and wishlist logic -->
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
 
-  <!-- Shop-specific JavaScript -->
-  <script src="./shop.js" defer></script>
-</head>
+    <!-- Shop-specific JavaScript -->
+    <script src="./shop.js" defer></script>
+  </head>
 
-<body id="top">
-
-  <!-- Announcement Bar -->
-  <div class="announcement-bar">
-    <p>
-      YOUR STYLE. YOUR RULES.
-      <span>WELCOME TO THE DISTRICT.</span>
-    </p>
-  </div>
-
-  <!-- Navigation -->
-  <header class="site-header">
-    <nav class="navbar container" aria-label="Main navigation">
-
-      <a class="brand-logo"
-        href="./index.html#home"
-        aria-label="VOID District home">
-        VOID<span>®</span>
-      </a>
-
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="navLinks">
-        <span></span>
-        <span></span>
-      </button>
-
-      <div class="nav-links" id="navLinks">
-        <a href="./index.html#home">Home</a>
-        <a href="./shop.html" aria-current="page">Shop</a>
-        <a href="./index.html#categories">Categories</a>
-        <a href="./index.html#about">Our story</a>
-      </div>
-
-      <div class="nav-actions">
-
-        <a class="nav-search"
-          href="#shopProducts"
-          aria-label="Browse products">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="10.8" cy="10.8" r="6.8"></circle>
-            <path d="m16 16 5 5"></path>
-          </svg>
-        </a>
-
-        <button
-          class="bag-button"
-          id="bagButton"
-          type="button"
-          aria-label="Shopping bag, 0 items">
-          BAG <span id="bagCount">0</span>
-        </button>
-
-      </div>
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- Shop Hero -->
-    <section class="shop-hero container">
-
-      <div class="shop-breadcrumb">
-        <a href="./index.html">HOME</a>
-        <span>/</span>
-        <span>SHOP</span>
-      </div>
-
-      <div class="shop-hero-content">
-        <div>
-          <p class="eyebrow">VOID DISTRICT / COLLECTION 001</p>
-          <h1>THE <span>COLLECTION.</span></h1>
-        </div>
-
-        <p class="shop-hero-description">
-          Everyday essentials. Statement pieces.
-          Explore the full VOID District collection
-          and wear your own rules.
-        </p>
-      </div>
-
-      <div class="shop-hero-bottom">
-        <span>EST. FOR THE UNORDINARY</span>
-        <span>SCROLL TO EXPLORE ↓</span>
-      </div>
-
-    </section>
-
-    <!-- Product Collection -->
-    <section
-      class="shop-collection container"
-      id="shopProducts">
-
-      <div class="shop-toolbar">
-
-        <div class="shop-toolbar-heading">
-          <p class="eyebrow">FIND YOUR FIT</p>
-          <h2>SHOP <span>ALL.</span></h2>
-        </div>
-
-        <div class="shop-toolbar-meta">
-          <span id="shopProductCount">10 PRODUCTS</span>
-        </div>
-
-      </div>
-
-      <!-- Category Filters -->
-      <div
-        class="shop-filters"
-        role="group"
-        aria-label="Filter products by category">
-
-        <button
-          class="shop-filter is-active"
-          type="button"
-          data-category="all"
-          aria-pressed="true">
-          ALL PRODUCTS
-        </button>
-
-        <button
-          class="shop-filter"
-          type="button"
-          data-category="tees"
-          aria-pressed="false">
-          TEES
-        </button>
-
-        <button
-          class="shop-filter"
-          type="button"
-          data-category="hoodies"
-          aria-pressed="false">
-          HOODIES
-        </button>
-
-        <button
-          class="shop-filter"
-          type="button"
-          data-category="bottoms"
-          aria-pressed="false">
-          CARGOS
-        </button>
-
-      </div>
-
-      <!-- Dynamic Products -->
-      <div class="product-grid shop-product-grid"
-        id="shopProductGrid">
-      </div>
-
-      <!-- Empty State -->
-      <div class="shop-empty" id="shopEmpty" hidden>
-        <h3>NOTHING HERE YET.</h3>
-        <p>No products found in this category.</p>
-        <button
-          class="shop-reset-button"
-          id="resetFilters"
-          type="button">
-          VIEW ALL PRODUCTS ↗
-        </button>
-      </div>
-
-      <p class="shop-bottom-note">
-        VOID DISTRICT — YOUR STYLE. YOUR RULES.
+  <body id="top">
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+      <p>
+        YOUR STYLE. YOUR RULES.
+        <span>WELCOME TO THE DISTRICT.</span>
       </p>
+    </div>
 
-    </section>
-
-    <!-- Brand Banner -->
-    <section class="shop-brand-banner">
-      <div class="container shop-brand-content">
-        <p class="eyebrow">MORE THAN CLOTHING</p>
-        <h2>NO RULES.<br><span>JUST YOU.</span></h2>
-        <a href="./index.html#about">
-          DISCOVER OUR STORY ↗
-        </a>
-      </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter-section">
-      <div class="container newsletter-content">
-
-        <div>
-          <p class="eyebrow">STAY IN THE LOOP</p>
-          <h2>FIRST IN.<br>NEVER <span>ORDINARY.</span></h2>
-          <p>New drops and District updates. No unnecessary noise.</p>
-        </div>
-
-        <form class="newsletter-form" id="newsletterForm">
-          <label for="newsletterEmail">YOUR EMAIL ADDRESS</label>
-
-          <div class="newsletter-input-row">
-            <input
-              type="email"
-              id="newsletterEmail"
-              name="email"
-              placeholder="you@example.com"
-              autocomplete="email"
-              required
-            >
-
-            <button type="submit" aria-label="Join newsletter">
-              JOIN ↗
-            </button>
-          </div>
-
-          <p id="newsletterMessage"
-            class="form-message"
-            aria-live="polite">
-            Newsletter sign-up is a frontend demo for now.
-          </p>
-        </form>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-main">
-
-      <div class="footer-brand">
-        <a class="brand-logo footer-logo"
-          href="./index.html">
+    <!-- Navigation -->
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <a
+          class="brand-logo"
+          href="./index.html#home"
+          aria-label="VOID District home"
+        >
           VOID<span>®</span>
         </a>
-        <p>WEAR YOUR OWN RULES.</p>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="./index.html#home">Home</a>
+          <a href="./shop.html" aria-current="page">Shop</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#about">Our story</a>
+        </div>
+
+        <div class="nav-actions">
+          <!-- Search Icon -->
+          <a
+            class="nav-search"
+            href="#shopProducts"
+            aria-label="Browse products"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 5 5"></path>
+            </svg>
+          </a>
+
+          <!-- Wishlist Navbar Icon -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="Wishlist, 0 saved products"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              />
+            </svg>
+
+            <!-- Counter overlays heart at top-right -->
+            <span
+              class="wishlist-count"
+              aria-hidden="true"
+              hidden
+            >0</span>
+          </a>
+
+          <!-- Shopping Bag -->
+          <button
+            class="bag-button"
+            id="bagButton"
+            type="button"
+            aria-label="Shopping bag, 0 items"
+          >
+            BAG <span id="bagCount">0</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Shop Hero -->
+      <section class="shop-hero container">
+        <div class="shop-breadcrumb">
+          <a href="./index.html">HOME</a>
+          <span>/</span>
+          <span>SHOP</span>
+        </div>
+
+        <div class="shop-hero-content">
+          <div>
+            <p class="eyebrow">VOID DISTRICT / COLLECTION 001</p>
+            <h1>THE <span>COLLECTION.</span></h1>
+          </div>
+
+          <p class="shop-hero-description">
+            Everyday essentials. Statement pieces. Explore the full VOID
+            District collection and wear your own rules.
+          </p>
+        </div>
+
+        <div class="shop-hero-bottom">
+          <span>EST. FOR THE UNORDINARY</span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </section>
+
+      <!-- Product Collection -->
+      <section class="shop-collection container" id="shopProducts">
+        <div class="shop-toolbar">
+          <div class="shop-toolbar-heading">
+            <p class="eyebrow">FIND YOUR FIT</p>
+            <h2>SHOP <span>ALL.</span></h2>
+          </div>
+
+          <div class="shop-toolbar-meta">
+            <span id="shopProductCount">10 PRODUCTS</span>
+          </div>
+        </div>
+
+        <!-- =====================================
+             SEARCH & HORIZONTAL PRODUCT FILTERS
+        ===================================== -->
+
+        <div class="shop-search-container">
+          <label for="shopSearchInput" class="shop-search-label">
+            SEARCH THE COLLECTION
+          </label>
+
+          <div class="shop-search-box">
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              class="shop-search-icon"
+            >
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 5 5"></path>
+            </svg>
+
+            <input
+              type="search"
+              id="shopSearchInput"
+              placeholder="Search tees, hoodies, cargos..."
+              autocomplete="off"
+              aria-label="Search products"
+            />
+          </div>
+        </div>
+
+        <!-- Existing Category Filters (Preserved) -->
+        <div
+          class="shop-filters"
+          role="group"
+          aria-label="Filter products by category"
+        >
+          <button
+            class="shop-filter is-active"
+            type="button"
+            data-category="all"
+            aria-pressed="true"
+          >
+            ALL PRODUCTS
+          </button>
+
+          <button
+            class="shop-filter"
+            type="button"
+            data-category="tees"
+            aria-pressed="false"
+          >
+            TEES
+          </button>
+
+          <button
+            class="shop-filter"
+            type="button"
+            data-category="hoodies"
+            aria-pressed="false"
+          >
+            HOODIES
+          </button>
+
+          <button
+            class="shop-filter"
+            type="button"
+            data-category="bottoms"
+            aria-pressed="false"
+          >
+            CARGOS
+          </button>
+        </div>
+
+        <!-- Additional Horizontal Filters -->
+        <div class="shop-advanced-filters">
+          <!-- Minimum Price -->
+          <div class="shop-filter-group">
+            <label for="minPrice">MIN PRICE</label>
+
+            <input
+              type="number"
+              id="minPrice"
+              min="0"
+              step="1"
+              placeholder="Rs. 0"
+            />
+          </div>
+
+          <!-- Maximum Price -->
+          <div class="shop-filter-group">
+            <label for="maxPrice">MAX PRICE</label>
+
+            <input
+              type="number"
+              id="maxPrice"
+              min="0"
+              step="1"
+              placeholder="Any"
+            />
+          </div>
+
+          <!-- Available Size -->
+          <div class="shop-filter-group">
+            <label for="sizeFilter">SIZE</label>
+
+            <select id="sizeFilter">
+              <option value="all">All Sizes</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>
+
+          <!-- Sorting -->
+          <div class="shop-filter-group">
+            <label for="sortFilter">SORT BY</label>
+
+            <select id="sortFilter">
+              <option value="default">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+            </select>
+          </div>
+
+          <!-- Clear All -->
+          <button
+            type="button"
+            id="clearAllFilters"
+            class="shop-clear-filters"
+          >
+            CLEAR ALL
+          </button>
+        </div>
+
+        <!-- Screen Reader Filter Results -->
+        <p
+          id="shopFilterAnnouncement"
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <!-- Dynamic Products -->
+        <div
+          class="product-grid shop-product-grid"
+          id="shopProductGrid"
+        ></div>
+
+        <!-- Empty State -->
+        <div class="shop-empty" id="shopEmpty" hidden>
+          <h3>NOTHING HERE YET.</h3>
+          <p>No products match your search or filters.</p>
+
+          <button
+            class="shop-reset-button"
+            id="resetFilters"
+            type="button"
+          >
+            VIEW ALL PRODUCTS ↗
+          </button>
+        </div>
+
+        <p class="shop-bottom-note">
+          VOID DISTRICT — YOUR STYLE. YOUR RULES.
+        </p>
+      </section>
+
+      <!-- Brand Banner -->
+      <section class="shop-brand-banner">
+        <div class="container shop-brand-content">
+          <p class="eyebrow">MORE THAN CLOTHING</p>
+          <h2>NO RULES.<br /><span>JUST YOU.</span></h2>
+          <a href="./index.html#about"> DISCOVER OUR STORY ↗ </a>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="newsletter-section">
+        <div class="container newsletter-content">
+          <div>
+            <p class="eyebrow">STAY IN THE LOOP</p>
+            <h2>FIRST IN.<br />NEVER <span>ORDINARY.</span></h2>
+            <p>New drops and District updates. No unnecessary noise.</p>
+          </div>
+
+          <form class="newsletter-form" id="newsletterForm">
+            <label for="newsletterEmail">
+              YOUR EMAIL ADDRESS
+            </label>
+
+            <div class="newsletter-input-row">
+              <input
+                type="email"
+                id="newsletterEmail"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+
+              <button
+                type="submit"
+                aria-label="Join newsletter"
+              >
+                JOIN ↗
+              </button>
+            </div>
+
+            <p
+              id="newsletterMessage"
+              class="form-message"
+              aria-live="polite"
+            >
+              Newsletter sign-up is a frontend demo for now.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a
+            class="brand-logo footer-logo"
+            href="./index.html"
+          >
+            VOID<span>®</span>
+          </a>
+
+          <p>WEAR YOUR OWN RULES.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>EXPLORE</h3>
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop all</a>
+          <a href="./shop.html?category=tees">Tees</a>
+          <a href="./shop.html?category=hoodies">Hoodies</a>
+          <a href="./shop.html?category=bottoms">Cargos</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE BRAND</h3>
+          <a href="./index.html#about">Our story</a>
+          <a href="./index.html#about">Our philosophy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE DISTRICT</h3>
+          <p>
+            Independent style.<br />
+            Everyday expression.
+          </p>
+        </div>
       </div>
 
-      <div class="footer-column">
-        <h3>EXPLORE</h3>
-        <a href="./index.html">Home</a>
-        <a href="./shop.html">Shop all</a>
-        <a href="./shop.html?category=tees">Tees</a>
-        <a href="./shop.html?category=hoodies">Hoodies</a>
-        <a href="./shop.html?category=bottoms">Cargos</a>
+      <div class="container footer-bottom">
+        <p>
+          © <span id="currentYear"></span>
+          VOID District. All rights reserved.
+        </p>
+
+        <a href="#top">BACK TO TOP ↑</a>
       </div>
-
-      <div class="footer-column">
-        <h3>THE BRAND</h3>
-        <a href="./index.html#about">Our story</a>
-        <a href="./index.html#about">Our philosophy</a>
-      </div>
-
-      <div class="footer-column">
-        <h3>THE DISTRICT</h3>
-        <p>Independent style.<br>Everyday expression.</p>
-      </div>
-
-    </div>
-
-    <div class="container footer-bottom">
-      <p>
-        © <span id="currentYear"></span>
-        VOID District. All rights reserved.
-      </p>
-      <a href="#top">BACK TO TOP ↑</a>
-    </div>
-  </footer>
-
-  <div
-    class="sr-only"
-    id="cartMessage"
-    aria-live="polite">
-  </div>
-
-  <!-- Cart Drawer -->
-  <div
-    class="cart-drawer-backdrop"
-    id="cartDrawerBackdrop"
-    hidden>
-  </div>
-
-  <aside
-    class="cart-drawer"
-    id="cartDrawer"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="cartDrawerTitle"
-    aria-hidden="true"
-    inert>
-
-    <div class="cart-drawer-header">
-      <h2 id="cartDrawerTitle">
-        CART (<span id="drawerItemCount">0</span>)
-      </h2>
-
-      <button
-        class="cart-drawer-close"
-        id="closeCartDrawer"
-        type="button"
-        aria-label="Close shopping cart">
-        &times;
-      </button>
-    </div>
+    </footer>
 
     <div
-      class="cart-drawer-content"
-      id="cartDrawerContent">
-    </div>
+      class="sr-only"
+      id="cartMessage"
+      aria-live="polite"
+    ></div>
 
-    <div class="cart-drawer-footer">
+    <!-- Cart Drawer -->
+    <div
+      class="cart-drawer-backdrop"
+      id="cartDrawerBackdrop"
+      hidden
+    ></div>
 
-      <button
-        class="cart-order-note-toggle"
-        id="orderNoteToggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="orderNoteSection">
-        <span>Add order note</span>
-        <span aria-hidden="true">+</span>
-      </button>
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartDrawerTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cart-drawer-header">
+        <h2 id="cartDrawerTitle">
+          CART (<span id="drawerItemCount">0</span>)
+        </h2>
 
-      <div
-        class="cart-order-note"
-        id="orderNoteSection"
-        hidden>
-
-        <label for="orderNote">Order note</label>
-
-        <textarea
-          id="orderNote"
-          rows="3"
-          maxlength="500"
-          placeholder="Add a note about your order">
-        </textarea>
+        <button
+          class="cart-drawer-close"
+          id="closeCartDrawer"
+          type="button"
+          aria-label="Close shopping cart"
+        >
+          &times;
+        </button>
       </div>
 
-      <p class="cart-drawer-disclaimer">
-        Taxes and shipping calculated at checkout.
-      </p>
+      <div
+        class="cart-drawer-content"
+        id="cartDrawerContent"
+      ></div>
 
-      <a
-        class="cart-drawer-button cart-drawer-view"
-        href="./cart.html">
-        VIEW CART
-      </a>
+      <div class="cart-drawer-footer">
+        <button
+          class="cart-order-note-toggle"
+          id="orderNoteToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="orderNoteSection"
+        >
+          <span>Add order note</span>
+          <span aria-hidden="true">+</span>
+        </button>
 
-      <button
-        class="cart-drawer-button cart-drawer-checkout"
-        id="drawerCheckoutButton"
-        type="button">
+        <div
+          class="cart-order-note"
+          id="orderNoteSection"
+          hidden
+        >
+          <label for="orderNote">Order note</label>
 
-        <span>CHECKOUT</span>
+          <textarea
+            id="orderNote"
+            rows="3"
+            maxlength="500"
+            placeholder="Add a note about your order"
+          ></textarea>
+        </div>
 
-        <span
-          class="checkout-total"
-          id="drawerCheckoutTotal">
-          Rs. 0
-        </span>
+        <p class="cart-drawer-disclaimer">
+          Taxes and shipping calculated at checkout.
+        </p>
 
-      </button>
-    </div>
+        <a
+          class="cart-drawer-button cart-drawer-view"
+          href="./cart.html"
+        >
+          VIEW CART
+        </a>
 
-  </aside>
-  <!-- End Cart Drawer -->
+        <button
+          class="cart-drawer-button cart-drawer-checkout"
+          id="drawerCheckoutButton"
+          type="button"
+        >
+          <span>CHECKOUT</span>
 
-</body>
+          <span
+            class="checkout-total"
+            id="drawerCheckoutTotal"
+          >
+            Rs. 0
+          </span>
+        </button>
+      </div>
+    </aside>
+    <!-- End Cart Drawer -->
+  </body>
 </html>

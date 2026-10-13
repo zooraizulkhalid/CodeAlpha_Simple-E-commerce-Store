@@ -80,6 +80,102 @@ if (menuToggle && navLinks) {
 }
 
 /* =========================================
+   EXPANDABLE NAVBAR SEARCH
+========================================= */
+
+const navSearchContainer = document.querySelector(
+  "#navSearchContainer"
+);
+
+const navSearchToggle = document.querySelector(
+  "#navSearchToggle"
+);
+
+const navSearchForm = document.querySelector(
+  "#navSearchForm"
+);
+
+const navSearchInput = document.querySelector(
+  "#navSearchInput"
+);
+
+if (
+  navSearchContainer &&
+  navSearchToggle &&
+  navSearchForm &&
+  navSearchInput
+) {
+  // Open or close the search bar.
+  function setSearchOpen(isOpen) {
+    navSearchContainer.classList.toggle(
+      "is-open",
+      isOpen
+    );
+
+    navSearchToggle.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
+    navSearchToggle.setAttribute(
+      "aria-label",
+      isOpen
+        ? "Close product search"
+        : "Open product search"
+    );
+
+    // Hidden search input should not receive keyboard focus.
+    navSearchInput.tabIndex = isOpen ? 0 : -1;
+
+    if (isOpen) {
+      navSearchInput.focus();
+    }
+  }
+
+  // Toggle search on icon click.
+  navSearchToggle.addEventListener("click", () => {
+    const isOpen = navSearchContainer.classList.contains(
+      "is-open"
+    );
+
+    setSearchOpen(!isOpen);
+  });
+
+  // Close search when clicking outside.
+  document.addEventListener("click", (event) => {
+    if (!navSearchContainer.contains(event.target)) {
+      setSearchOpen(false);
+    }
+  });
+
+  // Close search using Escape key.
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      navSearchContainer.classList.contains("is-open")
+    ) {
+      setSearchOpen(false);
+      navSearchToggle.focus();
+    }
+  });
+
+  // Prevent searching with empty input.
+  navSearchForm.addEventListener("submit", (event) => {
+    const searchTerm = navSearchInput.value.trim();
+
+    if (!searchTerm) {
+      event.preventDefault();
+      navSearchInput.focus();
+      return;
+    }
+
+    // The HTML form submits to:
+    // ./shop.html?search=SEARCH_TERM
+    navSearchInput.value = searchTerm;
+  });
+}
+
+/* =========================================
    IMAGE FALLBACK
 ========================================= */
 
@@ -115,6 +211,58 @@ function shuffleProducts(productList) {
   }
 
   return shuffled;
+}
+
+/* =========================================
+   WISHLIST HEART BUTTON
+========================================= */
+
+function createWishlistButton(product) {
+  const button = document.createElement("button");
+
+  button.type = "button";
+  button.className = "product-wishlist-btn";
+
+  // Shared wishlist.js identifies products using this attribute.
+  button.dataset.wishlistId = String(product.id);
+
+  const saved =
+    typeof isInWishlist === "function" &&
+    isInWishlist(product.id);
+
+  button.classList.toggle("is-saved", saved);
+
+  button.setAttribute("aria-pressed", String(saved));
+
+  button.setAttribute(
+    "aria-label",
+    saved
+      ? `Remove ${product.name} from wishlist`
+      : `Add ${product.name} to wishlist`
+  );
+
+  button.title = saved
+    ? "Remove from Wishlist"
+    : "Add to Wishlist";
+
+  // Heart SVG.
+  button.innerHTML = `
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path
+        d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+      />
+    </svg>
+  `;
+
+  return button;
 }
 
 /* =========================================
@@ -203,6 +351,9 @@ function renderProducts() {
     setupImageFallback(image);
     imageLink.appendChild(image);
 
+    // Wishlist button — top-right of image.
+    const wishlistButton = createWishlistButton(product);
+
     // Add to Bag button.
     const addButton = document.createElement("button");
     addButton.className = "quick-add";
@@ -222,6 +373,7 @@ function renderProducts() {
     imageWrap.append(
       badge,
       imageLink,
+      wishlistButton,
       addButton
     );
 
@@ -258,6 +410,57 @@ function renderProducts() {
     // Assemble complete card.
     article.append(imageWrap, details);
     productGrid.appendChild(article);
+  });
+
+  // Synchronize all hearts with saved wishlist.
+  if (typeof refreshWishlistUI === "function") {
+    refreshWishlistUI();
+  }
+}
+
+/* =========================================
+   WISHLIST CLICK HANDLING
+========================================= */
+
+if (productGrid) {
+  productGrid.addEventListener("click", (event) => {
+    const wishlistButton = event.target.closest(
+      ".product-wishlist-btn"
+    );
+
+    if (
+      !wishlistButton ||
+      !productGrid.contains(wishlistButton)
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const productId = wishlistButton.dataset.wishlistId;
+
+    if (typeof toggleWishlist !== "function") {
+      console.error("Wishlist system is not loaded.");
+      return;
+    }
+
+    // Save or remove the product.
+    const updated = toggleWishlist(productId);
+
+    if (!updated) {
+      console.error("Unable to update wishlist.");
+      return;
+    }
+
+    const saved = isInWishlist(productId);
+
+    wishlistButton.title = saved
+      ? "Remove from Wishlist"
+      : "Add to Wishlist";
+
+    // Navbar count and all heart states are updated
+    // automatically by wishlist.js.
   });
 }
 
@@ -307,7 +510,7 @@ if (productGrid) {
     const productId = addButton.dataset.productId;
 
     const selectedProduct = products.find(
-      (product) => product.id === productId
+      (product) => String(product.id) === productId
     );
 
     if (!selectedProduct) {
