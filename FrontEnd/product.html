@@ -31,6 +31,7 @@
     <script src="./products.js" defer></script>
     <script src="./cart.js" defer></script>
     <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
     <script src="./script.js" defer></script>
     <script src="./product.js" defer></script>
   </head>
@@ -86,6 +87,31 @@
             </svg>
           </a>
 
+          <!-- Wishlist -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="Wishlist, 0 saved products"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              />
+            </svg>
+
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
+          </a>
+
           <button
             class="bag-button"
             id="bagButton"
@@ -119,6 +145,30 @@
               <span class="product-page-badge" id="productBadge">
                 COLLECTION 001
               </span>
+
+              <!-- Product Wishlist Heart -->
+              <button
+                type="button"
+                id="productWishlistButton"
+                class="product-wishlist-btn"
+                aria-label="Add product to wishlist"
+                aria-pressed="false"
+                title="Add to Wishlist"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+                  />
+                </svg>
+              </button>
 
               <img
                 id="productImage"
