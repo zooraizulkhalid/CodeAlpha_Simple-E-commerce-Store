@@ -1,4 +1,3 @@
-
 "use strict";
 
 /* =========================================
@@ -25,7 +24,7 @@ function updateCartHeader(count) {
   if (bagButton) {
     bagButton.setAttribute(
       "aria-label",
-      `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`
+      `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`,
     );
   }
 }
@@ -57,8 +56,7 @@ function renderCart() {
     cartItemsContainer.appendChild(emptyState);
   } else {
     cart.forEach((item) => {
-      const productUrl =
-        `./product.html?product=${encodeURIComponent(item.id)}`;
+      const productUrl = `./product.html?product=${encodeURIComponent(item.id)}`;
 
       const article = document.createElement("article");
       article.className = "cart-item";
@@ -81,7 +79,7 @@ function renderCart() {
           image.removeAttribute("src");
           image.alt = "Product image unavailable";
         },
-        { once: true }
+        { once: true },
       );
 
       imageLink.appendChild(image);
@@ -121,7 +119,7 @@ function renderCart() {
       decreaseButton.disabled = item.quantity <= 1;
       decreaseButton.setAttribute(
         "aria-label",
-        `Decrease quantity of ${item.name}, size ${item.size}`
+        `Decrease quantity of ${item.name}, size ${item.size}`,
       );
 
       const quantityValue = document.createElement("span");
@@ -135,7 +133,7 @@ function renderCart() {
       increaseButton.disabled = item.quantity >= MAX_ITEM_QUANTITY;
       increaseButton.setAttribute(
         "aria-label",
-        `Increase quantity of ${item.name}, size ${item.size}`
+        `Increase quantity of ${item.name}, size ${item.size}`,
       );
 
       decreaseButton.addEventListener("click", () => {
@@ -146,11 +144,7 @@ function renderCart() {
         changeQuantity(item, item.quantity + 1);
       });
 
-      quantityControls.append(
-        decreaseButton,
-        quantityValue,
-        increaseButton
-      );
+      quantityControls.append(decreaseButton, quantityValue, increaseButton);
 
       // Remove item
       const removeButton = document.createElement("button");
@@ -174,9 +168,7 @@ function renderCart() {
       // Line total
       const lineTotal = document.createElement("p");
       lineTotal.className = "cart-item-price";
-      lineTotal.textContent = formatCartPrice(
-        item.price * item.quantity
-      );
+      lineTotal.textContent = formatCartPrice(item.price * item.quantity);
 
       details.append(name, size, unitPrice, actions, lineTotal);
       article.append(imageLink, details);
@@ -204,11 +196,7 @@ function changeQuantity(item, newQuantity) {
     return;
   }
 
-  const result = updateCartQuantity(
-    item.id,
-    item.size,
-    newQuantity
-  );
+  const result = updateCartQuantity(item.id, item.size, newQuantity);
 
   if (result.success) {
     renderCart();
@@ -236,3 +224,8 @@ window.addEventListener("storage", (event) => {
 
 // Initial render
 renderCart();
+
+/* Refresh cart when returning to this page */
+window.addEventListener("pageshow", () => {
+  renderCart();
+});

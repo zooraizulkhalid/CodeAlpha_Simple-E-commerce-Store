@@ -1,4 +1,3 @@
-
 "use strict";
 
 /* =========================================
@@ -25,15 +24,15 @@ const CHECKOUT_CONFIG = {
     Australia: 5000,
     Turkey: 3000,
     China: 2500,
-    Other: 5000
+    Other: 5000,
   },
 
   discountCodes: {
     VOID10: {
       type: "percent",
-      value: 10
-    }
-  }
+      value: 10,
+    },
+  },
 };
 
 // =========================================
@@ -57,44 +56,33 @@ const applyDiscountButton = document.getElementById("applyDiscountButton");
 const discountMessage = document.getElementById("discountMessage");
 
 const checkoutMessage = document.getElementById("checkoutMessage");
-const mobileCheckoutMessage = document.getElementById(
-  "mobileCheckoutMessage"
-);
+const mobileCheckoutMessage = document.getElementById("mobileCheckoutMessage");
 
 const placeOrderButton = document.getElementById("placeOrderButton");
 const mobilePlaceOrderButton = document.getElementById(
-  "mobilePlaceOrderButton"
+  "mobilePlaceOrderButton",
 );
 
 const checkoutBagCount = document.getElementById("checkoutBagCount");
 
 const cardFields = document.getElementById("cardFields");
-const billingAddressSection = document.getElementById(
-  "billingAddressSection"
-);
+const billingAddressSection = document.getElementById("billingAddressSection");
 
-const billingSameAsShipping = document.getElementById(
-  "billingSameAsShipping"
-);
+const billingSameAsShipping = document.getElementById("billingSameAsShipping");
 
 const differentBillingFields = document.getElementById(
-  "differentBillingFields"
+  "differentBillingFields",
 );
 
 const orderNoteInput = document.getElementById("orderNote");
 const signInLink = document.getElementById("signInLink");
-const orderConfirmation = document.getElementById(
-  "orderConfirmation"
-);
+const orderConfirmation = document.getElementById("orderConfirmation");
 
-const mobileOrderAction = document.querySelector(
-  ".mobile-order-action"
-);
+const mobileOrderAction = document.querySelector(".mobile-order-action");
 
-const placeOrderButtons = [
-  placeOrderButton,
-  mobilePlaceOrderButton
-].filter(Boolean);
+const placeOrderButtons = [placeOrderButton, mobilePlaceOrderButton].filter(
+  Boolean,
+);
 
 // =========================================
 // 3. CHECKOUT STATE
@@ -117,7 +105,7 @@ function formatPrice(amount) {
 
 function getSelectedPaymentMethod() {
   const selected = document.querySelector(
-    'input[name="paymentMethod"]:checked'
+    'input[name="paymentMethod"]:checked',
   );
 
   return selected ? selected.value : "";
@@ -126,7 +114,7 @@ function getSelectedPaymentMethod() {
 function getShippingCost(country) {
   return Object.prototype.hasOwnProperty.call(
     CHECKOUT_CONFIG.shippingRates,
-    country
+    country,
   )
     ? CHECKOUT_CONFIG.shippingRates[country]
     : CHECKOUT_CONFIG.shippingRates.Other;
@@ -189,13 +177,11 @@ function updateShipping() {
 
   if (shippingCost === 0) {
     shippingPrice.textContent = "FREE";
-    shippingMessage.textContent =
-      "Free shipping within Pakistan.";
+    shippingMessage.textContent = "Free shipping within Pakistan.";
   } else {
     shippingPrice.textContent = formatPrice(shippingCost);
 
-    shippingMessage.textContent =
-      `Estimated international shipping to ${country}.`;
+    shippingMessage.textContent = `Estimated international shipping to ${country}.`;
   }
 
   updateTotals();
@@ -229,25 +215,19 @@ function updateTotals() {
   discountAmount = 0;
 
   if (appliedDiscountCode === "VOID10") {
-    discountAmount = Math.round(subtotal * 0.10);
+    discountAmount = Math.round(subtotal * 0.1);
   }
 
   discountAmount = Math.min(discountAmount, subtotal);
 
-  const total = Math.max(
-    0,
-    subtotal - discountAmount + shippingCost
-  );
+  const total = Math.max(0, subtotal - discountAmount + shippingCost);
 
   checkoutSubtotal.textContent = formatPrice(subtotal);
 
-  checkoutDiscount.textContent =
-    `− ${formatPrice(discountAmount)}`;
+  checkoutDiscount.textContent = `− ${formatPrice(discountAmount)}`;
 
   checkoutShipping.textContent =
-    shippingCost === 0
-      ? "FREE"
-      : formatPrice(shippingCost);
+    shippingCost === 0 ? "FREE" : formatPrice(shippingCost);
 
   checkoutTotal.textContent = formatPrice(total);
 
@@ -268,8 +248,7 @@ function renderCheckoutItems() {
     emptyState.className = "empty-cart";
 
     const message = document.createElement("p");
-    message.textContent =
-      "Your shopping bag is currently empty.";
+    message.textContent = "Your shopping bag is currently empty.";
 
     const shopLink = document.createElement("a");
     shopLink.href = "./shop.html";
@@ -303,8 +282,7 @@ function renderCheckoutItems() {
 
     const image = document.createElement("img");
     image.className = "checkout-item-image";
-    image.src =
-      item.image || "./images/image-placeholder.jpg";
+    image.src = item.image || "./images/image-placeholder.jpg";
     image.alt = item.name || "Product";
     image.loading = "lazy";
 
@@ -314,7 +292,7 @@ function renderCheckoutItems() {
         image.removeAttribute("src");
         image.alt = "Product image unavailable";
       },
-      { once: true }
+      { once: true },
     );
 
     const quantityBadge = document.createElement("span");
@@ -340,9 +318,7 @@ function renderCheckoutItems() {
     // Product total
     const priceElement = document.createElement("span");
     priceElement.className = "checkout-item-price";
-    priceElement.textContent = formatPrice(
-      price * quantity
-    );
+    priceElement.textContent = formatPrice(price * quantity);
 
     article.append(imageWrap, details, priceElement);
     checkoutItems.appendChild(article);
@@ -362,15 +338,12 @@ function renderCheckoutItems() {
 function applyDiscount() {
   if (orderCompleted) return;
 
-  const code = discountCodeInput.value
-    .trim()
-    .toUpperCase();
+  const code = discountCodeInput.value.trim().toUpperCase();
 
   appliedDiscountCode = "";
 
   if (!code) {
-    discountMessage.textContent =
-      "Please enter a discount code.";
+    discountMessage.textContent = "Please enter a discount code.";
     discountMessage.className = "error";
 
     updateTotals();
@@ -378,20 +351,17 @@ function applyDiscount() {
   }
 
   if (cartItems.length === 0) {
-    discountMessage.textContent =
-      "Add a product before applying a discount.";
+    discountMessage.textContent = "Add a product before applying a discount.";
     discountMessage.className = "error";
 
     updateTotals();
     return;
   }
 
-  const discountRule =
-    CHECKOUT_CONFIG.discountCodes[code];
+  const discountRule = CHECKOUT_CONFIG.discountCodes[code];
 
   if (!discountRule) {
-    discountMessage.textContent =
-      "Invalid discount code.";
+    discountMessage.textContent = "Invalid discount code.";
     discountMessage.className = "error";
 
     updateTotals();
@@ -402,26 +372,19 @@ function applyDiscount() {
 
   updateTotals();
 
-  discountMessage.textContent =
-    `${code} applied! You saved ${formatPrice(discountAmount)}.`;
+  discountMessage.textContent = `${code} applied! You saved ${formatPrice(discountAmount)}.`;
 
   discountMessage.className = "success";
 }
 
-applyDiscountButton.addEventListener(
-  "click",
-  applyDiscount
-);
+applyDiscountButton.addEventListener("click", applyDiscount);
 
-discountCodeInput.addEventListener(
-  "keydown",
-  (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      applyDiscount();
-    }
+discountCodeInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    applyDiscount();
   }
-);
+});
 
 // =========================================
 // 9. PAYMENT METHOD SELECTION
@@ -441,14 +404,9 @@ function updatePaymentFields() {
   clearCheckoutMessage();
 }
 
-document
-  .querySelectorAll('input[name="paymentMethod"]')
-  .forEach((radio) => {
-    radio.addEventListener(
-      "change",
-      updatePaymentFields
-    );
-  });
+document.querySelectorAll('input[name="paymentMethod"]').forEach((radio) => {
+  radio.addEventListener("change", updatePaymentFields);
+});
 
 // =========================================
 // 10. BILLING ADDRESS
@@ -459,24 +417,18 @@ function updateBillingFields() {
 
   differentBillingFields.hidden = sameAddress;
 
-  const inputs = differentBillingFields.querySelectorAll(
-    "input, select"
-  );
+  const inputs = differentBillingFields.querySelectorAll("input, select");
 
   inputs.forEach((input) => {
     const optional =
-      input.id === "billingApartment" ||
-      input.id === "billingPostalCode";
+      input.id === "billingApartment" || input.id === "billingPostalCode";
 
     input.required = !sameAddress && !optional;
     input.disabled = sameAddress;
   });
 }
 
-billingSameAsShipping.addEventListener(
-  "change",
-  updateBillingFields
-);
+billingSameAsShipping.addEventListener("change", updateBillingFields);
 
 // =========================================
 // 11. FORM VALIDATION
@@ -488,7 +440,7 @@ function validateCheckout() {
   if (cartItems.length === 0 || subtotal <= 0) {
     showCheckoutMessage(
       "Your bag is empty. Add products before checkout.",
-      "error"
+      "error",
     );
     return false;
   }
@@ -498,8 +450,7 @@ function validateCheckout() {
 
   const contact = contactInput.value.trim();
 
-  const validEmail =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
 
   const digits = contact.replace(/\D/g, "");
 
@@ -511,7 +462,7 @@ function validateCheckout() {
   if (!validEmail && !validPhone) {
     showCheckoutMessage(
       "Please enter a valid email or mobile number.",
-      "error"
+      "error",
     );
 
     contactInput.focus();
@@ -524,7 +475,7 @@ function validateCheckout() {
     ["lastName", "Please enter your last name."],
     ["address", "Please enter your address."],
     ["city", "Please enter your city."],
-    ["phone", "Please enter your phone number."]
+    ["phone", "Please enter your phone number."],
   ];
 
   for (const [id, message] of requiredFields) {
@@ -542,14 +493,8 @@ function validateCheckout() {
     .getElementById("phone")
     .value.replace(/\D/g, "");
 
-  if (
-    deliveryPhone.length < 7 ||
-    deliveryPhone.length > 15
-  ) {
-    showCheckoutMessage(
-      "Please enter a valid delivery phone number.",
-      "error"
-    );
+  if (deliveryPhone.length < 7 || deliveryPhone.length > 15) {
+    showCheckoutMessage("Please enter a valid delivery phone number.", "error");
 
     document.getElementById("phone").focus();
     return false;
@@ -559,23 +504,15 @@ function validateCheckout() {
   const paymentMethod = getSelectedPaymentMethod();
 
   if (!paymentMethod) {
-    showCheckoutMessage(
-      "Please select a payment method.",
-      "error"
-    );
+    showCheckoutMessage("Please select a payment method.", "error");
 
-    document.querySelector(
-      'input[name="paymentMethod"]'
-    ).focus();
+    document.querySelector('input[name="paymentMethod"]').focus();
 
     return false;
   }
 
   if (paymentMethod === "card") {
-    showCheckoutMessage(
-      "Online card payment is not available yet.",
-      "info"
-    );
+    showCheckoutMessage("Online card payment is not available yet.", "info");
 
     return false;
   }
@@ -587,17 +524,14 @@ function validateCheckout() {
       "billingLastName",
       "billingAddress",
       "billingCity",
-      "billingPhone"
+      "billingPhone",
     ];
 
     for (const id of billingFields) {
       const field = document.getElementById(id);
 
       if (!field.value.trim()) {
-        showCheckoutMessage(
-          "Please complete your billing address.",
-          "error"
-        );
+        showCheckoutMessage("Please complete your billing address.", "error");
 
         field.focus();
         return false;
@@ -608,13 +542,10 @@ function validateCheckout() {
       .getElementById("billingPhone")
       .value.replace(/\D/g, "");
 
-    if (
-      billingPhone.length < 7 ||
-      billingPhone.length > 15
-    ) {
+    if (billingPhone.length < 7 || billingPhone.length > 15) {
       showCheckoutMessage(
         "Please enter a valid billing phone number.",
-        "error"
+        "error",
       );
 
       document.getElementById("billingPhone").focus();
@@ -632,39 +563,26 @@ function validateCheckout() {
 function createDemoOrder() {
   const total = updateTotals();
 
-  const firstName = document
-    .getElementById("firstName")
-    .value.trim();
+  const firstName = document.getElementById("firstName").value.trim();
 
-  const lastName = document
-    .getElementById("lastName")
-    .value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
 
-  const address = document
-    .getElementById("address")
-    .value.trim();
+  const address = document.getElementById("address").value.trim();
 
-  const apartment = document
-    .getElementById("apartment")
-    .value.trim();
+  const apartment = document.getElementById("apartment").value.trim();
 
-  const city = document
-    .getElementById("city")
-    .value.trim();
+  const city = document.getElementById("city").value.trim();
 
-  const postalCode = document
-    .getElementById("postalCode")
-    .value.trim();
+  const postalCode = document.getElementById("postalCode").value.trim();
 
   return {
-    reference:
-      "VOID-DEMO-" + Date.now().toString().slice(-8),
+    reference: "VOID-DEMO-" + Date.now().toString().slice(-8),
 
     customer: {
       firstName,
       lastName,
       contact: document.getElementById("email").value.trim(),
-      phone: document.getElementById("phone").value.trim()
+      phone: document.getElementById("phone").value.trim(),
     },
 
     shippingAddress: {
@@ -672,7 +590,7 @@ function createDemoOrder() {
       address,
       apartment,
       city,
-      postalCode
+      postalCode,
     },
 
     items: cartItems.map((item) => ({
@@ -680,7 +598,7 @@ function createDemoOrder() {
       name: item.name,
       size: item.size,
       quantity: item.quantity,
-      price: item.price
+      price: item.price,
     })),
 
     paymentMethod: "cod",
@@ -691,14 +609,14 @@ function createDemoOrder() {
       subtotal,
       discount: discountAmount,
       shipping: shippingCost,
-      total
+      total,
     },
 
     discountCode: appliedDiscountCode,
 
     note: orderNoteInput.value.trim(),
 
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   };
 }
 
@@ -717,16 +635,13 @@ function showDemoConfirmation(order) {
     "This is a frontend demonstration. No real order has been placed or sent to a store.";
 
   const reference = document.createElement("p");
-  reference.textContent =
-    `Order reference: ${order.reference}`;
+  reference.textContent = `Order reference: ${order.reference}`;
 
   const customer = document.createElement("p");
-  customer.textContent =
-    `Customer: ${order.customer.firstName} ${order.customer.lastName}`;
+  customer.textContent = `Customer: ${order.customer.firstName} ${order.customer.lastName}`;
 
   const payment = document.createElement("p");
-  payment.textContent =
-    "Payment: Cash on Delivery (Demo)";
+  payment.textContent = "Payment: Cash on Delivery (Demo)";
 
   const address = document.createElement("p");
 
@@ -735,7 +650,7 @@ function showDemoConfirmation(order) {
     order.shippingAddress.apartment,
     order.shippingAddress.city,
     order.shippingAddress.postalCode,
-    order.shippingAddress.country
+    order.shippingAddress.country,
   ]
     .filter(Boolean)
     .join(", ");
@@ -748,28 +663,23 @@ function showDemoConfirmation(order) {
   order.items.forEach((item) => {
     const listItem = document.createElement("li");
 
-    listItem.textContent =
-      `${item.name} — Size ${item.size} × ${item.quantity}`;
+    listItem.textContent = `${item.name} — Size ${item.size} × ${item.quantity}`;
 
     itemList.appendChild(listItem);
   });
 
   const subtotalText = document.createElement("p");
-  subtotalText.textContent =
-    `Subtotal: ${formatPrice(order.pricing.subtotal)}`;
+  subtotalText.textContent = `Subtotal: ${formatPrice(order.pricing.subtotal)}`;
 
   const discountText = document.createElement("p");
-  discountText.textContent =
-    `Discount: − ${formatPrice(order.pricing.discount)}`;
+  discountText.textContent = `Discount: − ${formatPrice(order.pricing.discount)}`;
 
   const shippingText = document.createElement("p");
-  shippingText.textContent =
-    `Shipping: ${formatPrice(order.pricing.shipping)}`;
+  shippingText.textContent = `Shipping: ${formatPrice(order.pricing.shipping)}`;
 
   const totalText = document.createElement("p");
   totalText.className = "confirmation-total";
-  totalText.textContent =
-    `TOTAL: ${formatPrice(order.pricing.total)}`;
+  totalText.textContent = `TOTAL: ${formatPrice(order.pricing.total)}`;
 
   const shopLink = document.createElement("a");
   shopLink.href = "./shop.html";
@@ -789,7 +699,7 @@ function showDemoConfirmation(order) {
     discountText,
     shippingText,
     totalText,
-    shopLink
+    shopLink,
   );
 
   checkoutForm.hidden = true;
@@ -806,7 +716,7 @@ function showDemoConfirmation(order) {
 
   orderConfirmation.scrollIntoView({
     behavior: "smooth",
-    block: "start"
+    block: "start",
   });
 }
 
@@ -825,10 +735,7 @@ checkoutForm.addEventListener("submit", (event) => {
   updateOrderButtons();
 
   if (cartItems.length === 0) {
-    showCheckoutMessage(
-      "Your bag is empty. Please add products.",
-      "error"
-    );
+    showCheckoutMessage("Your bag is empty. Please add products.", "error");
     return;
   }
 
@@ -837,7 +744,7 @@ checkoutForm.addEventListener("submit", (event) => {
   if (paymentMethod === "card") {
     showCheckoutMessage(
       "Online payment is not connected yet. No payment was taken.",
-      "info"
+      "info",
     );
     return;
   }
@@ -849,8 +756,8 @@ checkoutForm.addEventListener("submit", (event) => {
 
   const confirmed = window.confirm(
     `Confirm DEMO Cash on Delivery order?\n\n` +
-    `Total: ${formatPrice(order.pricing.total)}\n\n` +
-    "No real order will be placed."
+      `Total: ${formatPrice(order.pricing.total)}\n\n` +
+      "No real order will be placed.",
   );
 
   if (!confirmed) return;
@@ -861,7 +768,7 @@ checkoutForm.addEventListener("submit", (event) => {
   if (!saved) {
     showCheckoutMessage(
       "Unable to update your cart. Please try again.",
-      "error"
+      "error",
     );
     return;
   }
@@ -888,12 +795,12 @@ signInLink.addEventListener("click", (event) => {
 
   showCheckoutMessage(
     "Customer sign-in will be available after backend integration.",
-    "info"
+    "info",
   );
 
   checkoutForm.scrollIntoView({
     behavior: "smooth",
-    block: "start"
+    block: "start",
   });
 });
 
@@ -911,10 +818,7 @@ countrySelect.addEventListener("change", () => {
 // =========================================
 
 window.addEventListener("storage", (event) => {
-  if (
-    event.key === CART_STORAGE_KEY &&
-    !orderCompleted
-  ) {
+  if (event.key === CART_STORAGE_KEY && !orderCompleted) {
     renderCheckoutItems();
   }
 });
@@ -931,10 +835,7 @@ function initializeCheckout() {
     try {
       orderNoteInput.value = getOrderNote() || "";
     } catch (error) {
-      console.warn(
-        "Could not restore order note.",
-        error
-      );
+      console.warn("Could not restore order note.", error);
     }
   }
 
@@ -943,3 +844,11 @@ function initializeCheckout() {
 }
 
 initializeCheckout();
+
+/* Refresh checkout when returning via browser navigation */
+window.addEventListener("pageshow", () => {
+  if (orderCompleted) return;
+
+  renderCheckoutItems();
+  updateShipping();
+});

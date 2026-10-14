@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -80,8 +79,8 @@
           <!-- Search Icon -->
           <a
             class="nav-search"
-            href="#shopProducts"
-            aria-label="Browse products"
+            href="#shopSearchInput"
+            aria-label="Search products"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="10.8" cy="10.8" r="6.8"></circle>
@@ -112,11 +111,7 @@
             </svg>
 
             <!-- Counter overlays heart at top-right -->
-            <span
-              class="wishlist-count"
-              aria-hidden="true"
-              hidden
-            >0</span>
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
           </a>
 
           <!-- Shopping Bag -->
@@ -299,11 +294,7 @@
           </div>
 
           <!-- Clear All -->
-          <button
-            type="button"
-            id="clearAllFilters"
-            class="shop-clear-filters"
-          >
+          <button type="button" id="clearAllFilters" class="shop-clear-filters">
             CLEAR ALL
           </button>
         </div>
@@ -317,28 +308,19 @@
         ></p>
 
         <!-- Dynamic Products -->
-        <div
-          class="product-grid shop-product-grid"
-          id="shopProductGrid"
-        ></div>
+        <div class="product-grid shop-product-grid" id="shopProductGrid"></div>
 
         <!-- Empty State -->
         <div class="shop-empty" id="shopEmpty" hidden>
           <h3>NOTHING HERE YET.</h3>
           <p>No products match your search or filters.</p>
 
-          <button
-            class="shop-reset-button"
-            id="resetFilters"
-            type="button"
-          >
+          <button class="shop-reset-button" id="resetFilters" type="button">
             VIEW ALL PRODUCTS ↗
           </button>
         </div>
 
-        <p class="shop-bottom-note">
-          VOID DISTRICT — YOUR STYLE. YOUR RULES.
-        </p>
+        <p class="shop-bottom-note">VOID DISTRICT — YOUR STYLE. YOUR RULES.</p>
       </section>
 
       <!-- Brand Banner -->
@@ -360,9 +342,7 @@
           </div>
 
           <form class="newsletter-form" id="newsletterForm">
-            <label for="newsletterEmail">
-              YOUR EMAIL ADDRESS
-            </label>
+            <label for="newsletterEmail"> YOUR EMAIL ADDRESS </label>
 
             <div class="newsletter-input-row">
               <input
@@ -374,19 +354,10 @@
                 required
               />
 
-              <button
-                type="submit"
-                aria-label="Join newsletter"
-              >
-                JOIN ↗
-              </button>
+              <button type="submit" aria-label="Join newsletter">JOIN ↗</button>
             </div>
 
-            <p
-              id="newsletterMessage"
-              class="form-message"
-              aria-live="polite"
-            >
+            <p id="newsletterMessage" class="form-message" aria-live="polite">
               Newsletter sign-up is a frontend demo for now.
             </p>
           </form>
@@ -398,10 +369,7 @@
     <footer class="site-footer">
       <div class="container footer-main">
         <div class="footer-brand">
-          <a
-            class="brand-logo footer-logo"
-            href="./index.html"
-          >
+          <a class="brand-logo footer-logo" href="./index.html">
             VOID<span>®</span>
           </a>
 
@@ -442,18 +410,10 @@
       </div>
     </footer>
 
-    <div
-      class="sr-only"
-      id="cartMessage"
-      aria-live="polite"
-    ></div>
+    <div class="sr-only" id="cartMessage" aria-live="polite"></div>
 
     <!-- Cart Drawer -->
-    <div
-      class="cart-drawer-backdrop"
-      id="cartDrawerBackdrop"
-      hidden
-    ></div>
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" hidden></div>
 
     <aside
       class="cart-drawer"
@@ -465,9 +425,7 @@
       inert
     >
       <div class="cart-drawer-header">
-        <h2 id="cartDrawerTitle">
-          CART (<span id="drawerItemCount">0</span>)
-        </h2>
+        <h2 id="cartDrawerTitle">CART (<span id="drawerItemCount">0</span>)</h2>
 
         <button
           class="cart-drawer-close"
@@ -479,10 +437,7 @@
         </button>
       </div>
 
-      <div
-        class="cart-drawer-content"
-        id="cartDrawerContent"
-      ></div>
+      <div class="cart-drawer-content" id="cartDrawerContent"></div>
 
       <div class="cart-drawer-footer">
         <button
@@ -496,11 +451,7 @@
           <span aria-hidden="true">+</span>
         </button>
 
-        <div
-          class="cart-order-note"
-          id="orderNoteSection"
-          hidden
-        >
+        <div class="cart-order-note" id="orderNoteSection" hidden>
           <label for="orderNote">Order note</label>
 
           <textarea
@@ -515,10 +466,7 @@
           Taxes and shipping calculated at checkout.
         </p>
 
-        <a
-          class="cart-drawer-button cart-drawer-view"
-          href="./cart.html"
-        >
+        <a class="cart-drawer-button cart-drawer-view" href="./cart.html">
           VIEW CART
         </a>
 
@@ -529,12 +477,7 @@
         >
           <span>CHECKOUT</span>
 
-          <span
-            class="checkout-total"
-            id="drawerCheckoutTotal"
-          >
-            Rs. 0
-          </span>
+          <span class="checkout-total" id="drawerCheckoutTotal"> Rs. 0 </span>
         </button>
       </div>
     </aside>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,6 +59,7 @@
 
         <div class="nav-links" id="navLinks">
           <a href="#home">Home</a>
+          <a href="./shop.html">Shop</a>
           <a href="#categories">Categories</a>
           <a href="#featured">New drops</a>
           <a href="#about">Our story</a>
@@ -128,11 +128,7 @@
             </svg>
 
             <!-- Counter appears over the heart's top-right corner -->
-            <span
-              class="wishlist-count"
-              aria-hidden="true"
-              hidden
-            >0</span>
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
           </a>
           <!-- End Wishlist Navbar Icon -->
 
@@ -305,13 +301,7 @@
           </div>
 
           <!-- View All Products button -->
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              margin-top: 32px;
-            "
-          >
+          <div style="display: flex; justify-content: center; margin-top: 32px">
             <a class="button button-primary" href="./shop.html">
               VIEW ALL PRODUCTS <span aria-hidden="true">↗</span>
             </a>
@@ -367,16 +357,10 @@
                 required
               />
 
-              <button type="submit" aria-label="Join newsletter">
-                JOIN ↗
-              </button>
+              <button type="submit" aria-label="Join newsletter">JOIN ↗</button>
             </div>
 
-            <p
-              id="newsletterMessage"
-              class="form-message"
-              aria-live="polite"
-            >
+            <p id="newsletterMessage" class="form-message" aria-live="polite">
               Newsletter sign-up is a frontend demo for now.
             </p>
           </form>
@@ -417,8 +401,7 @@
 
       <div class="container footer-bottom">
         <p>
-          © <span id="currentYear"></span> VOID District.
-          All rights reserved.
+          © <span id="currentYear"></span> VOID District. All rights reserved.
         </p>
 
         <a href="#home">BACK TO TOP ↑</a>
@@ -426,18 +409,10 @@
     </footer>
 
     <!-- Accessible feedback for cart interactions -->
-    <div
-      class="sr-only"
-      id="cartMessage"
-      aria-live="polite"
-    ></div>
+    <div class="sr-only" id="cartMessage" aria-live="polite"></div>
 
     <!-- Cart Drawer -->
-    <div
-      class="cart-drawer-backdrop"
-      id="cartDrawerBackdrop"
-      hidden
-    ></div>
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" hidden></div>
 
     <aside
       class="cart-drawer"
@@ -449,9 +424,7 @@
       inert
     >
       <div class="cart-drawer-header">
-        <h2 id="cartDrawerTitle">
-          CART (<span id="drawerItemCount">0</span>)
-        </h2>
+        <h2 id="cartDrawerTitle">CART (<span id="drawerItemCount">0</span>)</h2>
 
         <button
           class="cart-drawer-close"
@@ -463,10 +436,7 @@
         </button>
       </div>
 
-      <div
-        class="cart-drawer-content"
-        id="cartDrawerContent"
-      >
+      <div class="cart-drawer-content" id="cartDrawerContent">
         <!-- Cart products rendered by JavaScript -->
       </div>
 
@@ -482,11 +452,7 @@
           <span aria-hidden="true">+</span>
         </button>
 
-        <div
-          class="cart-order-note"
-          id="orderNoteSection"
-          hidden
-        >
+        <div class="cart-order-note" id="orderNoteSection" hidden>
           <label for="orderNote">Order note</label>
 
           <textarea
@@ -501,10 +467,7 @@
           Taxes and shipping calculated at checkout.
         </p>
 
-        <a
-          class="cart-drawer-button cart-drawer-view"
-          href="./cart.html"
-        >
+        <a class="cart-drawer-button cart-drawer-view" href="./cart.html">
           VIEW CART
         </a>
 
@@ -515,12 +478,7 @@
         >
           <span>CHECKOUT</span>
 
-          <span
-            class="checkout-total"
-            id="drawerCheckoutTotal"
-          >
-            Rs. 0
-          </span>
+          <span class="checkout-total" id="drawerCheckoutTotal"> Rs. 0 </span>
         </button>
       </div>
     </aside>

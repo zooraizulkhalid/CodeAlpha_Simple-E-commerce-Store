@@ -1,4 +1,3 @@
-
 "use strict";
 
 /* =========================================
@@ -32,19 +31,13 @@ function readCartCount() {
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
-    const isExpanded =
-      menuToggle.getAttribute("aria-expanded") === "true";
+    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      String(!isExpanded)
-    );
+    menuToggle.setAttribute("aria-expanded", String(!isExpanded));
 
     menuToggle.setAttribute(
       "aria-label",
-      isExpanded
-        ? "Open navigation menu"
-        : "Close navigation menu"
+      isExpanded ? "Open navigation menu" : "Close navigation menu",
     );
 
     navLinks.classList.toggle("is-open", !isExpanded);
@@ -60,10 +53,7 @@ if (menuToggle && navLinks) {
 
     navLinks.classList.remove("is-open");
     menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute(
-      "aria-label",
-      "Open navigation menu"
-    );
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
   });
 
   // Close mobile menu using Escape.
@@ -71,10 +61,7 @@ if (menuToggle && navLinks) {
     if (event.key === "Escape") {
       navLinks.classList.remove("is-open");
       menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute(
-        "aria-label",
-        "Open navigation menu"
-      );
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
     }
   });
 }
@@ -83,45 +70,24 @@ if (menuToggle && navLinks) {
    EXPANDABLE NAVBAR SEARCH
 ========================================= */
 
-const navSearchContainer = document.querySelector(
-  "#navSearchContainer"
-);
+const navSearchContainer = document.querySelector("#navSearchContainer");
 
-const navSearchToggle = document.querySelector(
-  "#navSearchToggle"
-);
+const navSearchToggle = document.querySelector("#navSearchToggle");
 
-const navSearchForm = document.querySelector(
-  "#navSearchForm"
-);
+const navSearchForm = document.querySelector("#navSearchForm");
 
-const navSearchInput = document.querySelector(
-  "#navSearchInput"
-);
+const navSearchInput = document.querySelector("#navSearchInput");
 
-if (
-  navSearchContainer &&
-  navSearchToggle &&
-  navSearchForm &&
-  navSearchInput
-) {
+if (navSearchContainer && navSearchToggle && navSearchForm && navSearchInput) {
   // Open or close the search bar.
   function setSearchOpen(isOpen) {
-    navSearchContainer.classList.toggle(
-      "is-open",
-      isOpen
-    );
+    navSearchContainer.classList.toggle("is-open", isOpen);
 
-    navSearchToggle.setAttribute(
-      "aria-expanded",
-      String(isOpen)
-    );
+    navSearchToggle.setAttribute("aria-expanded", String(isOpen));
 
     navSearchToggle.setAttribute(
       "aria-label",
-      isOpen
-        ? "Close product search"
-        : "Open product search"
+      isOpen ? "Close product search" : "Open product search",
     );
 
     // Hidden search input should not receive keyboard focus.
@@ -134,9 +100,7 @@ if (
 
   // Toggle search on icon click.
   navSearchToggle.addEventListener("click", () => {
-    const isOpen = navSearchContainer.classList.contains(
-      "is-open"
-    );
+    const isOpen = navSearchContainer.classList.contains("is-open");
 
     setSearchOpen(!isOpen);
   });
@@ -204,10 +168,7 @@ function shuffleProducts(productList) {
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
 
-    [shuffled[i], shuffled[j]] = [
-      shuffled[j],
-      shuffled[i]
-    ];
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
   return shuffled;
@@ -226,9 +187,7 @@ function createWishlistButton(product) {
   // Shared wishlist.js identifies products using this attribute.
   button.dataset.wishlistId = String(product.id);
 
-  const saved =
-    typeof isInWishlist === "function" &&
-    isInWishlist(product.id);
+  const saved = typeof isInWishlist === "function" && isInWishlist(product.id);
 
   button.classList.toggle("is-saved", saved);
 
@@ -238,12 +197,10 @@ function createWishlistButton(product) {
     "aria-label",
     saved
       ? `Remove ${product.name} from wishlist`
-      : `Add ${product.name} to wishlist`
+      : `Add ${product.name} to wishlist`,
   );
 
-  button.title = saved
-    ? "Remove from Wishlist"
-    : "Add to Wishlist";
+  button.title = saved ? "Remove from Wishlist" : "Add to Wishlist";
 
   // Heart SVG.
   button.innerHTML = `
@@ -274,13 +231,8 @@ function renderProducts() {
     return;
   }
 
-  if (
-    typeof products === "undefined" ||
-    !Array.isArray(products)
-  ) {
-    console.error(
-      "VOID District: Product data could not be loaded."
-    );
+  if (typeof products === "undefined" || !Array.isArray(products)) {
+    console.error("VOID District: Product data could not be loaded.");
     return;
   }
 
@@ -294,23 +246,17 @@ function renderProducts() {
   const remainingProducts = products.slice(4);
 
   // Shuffle the remaining six products.
-  const shuffledProducts = shuffleProducts(
-    remainingProducts
-  );
+  const shuffledProducts = shuffleProducts(remainingProducts);
 
   // Pick four random products.
   const randomProducts = shuffledProducts.slice(0, 4);
 
   // Combine: 4 fixed + 4 random = 8 products.
-  const homepageProducts = [
-    ...fixedProducts,
-    ...randomProducts
-  ];
+  const homepageProducts = [...fixedProducts, ...randomProducts];
 
   // Display selected products.
   homepageProducts.forEach((product) => {
-    const productLink =
-      `./product.html?product=${encodeURIComponent(product.id)}`;
+    const productLink = `./product.html?product=${encodeURIComponent(product.id)}`;
 
     // Main product card.
     const article = document.createElement("article");
@@ -324,10 +270,7 @@ function renderProducts() {
     const badge = document.createElement("span");
     badge.className = "product-badge";
 
-    if (
-      product.badge === "JUST DROPPED" ||
-      product.badge === "NEW COLOUR"
-    ) {
+    if (product.badge === "JUST DROPPED" || product.badge === "NEW COLOUR") {
       badge.classList.add("badge-new");
     }
 
@@ -337,10 +280,7 @@ function renderProducts() {
     const imageLink = document.createElement("a");
     imageLink.href = productLink;
 
-    imageLink.setAttribute(
-      "aria-label",
-      `View ${product.name} details`
-    );
+    imageLink.setAttribute("aria-label", `View ${product.name} details`);
 
     // Product image.
     const image = document.createElement("img");
@@ -370,12 +310,7 @@ function renderProducts() {
 
     addButton.appendChild(plusIcon);
 
-    imageWrap.append(
-      badge,
-      imageLink,
-      wishlistButton,
-      addButton
-    );
+    imageWrap.append(badge, imageLink, wishlistButton, addButton);
 
     // Product details.
     const details = document.createElement("div");
@@ -393,17 +328,13 @@ function renderProducts() {
     const subtitle = document.createElement("p");
     subtitle.textContent = product.subtitle;
 
-    detailsText.append(
-      nameHeading,
-      subtitle
-    );
+    detailsText.append(nameHeading, subtitle);
 
     // Price.
     const price = document.createElement("span");
     price.className = "product-price";
 
-    price.textContent =
-      `Rs. ${product.price.toLocaleString("en-PK")}`;
+    price.textContent = `Rs. ${product.price.toLocaleString("en-PK")}`;
 
     details.append(detailsText, price);
 
@@ -424,14 +355,9 @@ function renderProducts() {
 
 if (productGrid) {
   productGrid.addEventListener("click", (event) => {
-    const wishlistButton = event.target.closest(
-      ".product-wishlist-btn"
-    );
+    const wishlistButton = event.target.closest(".product-wishlist-btn");
 
-    if (
-      !wishlistButton ||
-      !productGrid.contains(wishlistButton)
-    ) {
+    if (!wishlistButton || !productGrid.contains(wishlistButton)) {
       return;
     }
 
@@ -455,9 +381,7 @@ if (productGrid) {
 
     const saved = isInWishlist(productId);
 
-    wishlistButton.title = saved
-      ? "Remove from Wishlist"
-      : "Add to Wishlist";
+    wishlistButton.title = saved ? "Remove from Wishlist" : "Add to Wishlist";
 
     // Navbar count and all heart states are updated
     // automatically by wishlist.js.
@@ -479,9 +403,7 @@ function updateBagCount() {
 
   bagButton.setAttribute(
     "aria-label",
-    `Shopping bag, ${count} ${
-      count === 1 ? "item" : "items"
-    }`
+    `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`,
   );
 }
 
@@ -500,30 +422,24 @@ if (productGrid) {
   productGrid.addEventListener("click", (event) => {
     const addButton = event.target.closest(".quick-add");
 
-    if (
-      !addButton ||
-      !productGrid.contains(addButton)
-    ) {
+    if (!addButton || !productGrid.contains(addButton)) {
       return;
     }
 
     const productId = addButton.dataset.productId;
 
     const selectedProduct = products.find(
-      (product) => String(product.id) === productId
+      (product) => String(product.id) === productId,
     );
 
     if (!selectedProduct) {
-      showCartMessage(
-        "Sorry, this product could not be found."
-      );
+      showCartMessage("Sorry, this product could not be found.");
       return;
     }
 
-    window.location.href =
-      `./product.html?product=${encodeURIComponent(
-        selectedProduct.id
-      )}`;
+    window.location.href = `./product.html?product=${encodeURIComponent(
+      selectedProduct.id,
+    )}`;
   });
 }
 
@@ -533,9 +449,7 @@ if (productGrid) {
 
 if (bagButton) {
   bagButton.addEventListener("click", () => {
-    if (
-      typeof window.openCartDrawer === "function"
-    ) {
+    if (typeof window.openCartDrawer === "function") {
       window.openCartDrawer();
     }
   });
@@ -545,35 +459,24 @@ if (bagButton) {
    NEWSLETTER — FRONTEND DEMO
 ========================================= */
 
-if (
-  newsletterForm &&
-  newsletterEmail &&
-  newsletterMessage
-) {
-  newsletterForm.addEventListener(
-    "submit",
-    (event) => {
-      event.preventDefault();
+if (newsletterForm && newsletterEmail && newsletterMessage) {
+  newsletterForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-      const email = newsletterEmail.value.trim();
+    const email = newsletterEmail.value.trim();
 
-      if (
-        !newsletterEmail.checkValidity() ||
-        email === ""
-      ) {
-        newsletterMessage.textContent =
-          "Please enter a valid email address.";
+    if (!newsletterEmail.checkValidity() || email === "") {
+      newsletterMessage.textContent = "Please enter a valid email address.";
 
-        newsletterEmail.reportValidity();
-        return;
-      }
-
-      newsletterMessage.textContent =
-        "Thanks! The newsletter form is working as a demo. Subscription is not active yet.";
-
-      newsletterForm.reset();
+      newsletterEmail.reportValidity();
+      return;
     }
-  );
+
+    newsletterMessage.textContent =
+      "Thanks! The newsletter form is working as a demo. Subscription is not active yet.";
+
+    newsletterForm.reset();
+  });
 }
 
 /* =========================================
@@ -581,9 +484,7 @@ if (
 ========================================= */
 
 if (currentYear) {
-  currentYear.textContent = String(
-    new Date().getFullYear()
-  );
+  currentYear.textContent = String(new Date().getFullYear());
 }
 
 /* =========================================
@@ -593,6 +494,19 @@ if (currentYear) {
 renderProducts();
 updateBagCount();
 
-console.info(
-  "VOID District homepage interactions initialized."
-);
+/* =========================================
+   CART COUNT SYNCHRONIZATION
+========================================= */
+
+// Update cart count when returning to this page.
+window.addEventListener("pageshow", () => {
+  updateBagCount();
+});
+
+// Update cart count when localStorage changes
+// in another browser tab.
+window.addEventListener("storage", () => {
+  updateBagCount();
+});
+
+console.info("VOID District homepage interactions initialized.");
