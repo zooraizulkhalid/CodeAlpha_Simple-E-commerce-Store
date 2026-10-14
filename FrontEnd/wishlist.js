@@ -1,4 +1,3 @@
-
 "use strict";
 
 /* =========================================
@@ -13,9 +12,7 @@ const WISHLIST_STORAGE_KEY = "voidDistrictWishlist";
 
 function getWishlist() {
   try {
-    const savedWishlist = localStorage.getItem(
-      WISHLIST_STORAGE_KEY
-    );
+    const savedWishlist = localStorage.getItem(WISHLIST_STORAGE_KEY);
 
     if (!savedWishlist) {
       return [];
@@ -30,10 +27,8 @@ function getWishlist() {
     // Remove invalid and duplicate product IDs.
     return [
       ...new Set(
-        parsedWishlist.filter(
-          (id) => typeof id === "string" && id.trim()
-        )
-      )
+        parsedWishlist.filter((id) => typeof id === "string" && id.trim()),
+      ),
     ];
   } catch (error) {
     console.error("Unable to read wishlist:", error);
@@ -47,19 +42,16 @@ function getWishlist() {
 
 function saveWishlist(wishlist) {
   try {
-    localStorage.setItem(
-      WISHLIST_STORAGE_KEY,
-      JSON.stringify(wishlist)
-    );
+    localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
 
     // Notify wishlist components on this page.
     window.dispatchEvent(
       new CustomEvent("wishlistUpdated", {
         detail: {
           wishlist: [...wishlist],
-          count: wishlist.length
-        }
-      })
+          count: wishlist.length,
+        },
+      }),
     );
 
     return true;
@@ -112,9 +104,7 @@ function removeFromWishlist(productId) {
     return false;
   }
 
-  const updatedWishlist = wishlist.filter(
-    (savedId) => savedId !== id
-  );
+  const updatedWishlist = wishlist.filter((savedId) => savedId !== id);
 
   return saveWishlist(updatedWishlist);
 }
@@ -144,8 +134,7 @@ function getWishlistCount() {
 ========================================= */
 
 function updateWishlistCount() {
-  const wishlistCountElements =
-    document.querySelectorAll(".wishlist-count");
+  const wishlistCountElements = document.querySelectorAll(".wishlist-count");
 
   const count = getWishlistCount();
 
@@ -156,15 +145,12 @@ function updateWishlistCount() {
     element.hidden = count === 0;
   });
 
-  const wishlistLinks =
-    document.querySelectorAll(".wishlist-nav-link");
+  const wishlistLinks = document.querySelectorAll(".wishlist-nav-link");
 
   wishlistLinks.forEach((link) => {
     link.setAttribute(
       "aria-label",
-      `Wishlist, ${count} saved ${
-        count === 1 ? "product" : "products"
-      }`
+      `Wishlist, ${count} saved ${count === 1 ? "product" : "products"}`,
     );
   });
 }
@@ -174,27 +160,35 @@ function updateWishlistCount() {
 ========================================= */
 
 function updateWishlistButtons() {
-  const wishlistButtons =
-    document.querySelectorAll("[data-wishlist-id]");
+  const wishlistButtons = document.querySelectorAll("[data-wishlist-id]");
+
+  // Read localStorage only once.
+  const savedProductIds = new Set(getWishlist());
 
   wishlistButtons.forEach((button) => {
     const productId = button.dataset.wishlistId;
 
-    const isSaved = isInWishlist(productId);
+    const isSaved = savedProductIds.has(productId);
 
     button.classList.toggle("is-saved", isSaved);
 
-    button.setAttribute(
-      "aria-pressed",
-      String(isSaved)
-    );
+    button.setAttribute("aria-pressed", String(isSaved));
+
+    // Find the product name for an accessible label.
+    const productName =
+      typeof products !== "undefined" && Array.isArray(products)
+        ? products.find((product) => String(product.id) === productId)?.name
+        : null;
 
     button.setAttribute(
       "aria-label",
       isSaved
-        ? "Remove product from wishlist"
-        : "Add product to wishlist"
+        ? `Remove ${productName || "product"} from wishlist`
+        : `Add ${productName || "product"} to wishlist`,
     );
+
+    // Keep hover tooltip synchronized.
+    button.title = isSaved ? "Remove from Wishlist" : "Add to Wishlist";
   });
 }
 
@@ -212,10 +206,7 @@ function refreshWishlistUI() {
 ========================================= */
 
 // Update all wishlist elements when changed.
-window.addEventListener(
-  "wishlistUpdated",
-  refreshWishlistUI
-);
+window.addEventListener("wishlistUpdated", refreshWishlistUI);
 
 // Update wishlist when another browser tab changes it.
 window.addEventListener("storage", (event) => {
@@ -232,10 +223,7 @@ window.addEventListener("pageshow", refreshWishlistUI);
 ========================================= */
 
 if (document.readyState === "loading") {
-  document.addEventListener(
-    "DOMContentLoaded",
-    refreshWishlistUI
-  );
+  document.addEventListener("DOMContentLoaded", refreshWishlistUI);
 } else {
   refreshWishlistUI();
 }

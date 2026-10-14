@@ -433,3 +433,26 @@
         transition: none;
     }
 }
+
+
+/* WISHLIST — EXTRA SMALL MOBILE SCREENS */
+@media (max-width: 360px) {
+    .wishlist-product-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+    }
+
+    .wishlist-product-image {
+        aspect-ratio: 0.82;
+    }
+
+    .wishlist-product-info h3 {
+        font-size: 15px;
+    }
+
+    .wishlist-view-product {
+        min-height: 42px;
+        padding: 0 14px;
+        font-size: 10px;
+    }
+}

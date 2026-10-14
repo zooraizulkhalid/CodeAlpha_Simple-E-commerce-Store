@@ -175,14 +175,15 @@ function renderSizeOptions(product) {
 }
 
 // Validate and update quantity
+
 function getValidQuantity() {
-  const quantity = Number.parseInt(productQuantity.value, 10);
+  const quantity = Number(productQuantity.value);
 
   if (!Number.isFinite(quantity)) {
     return 1;
   }
 
-  return Math.min(10, Math.max(1, quantity));
+  return Math.min(10, Math.max(1, Math.floor(quantity)));
 }
 
 function updateQuantity() {

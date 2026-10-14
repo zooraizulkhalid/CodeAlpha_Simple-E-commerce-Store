@@ -1244,10 +1244,17 @@ input:focus-visible {
 ========================================= */
 
 .product-image-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+
+/* Mobile product cards */
+@media (max-width: 700px) {
+    .product-image-wrap {
+        aspect-ratio: 0.72;
+    }
 }
 
 /* Image link fills the entire image area */
@@ -1623,4 +1630,13 @@ input:focus-visible {
         width: 18px;
         height: 18px;
     }
+}
+
+
+/* =========================================
+   SHOP SEARCH — STICKY NAVBAR OFFSET
+========================================= */
+
+#shopSearchInput {
+    scroll-margin-top: 120px;
 }

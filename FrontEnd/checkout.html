@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,9 +22,7 @@
 
   <body>
     <header class="checkout-header">
-      <a class="header-back" href="./cart.html">
-        ← <span>Back to bag</span>
-      </a>
+      <a class="header-back" href="./cart.html"> ← <span>Back to bag</span> </a>
 
       <a class="brand" href="./index.html" aria-label="VOID home">
         VOID<sup>®</sup>
@@ -52,14 +49,11 @@
     <main class="checkout-layout">
       <section class="checkout-form-section">
         <form id="checkoutForm" novalidate>
-
           <!-- CONTACT INFORMATION -->
           <section class="checkout-section">
             <div class="section-heading-row">
               <h2>Contact</h2>
-              <a href="#" id="signInLink" class="sign-in-link">
-                Sign in
-              </a>
+              <a href="#" id="signInLink" class="sign-in-link"> Sign in </a>
             </div>
 
             <input
@@ -73,11 +67,7 @@
             />
 
             <label class="checkbox-option">
-              <input
-                type="checkbox"
-                id="emailOffers"
-                name="emailOffers"
-              />
+              <input type="checkbox" id="emailOffers" name="emailOffers" />
               <span>Email me with news and offers</span>
             </label>
           </section>
@@ -191,11 +181,7 @@
             </label>
 
             <label class="checkbox-option">
-              <input
-                type="checkbox"
-                id="smsOffers"
-                name="smsOffers"
-              />
+              <input type="checkbox" id="smsOffers" name="smsOffers" />
               <span>Text me with news and offers</span>
             </label>
           </section>
@@ -207,9 +193,7 @@
             <div class="shipping-option">
               <div>
                 <strong>Standard shipping</strong>
-                <p id="shippingMessage">
-                  Free shipping within Pakistan.
-                </p>
+                <p id="shippingMessage">Free shipping within Pakistan.</p>
               </div>
 
               <strong id="shippingPrice">FREE</strong>
@@ -230,15 +214,10 @@
 
             <!-- ONLINE CARD PAYMENT -->
             <label class="payment-option" id="cardPaymentOption">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="card"
-                required
-              />
+              <input type="radio" name="paymentMethod" value="card" disabled />
 
               <span class="payment-option-name">
-                Credit / Debit Card
+                Credit / Debit Card (Coming Soon)
               </span>
 
               <span class="card-brands" aria-label="Card brand examples">
@@ -250,24 +229,17 @@
             <div id="cardFields" class="payment-fields" hidden>
               <p class="demo-payment-note">
                 <strong>Online card payments are coming soon.</strong>
-                A secure payment provider will handle card details when
-                the backend is connected. Do not enter any card
-                information on this demo site.
+                A secure payment provider will handle card details when the
+                backend is connected. Do not enter any card information on this
+                demo site.
               </p>
             </div>
 
             <!-- CASH ON DELIVERY -->
             <label class="payment-option" id="codPaymentOption">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="cod"
-                required
-              />
+              <input type="radio" name="paymentMethod" value="cod" required />
 
-              <span class="payment-option-name">
-                Cash on Delivery (COD)
-              </span>
+              <span class="payment-option-name"> Cash on Delivery (COD) </span>
             </label>
           </section>
 
@@ -311,9 +283,7 @@
                 <option value="Australia">Australia</option>
                 <option value="Turkey">Turkey</option>
                 <option value="China">China</option>
-                <option value="Other">
-                  Other international destination
-                </option>
+                <option value="Other">Other international destination</option>
               </select>
 
               <div class="form-row">
@@ -429,10 +399,7 @@
       </section>
 
       <!-- ORDER SUMMARY -->
-      <aside
-        class="order-summary"
-        aria-labelledby="orderSummaryTitle"
-      >
+      <aside class="order-summary" aria-labelledby="orderSummaryTitle">
         <div class="summary-inner">
           <h2 id="orderSummaryTitle">Your order</h2>
 
@@ -452,19 +419,10 @@
                 aria-label="Discount code"
               />
 
-              <button
-                type="button"
-                id="applyDiscountButton"
-              >
-                Apply
-              </button>
+              <button type="button" id="applyDiscountButton">Apply</button>
             </div>
 
-            <p
-              id="discountMessage"
-              role="status"
-              aria-live="polite"
-            ></p>
+            <p id="discountMessage" role="status" aria-live="polite"></p>
           </div>
 
           <!-- SUBTOTAL -->
@@ -492,14 +450,11 @@
           </div>
 
           <p class="currency-note">
-            Prices are displayed in Pakistani Rupees (PKR).
-            International shipping charges are demo estimates,
-            not live courier rates.
+            Prices are displayed in Pakistani Rupees (PKR). International
+            shipping charges are demo estimates, not live courier rates.
           </p>
 
-          <a href="./cart.html" class="return-to-bag-link">
-            Return to bag
-          </a>
+          <a href="./cart.html" class="return-to-bag-link"> Return to bag </a>
 
           <!-- MOBILE ORDER BUTTON -->
           <div class="mobile-order-action">

@@ -496,3 +496,20 @@
     gap: 14px;
   }
 }
+
+
+/* =========================================
+   CART PAGE — TABLET LAYOUT IMPROVEMENT
+========================================= */
+
+@media (min-width: 761px) and (max-width: 900px) {
+    .cart-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 36px;
+    }
+
+    .cart-summary {
+        position: static;
+        width: 100%;
+    }
+}

@@ -943,3 +943,32 @@ body.size-guide-open {
         height: 20px;
     }
 }
+
+
+/* =========================================
+   PRODUCT REVIEWS — JS CLASS ALIGNMENT
+========================================= */
+
+.review-card .review-rating {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: #8a9e28;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.review-card .review-author {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-line);
+    color: var(--color-muted);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+}
+
+.review-card > p:last-child {
+    margin-top: 12px;
+    color: var(--color-muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
