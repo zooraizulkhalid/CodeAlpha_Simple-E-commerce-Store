@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Discover VOID District, an independent streetwear brand built around individuality, self-expression and everyday style.">
+
+    <title>About Us | VOID District</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./about.css">
+    <link rel="stylesheet" href="./cart-drawer.css">
+
+    <!-- JavaScript Files -->
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
+    <script src="./about.js" defer></script>
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         ANNOUNCEMENT BAR
+    ====================================== -->
+
+    <div class="announcement-bar">
+        <p>
+            YOUR STYLE. YOUR RULES.
+            <span>WELCOME TO THE DISTRICT.</span>
+        </p>
+    </div>
+
+
+    <!-- =====================================
+         HEADER / NAVIGATION
+    ====================================== -->
+
+    <header class="site-header">
+
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <!-- Brand Logo -->
+            <a class="brand-logo" href="./index.html" aria-label="VOID District Home">
+                VOID<span>®</span>
+            </a>
+
+
+            <!-- Navigation Links -->
+            <div class="nav-links" id="navLinks">
+
+                <a href="./index.html">Home</a>
+
+                <a href="./shop.html">Shop</a>
+
+                <a href="./index.html#categories">Categories</a>
+
+                <a href="./index.html#featured">New Drops</a>
+
+                <a href="./about.html" aria-current="page">
+                    Our Story
+                </a>
+
+            </div>
+
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions">
+
+                <!-- Search -->
+                <div class="nav-search-container" id="navSearchContainer">
+
+                    <button
+                        type="button"
+                        class="nav-search"
+                        id="navSearchToggle"
+                        aria-label="Open product search"
+                        aria-expanded="false"
+                        aria-controls="navSearchForm">
+
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                            <path d="m16 16 5 5"></path>
+                        </svg>
+
+                    </button>
+
+                    <form
+                        class="nav-search-form"
+                        id="navSearchForm"
+                        role="search"
+                        action="./shop.html"
+                        method="get">
+
+                        <label class="sr-only" for="navSearchInput">
+                            Search products
+                        </label>
+
+                        <input
+                            type="search"
+                            id="navSearchInput"
+                            name="search"
+                            placeholder="Search products..."
+                            autocomplete="off"
+                            tabindex="-1">
+
+                    </form>
+
+                </div>
+
+
+                <!-- Wishlist -->
+                <a
+                    href="./wishlist.html"
+                    class="wishlist-nav-link"
+                    aria-label="View wishlist"
+                    title="My Wishlist">
+
+                    <svg
+                        class="wishlist-nav-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
+
+                        <path
+                            d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z">
+                        </path>
+
+                    </svg>
+
+                    <span
+                        class="wishlist-count"
+                        aria-hidden="true"
+                        hidden>0</span>
+
+                </a>
+
+
+                <!-- Shopping Bag -->
+                <button
+                    class="bag-button"
+                    id="bagButton"
+                    type="button"
+                    aria-label="Open shopping bag">
+
+                    BAG
+                    <span id="bagCount">0</span>
+
+                </button>
+
+
+                <!-- Mobile Menu Toggle -->
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="navLinks">
+
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main>
+
+        <!-- ABOUT HERO -->
+        <section class="about-hero container">
+
+            <p class="eyebrow">
+                THE STORY BEHIND THE DISTRICT
+            </p>
+
+            <h1>
+                MORE THAN<br>
+                <span>WHAT YOU WEAR.</span>
+            </h1>
+
+            <p class="about-hero-description">
+                Streetwear is more than clothing. It's a way to express
+                who you are without having to say a word.
+                Welcome to VOID District.
+            </p>
+
+            <span class="about-hero-tag">
+                NO UNIFORM. JUST YOU. ↘
+            </span>
+
+        </section>
+
+
+        <!-- OUR STORY -->
+        <section class="about-story-section">
+
+            <div class="container about-story-grid">
+
+                <div class="about-story-heading">
+
+                    <p class="eyebrow">
+                        01 / WHO WE ARE
+                    </p>
+
+                    <h2>
+                        BUILT FOR<br>
+                        <span>INDIVIDUALITY.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="about-story-content">
+
+                    <p>
+                        VOID District is an independent streetwear brand
+                        with a simple belief: your style should belong
+                        to you.
+                    </p>
+
+                    <p>
+                        We embrace the freedom to dress differently,
+                        challenge expectations and make everyday
+                        clothing a reflection of personal identity.
+                    </p>
+
+                    <p>
+                        From oversized tees to laid-back hoodies and
+                        versatile cargos, our collections focus on
+                        expressive silhouettes and everyday style.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- OUR PHILOSOPHY -->
+        <section class="about-manifesto" id="philosophy">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    02 / OUR PHILOSOPHY
+                </p>
+
+                <h2>
+                    NO UNIFORM.<br>
+                    <span>JUST YOU.</span>
+                </h2>
+
+                <p>
+                    We don't believe in dressing to fit in.
+                    We believe in dressing to feel like yourself.
+                    Trends change. Individuality stays.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- OUR VALUES -->
+        <section class="about-values container">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        03 / WHAT DRIVES US
+                    </p>
+
+                    <h2>
+                        THE DISTRICT <span>CODE.</span>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-values-grid">
+
+                <!-- Value 1 -->
+                <article class="about-value-card">
+
+                    <span>01</span>
+
+                    <h3>INDIVIDUALITY</h3>
+
+                    <p>
+                        Your identity is your own. Wear what represents
+                        you, not what others expect.
+                    </p>
+
+                </article>
+
+
+                <!-- Value 2 -->
+                <article class="about-value-card">
+
+                    <span>02</span>
+
+                    <h3>SELF-EXPRESSION</h3>
+
+                    <p>
+                        Clothing is a canvas. Make your everyday
+                        style a statement.
+                    </p>
+
+                </article>
+
+
+                <!-- Value 3 -->
+                <article class="about-value-card">
+
+                    <span>03</span>
+
+                    <h3>EVERYDAY CULTURE</h3>
+
+                    <p>
+                        Streetwear inspired by real life, personal
+                        confidence and freedom of choice.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- SHOP CALL TO ACTION -->
+        <section class="about-cta">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    FIND YOUR PLACE IN THE DISTRICT
+                </p>
+
+                <h2>
+                    YOUR STYLE.<br>
+                    <span>YOUR RULES.</span>
+                </h2>
+
+                <a href="./shop.html" class="button button-primary">
+
+                    EXPLORE THE COLLECTION
+
+                    <span aria-hidden="true">↗</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+            <!-- Brand -->
+            <div class="footer-brand">
+
+                <a class="brand-logo footer-logo" href="./index.html">
+                    VOID<span>®</span>
+                </a>
+
+                <p>WEAR YOUR OWN RULES.</p>
+
+            </div>
+
+
+            <!-- Explore -->
+            <div class="footer-column">
+
+                <h3>EXPLORE</h3>
+
+                <a href="./index.html">Home</a>
+
+                <a href="./shop.html">Shop</a>
+
+                <a href="./index.html#featured">New Drops</a>
+
+                <a href="./blog.html">Blog</a>
+
+            </div>
+
+
+            <!-- The Brand -->
+            <div class="footer-column">
+
+                <h3>THE BRAND</h3>
+
+                <a href="./about.html">About Us</a>
+
+                <a href="./contact.html">Contact Us</a>
+
+                <a href="./about.html#philosophy">
+                    Our Philosophy
+                </a>
+
+            </div>
+
+
+            <!-- Customer Care -->
+            <div class="footer-column">
+
+                <h3>CUSTOMER CARE</h3>
+
+                <a href="./store-policies.html">
+                    Store Policies
+                </a>
+
+                <a href="./shipping-policy.html">
+                    Shipping Policy
+                </a>
+
+                <a href="./returns.html">
+                    Returns & Exchanges
+                </a>
+
+                <a href="./refund-policy.html">
+                    Refund Policy
+                </a>
+
+            </div>
+
+
+            <!-- Legal -->
+            <div class="footer-column">
+
+                <h3>LEGAL</h3>
+
+                <a href="./privacy-policy.html">
+                    Privacy Policy
+                </a>
+
+                <a href="./terms.html">
+                    Terms & Conditions
+                </a>
+
+                <a href="./terms-of-service.html">
+                    Terms of Service
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer Bottom -->
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="currentYear">2026</span>
+                VOID District. All rights reserved.
+            </p>
+
+            <a href="#">BACK TO TOP ↑</a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================
+         CART NOTIFICATION
+    ====================================== -->
+
+    <div
+        id="cartMessage"
+        role="status"
+        aria-live="polite">
+    </div>
+
+
+    <!-- =====================================
+         CART DRAWER BACKDROP
+    ====================================== -->
+
+    <div
+        class="cart-drawer-backdrop"
+        id="cartDrawerBackdrop"
+        hidden>
+    </div>
+
+
+    <!-- =====================================
+         CART DRAWER
+    ====================================== -->
+
+    <aside
+        class="cart-drawer"
+        id="cartDrawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cartDrawerTitle"
+        aria-hidden="true"
+        inert>
+
+        <!-- Drawer Header -->
+        <div class="cart-drawer-header">
+
+            <h2 id="cartDrawerTitle">
+                YOUR BAG
+                (<span id="drawerItemCount">0</span>)
+            </h2>
+
+            <button
+                type="button"
+                class="cart-drawer-close"
+                id="closeCartDrawer"
+                aria-label="Close shopping cart">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <!-- Drawer Items -->
+        <div
+            class="cart-drawer-content"
+            id="cartDrawerContent">
+
+            <!-- Cart items rendered by JavaScript -->
+
+        </div>
+
+
+        <!-- Drawer Footer -->
+        <div class="cart-drawer-footer">
+
+            <!-- Order Note -->
+            <button
+                type="button"
+                class="cart-order-note-toggle"
+                id="orderNoteToggle"
+                aria-expanded="false"
+                aria-controls="orderNoteSection">
+
+                <span>Add order note</span>
+                <span aria-hidden="true">+</span>
+
+            </button>
+
+
+            <div
+                class="cart-order-note"
+                id="orderNoteSection"
+                hidden>
+
+                <label for="orderNote">
+                    Order note
+                </label>
+
+                <textarea
+                    id="orderNote"
+                    rows="3"
+                    maxlength="500"
+                    placeholder="Add a note about your order">
+                </textarea>
+
+            </div>
+
+
+            <!-- Checkout Information -->
+            <p class="cart-drawer-disclaimer">
+                Taxes and shipping calculated at checkout.
+            </p>
+
+
+            <!-- View Cart -->
+            <a
+                href="./cart.html"
+                class="cart-drawer-button cart-drawer-view">
+
+                VIEW CART
+
+            </a>
+
+
+            <!-- Checkout -->
+            <button
+                type="button"
+                class="cart-drawer-button cart-drawer-checkout"
+                id="drawerCheckoutButton">
+
+                <span>CHECKOUT</span>
+
+                <span
+                    class="checkout-total"
+                    id="drawerCheckoutTotal">
+
+                    Rs. 0
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+</body>
+</html>

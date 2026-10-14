@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Contact VOID District for product questions, order assistance, collaborations, and general inquiries.">
+
+    <title>Contact Us | VOID District</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./contact.css">
+    <link rel="stylesheet" href="./cart-drawer.css">
+
+    <!-- JavaScript -->
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
+    
+    <!-- EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+    <!-- Contact Page JavaScript -->
+    <script src="./contact.js" defer></script>
+
+</head>
+
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>
+            YOUR STYLE. YOUR RULES.
+            <span>WELCOME TO THE DISTRICT.</span>
+        </p>
+    </div>
+
+
+    <!-- Header -->
+    <header class="site-header">
+
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <a class="brand-logo" href="./index.html">
+                VOID<span>®</span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+
+                <a href="./index.html">Home</a>
+                <a href="./shop.html">Shop</a>
+                <a href="./index.html#categories">Categories</a>
+                <a href="./index.html#featured">New Drops</a>
+                <a href="./about.html">Our Story</a>
+
+            </div>
+
+            <div class="nav-actions">
+
+                <!-- Search -->
+                <div class="nav-search-container" id="navSearchContainer">
+
+                    <button
+                        type="button"
+                        class="nav-search"
+                        id="navSearchToggle"
+                        aria-label="Open product search"
+                        aria-expanded="false"
+                        aria-controls="navSearchForm">
+
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                            <path d="m16 16 5 5"></path>
+                        </svg>
+
+                    </button>
+
+                    <form
+                        class="nav-search-form"
+                        id="navSearchForm"
+                        role="search"
+                        action="./shop.html"
+                        method="get">
+
+                        <label class="sr-only" for="navSearchInput">
+                            Search products
+                        </label>
+
+                        <input
+                            type="search"
+                            id="navSearchInput"
+                            name="search"
+                            placeholder="Search products..."
+                            autocomplete="off"
+                            tabindex="-1">
+
+                    </form>
+
+                </div>
+
+                <!-- Wishlist -->
+                <a
+                    href="./wishlist.html"
+                    class="wishlist-nav-link"
+                    aria-label="View wishlist"
+                    title="My Wishlist">
+
+                    <svg
+                        class="wishlist-nav-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
+
+                        <path
+                            d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z">
+                        </path>
+
+                    </svg>
+
+                    <span
+                        class="wishlist-count"
+                        aria-hidden="true"
+                        hidden>0</span>
+
+                </a>
+
+                <!-- Bag -->
+                <button
+                    class="bag-button"
+                    id="bagButton"
+                    type="button"
+                    aria-label="Open shopping bag">
+
+                    BAG <span id="bagCount">0</span>
+
+                </button>
+
+                <!-- Mobile Menu -->
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="navLinks">
+
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Contact Hero -->
+        <section class="contact-hero container">
+
+            <p class="eyebrow">
+                CONNECT WITH THE DISTRICT
+            </p>
+
+            <h1>
+                LET'S <span>TALK.</span>
+            </h1>
+
+            <p class="contact-hero-description">
+                Questions about our collection, your order,
+                or something else? Drop us a message.
+                We're here to listen.
+            </p>
+
+        </section>
+
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+
+            <div class="container contact-grid">
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+
+                    <p class="eyebrow">
+                        01 / GET IN TOUCH
+                    </p>
+
+                    <h2>
+                        SAY <span>HELLO.</span>
+                    </h2>
+
+                    <p class="contact-info-description">
+                        Whether it's a product question,
+                        order inquiry, or a collaboration idea,
+                        we'd love to hear from you.
+                    </p>
+
+                    <div class="contact-info-items">
+
+                        <div class="contact-info-item">
+
+                            <span class="contact-info-number">01</span>
+
+                            <div>
+                                <h3>EMAIL SUPPORT</h3>
+                                <p>
+                                    Use the contact form to reach our team.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="contact-info-item">
+
+                            <span class="contact-info-number">02</span>
+
+                            <div>
+                                <h3>ORDER INQUIRIES</h3>
+                                <p>
+                                    Include your order reference
+                                    when asking about an existing order.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="contact-info-item">
+
+                            <span class="contact-info-number">03</span>
+
+                            <div>
+                                <h3>COLLABORATIONS</h3>
+                                <p>
+                                    Have an idea for working together?
+                                    We'd love to hear it.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+
+                    <div class="contact-form-heading">
+
+                        <p class="eyebrow">
+                            02 / SEND A MESSAGE
+                        </p>
+
+                        <h2>
+                            DROP US A <span>LINE.</span>
+                        </h2>
+
+                    </div>
+
+                    <form id="contactForm">
+
+                        <!-- Name -->
+                        <div class="contact-form-group">
+
+                            <label for="contactName">
+                                FULL NAME <span aria-hidden="true">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="contactName"
+                                name="from_name"
+                                placeholder="Your full name"
+                                autocomplete="name"
+                                minlength="2"
+                                maxlength="80"
+                                required>
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="contact-form-group">
+
+                            <label for="contactEmail">
+                                EMAIL ADDRESS <span aria-hidden="true">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="contactEmail"
+                                name="reply_to"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                maxlength="254"
+                                required>
+
+                        </div>
+
+
+                        <!-- Subject -->
+                        <div class="contact-form-group">
+
+                            <label for="contactSubject">
+                                SUBJECT <span aria-hidden="true">*</span>
+                            </label>
+
+                            <select
+                                id="contactSubject"
+                                name="subject"
+                                required>
+
+                                <option value="" disabled selected>
+                                    Select a subject
+                                </option>
+
+                                <option value="Product Inquiry">
+                                    Product Inquiry
+                                </option>
+
+                                <option value="Order Support">
+                                    Order Support
+                                </option>
+
+                                <option value="Shipping Question">
+                                    Shipping Question
+                                </option>
+
+                                <option value="Returns and Exchanges">
+                                    Returns & Exchanges
+                                </option>
+
+                                <option value="Collaboration">
+                                    Collaboration
+                                </option>
+
+                                <option value="General Inquiry">
+                                    General Inquiry
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Message -->
+                        <div class="contact-form-group">
+
+                            <label for="contactMessage">
+                                YOUR MESSAGE <span aria-hidden="true">*</span>
+                            </label>
+
+                            <textarea
+                                id="contactMessage"
+                                name="message"
+                                rows="6"
+                                minlength="10"
+                                maxlength="3000"
+                                placeholder="Tell us how we can help..."
+                                required></textarea>
+
+                        </div>
+
+
+                        <!-- Status Message -->
+                        <p
+                            id="contactFormStatus"
+                            class="contact-form-status"
+                            role="status"
+                            aria-live="polite">
+                        </p>
+
+
+                        <!-- Submit Button -->
+                        <button
+                            type="submit"
+                            id="contactSubmitButton"
+                            class="button button-primary contact-submit-button">
+
+                            SEND MESSAGE
+                            <span aria-hidden="true">↗</span>
+
+                        </button>
+
+                        <p class="contact-form-note">
+                            By submitting this form, you agree
+                            that we may use your details to
+                            respond to your inquiry.
+                            See our
+                            <a href="./privacy-policy.html">
+                                Privacy Policy
+                            </a>.
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Contact CTA -->
+        <section class="contact-cta">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    THE DISTRICT IS ALWAYS OPEN
+                </p>
+
+                <h2>
+                    KEEP <span>EXPLORING.</span>
+                </h2>
+
+                <a href="./shop.html" class="button button-primary">
+                    SHOP THE COLLECTION
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+            <div class="footer-brand">
+                <a class="brand-logo footer-logo" href="./index.html">
+                    VOID<span>®</span>
+                </a>
+
+                <p>WEAR YOUR OWN RULES.</p>
+            </div>
+
+            <div class="footer-column">
+
+                <h3>EXPLORE</h3>
+
+                <a href="./index.html">Home</a>
+                <a href="./shop.html">Shop</a>
+                <a href="./index.html#featured">New Drops</a>
+                <a href="./blog.html">Blog</a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>THE BRAND</h3>
+
+                <a href="./about.html">About Us</a>
+                <a href="./contact.html" aria-current="page">Contact Us</a>
+                <a href="./about.html#philosophy">Our Philosophy</a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>CUSTOMER CARE</h3>
+
+                <a href="./store-policies.html">Store Policies</a>
+                <a href="./shipping-policy.html">Shipping Policy</a>
+                <a href="./returns.html">Returns & Exchanges</a>
+                <a href="./refund-policy.html">Refund Policy</a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>LEGAL</h3>
+
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./terms.html">Terms & Conditions</a>
+                <a href="./terms-of-service.html">Terms of Service</a>
+
+            </div>
+
+        </div>
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="currentYear">2026</span>
+                VOID District. All rights reserved.
+            </p>
+
+            <a href="#">BACK TO TOP ↑</a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Cart Notification -->
+    <div
+        id="cartMessage"
+        role="status"
+        aria-live="polite">
+    </div>
+
+
+    <!-- Cart Drawer Backdrop -->
+    <div
+        class="cart-drawer-backdrop"
+        id="cartDrawerBackdrop"
+        hidden>
+    </div>
+
+
+    <!-- Cart Drawer -->
+    <aside
+        class="cart-drawer"
+        id="cartDrawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cartDrawerTitle"
+        aria-hidden="true"
+        inert>
+
+        <div class="cart-drawer-header">
+
+            <h2 id="cartDrawerTitle">
+                YOUR BAG
+                (<span id="drawerItemCount">0</span>)
+            </h2>
+
+            <button
+                type="button"
+                class="cart-drawer-close"
+                id="closeCartDrawer"
+                aria-label="Close shopping cart">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <div
+            class="cart-drawer-content"
+            id="cartDrawerContent">
+        </div>
+
+        <div class="cart-drawer-footer">
+
+            <button
+                type="button"
+                class="cart-order-note-toggle"
+                id="orderNoteToggle"
+                aria-expanded="false"
+                aria-controls="orderNoteSection">
+
+                <span>Add order note</span>
+                <span aria-hidden="true">+</span>
+
+            </button>
+
+            <div
+                class="cart-order-note"
+                id="orderNoteSection"
+                hidden>
+
+                <label for="orderNote">
+                    Order note
+                </label>
+
+                <textarea
+                    id="orderNote"
+                    rows="3"
+                    maxlength="500"
+                    placeholder="Add a note about your order">
+                </textarea>
+
+            </div>
+
+            <p class="cart-drawer-disclaimer">
+                Taxes and shipping calculated at checkout.
+            </p>
+
+            <a
+                href="./cart.html"
+                class="cart-drawer-button cart-drawer-view">
+                VIEW CART
+            </a>
+
+            <button
+                type="button"
+                class="cart-drawer-button cart-drawer-checkout"
+                id="drawerCheckoutButton">
+
+                <span>CHECKOUT</span>
+
+                <span
+                    class="checkout-total"
+                    id="drawerCheckoutTotal">
+                    Rs. 0
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+</body>
+</html>
