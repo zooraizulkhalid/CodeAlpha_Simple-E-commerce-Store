@@ -1,0 +1,412 @@
+
+/* =========================================
+   VOID DISTRICT — CONTACT PAGE
+========================================= */
+
+/* Contact Hero */
+
+.contact-hero {
+  padding-top: 105px;
+  padding-bottom: 105px;
+}
+
+.contact-hero .eyebrow {
+  margin-bottom: 22px;
+}
+
+.contact-hero h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(64px, 9vw, 140px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.075em;
+  margin: 0 0 32px;
+}
+
+.contact-hero h1 span {
+  color: #a6ff00;
+}
+
+.contact-hero-description {
+  max-width: 550px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #777;
+}
+
+
+/* =========================================
+   CONTACT SECTION
+========================================= */
+
+.contact-section {
+  padding: 100px 0 120px;
+  background: #f5f5f1;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 100px;
+  align-items: start;
+}
+
+
+/* =========================================
+   CONTACT INFORMATION
+========================================= */
+
+.contact-info .eyebrow {
+  margin-bottom: 20px;
+}
+
+.contact-info h2,
+.contact-form-heading h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(38px, 4vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  font-weight: 700;
+  margin: 0;
+}
+
+.contact-info h2 span,
+.contact-form-heading h2 span {
+  color: #88cf00;
+}
+
+.contact-info-description {
+  max-width: 420px;
+  margin-top: 25px;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.contact-info-items {
+  margin-top: 65px;
+  border-top: 1px solid #d6d6d0;
+}
+
+.contact-info-item {
+  display: flex;
+  gap: 22px;
+  padding: 28px 0;
+  border-bottom: 1px solid #d6d6d0;
+}
+
+.contact-info-number {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #888;
+  min-width: 25px;
+}
+
+.contact-info-item h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+
+.contact-info-item p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #777;
+  margin: 0;
+}
+
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+.contact-form-wrapper {
+  background: #fff;
+  padding: 50px;
+  border: 1px solid #e5e5e0;
+  min-width: 0;
+}
+
+.contact-form-heading {
+  margin-bottom: 38px;
+}
+
+.contact-form-heading .eyebrow {
+  margin-bottom: 15px;
+}
+
+.contact-form-heading h2 {
+  font-size: clamp(32px, 3.2vw, 48px);
+}
+
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.contact-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form-group label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.contact-form-group label span {
+  color: #dc2626;
+}
+
+.contact-form-group input,
+.contact-form-group select,
+.contact-form-group textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 15px 16px;
+  border: 1px solid #d8d8d2;
+  border-radius: 0;
+  background: #fff;
+  color: #111;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form-group input::placeholder,
+.contact-form-group textarea::placeholder {
+  color: #999;
+}
+
+.contact-form-group input:focus,
+.contact-form-group select:focus,
+.contact-form-group textarea:focus {
+  border-color: #111;
+  box-shadow: 0 0 0 2px rgba(166, 255, 0, 0.25);
+}
+
+.contact-form-group select {
+  cursor: pointer;
+}
+
+.contact-form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form-status {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contact-form-status:empty {
+  display: none;
+}
+
+.contact-form-status.is-success {
+  color: #166534;
+}
+
+.contact-form-status.is-error {
+  color: #b91c1c;
+}
+
+.contact-form-status.is-loading {
+  color: #555;
+}
+
+.contact-submit-button {
+  width: 100%;
+  min-height: 58px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  border: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.contact-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact-form-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #777;
+  margin: 0;
+}
+
+.contact-form-note a {
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+/* =========================================
+   CONTACT CTA
+========================================= */
+
+.contact-cta {
+  padding: 110px 0;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+.contact-cta .eyebrow {
+  color: #aaa;
+  margin-bottom: 22px;
+}
+
+.contact-cta h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(44px, 6vw, 90px);
+  line-height: 1;
+  letter-spacing: -0.065em;
+  font-weight: 700;
+  margin: 0 0 40px;
+}
+
+.contact-cta h2 span {
+  color: #a6ff00;
+}
+
+.contact-cta .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+
+/* =========================================
+   RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .contact-hero {
+    padding-top: 85px;
+    padding-bottom: 85px;
+  }
+
+  .contact-section {
+    padding: 80px 0;
+  }
+
+  .contact-grid {
+    gap: 45px;
+  }
+
+  .contact-form-wrapper {
+    padding: 35px;
+  }
+
+}
+
+
+/* =========================================
+   RESPONSIVE — MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .contact-hero {
+    padding-top: 65px;
+    padding-bottom: 70px;
+  }
+
+  .contact-hero h1 {
+    font-size: clamp(58px, 14vw, 90px);
+  }
+
+  .contact-hero-description {
+    font-size: 15px;
+  }
+
+  .contact-section {
+    padding: 65px 0;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+
+  .contact-info-description {
+    font-size: 15px;
+  }
+
+  .contact-info-items {
+    margin-top: 35px;
+  }
+
+  .contact-info-item {
+    padding: 22px 0;
+  }
+
+  .contact-form-wrapper {
+    padding: 28px 22px;
+  }
+
+  .contact-form-heading {
+    margin-bottom: 30px;
+  }
+
+  #contactForm {
+    gap: 22px;
+  }
+
+  .contact-cta {
+    padding: 80px 0;
+  }
+
+  .contact-cta h2 {
+    font-size: clamp(40px, 10vw, 65px);
+  }
+
+}
+
+
+/* =========================================
+   RESPONSIVE — SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .contact-hero h1 {
+    font-size: 52px;
+  }
+
+  .contact-form-wrapper {
+    padding: 25px 16px;
+  }
+
+  .contact-info h2,
+  .contact-form-heading h2 {
+    font-size: 32px;
+  }
+
+  .contact-submit-button {
+    font-size: 12px;
+  }
+
+}
