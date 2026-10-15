@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Explore VOID District's shipping and delivery information, including order processing, delivery estimates, tracking, and customer support."
+    />
+
+    <title>Shipping & Delivery | VOID District</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./shipping-policy.css" />
+    <link rel="stylesheet" href="./cart-drawer.css" />
+
+    <!-- Scripts -->
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
+    <script src="./shipping-policy.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+      <p>
+        YOUR STYLE. YOUR RULES.
+        <span>WELCOME TO THE DISTRICT.</span>
+      </p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <a class="brand-logo" href="./index.html">
+          VOID<span>®</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./about.html">Our Story</a>
+        </div>
+
+        <div class="nav-actions">
+          <!-- Search -->
+          <div class="nav-search-container" id="navSearchContainer">
+            <button
+              type="button"
+              class="nav-search"
+              id="navSearchToggle"
+              aria-label="Open product search"
+              aria-expanded="false"
+              aria-controls="navSearchForm"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+              </svg>
+            </button>
+
+            <form
+              class="nav-search-form"
+              id="navSearchForm"
+              role="search"
+              action="./shop.html"
+              method="get"
+            >
+              <label class="sr-only" for="navSearchInput">
+                Search products
+              </label>
+
+              <input
+                type="search"
+                id="navSearchInput"
+                name="search"
+                placeholder="Search products..."
+                autocomplete="off"
+                tabindex="-1"
+              />
+            </form>
+          </div>
+
+          <!-- Wishlist -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="View wishlist"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              ></path>
+            </svg>
+
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
+          </a>
+
+          <!-- Shopping Bag -->
+          <button
+            class="bag-button"
+            id="bagButton"
+            type="button"
+            aria-label="Open shopping bag"
+          >
+            BAG <span id="bagCount">0</span>
+          </button>
+
+          <!-- Mobile Menu -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="mainContent">
+      <!-- Hero -->
+      <section class="shipping-hero">
+        <div class="container">
+          <div class="shipping-hero-top">
+            <p class="shipping-eyebrow">CUSTOMER CARE / 002</p>
+            <span class="shipping-edition">
+              THE VOID DISTRICT GUIDE
+            </span>
+          </div>
+
+          <h1>
+            SHIPPING <span>&amp; DELIVERY.</span>
+          </h1>
+
+          <div class="shipping-hero-bottom">
+            <p>
+              From our district to your doorstep. Here's what you
+              need to know about how your order makes its way to you.
+            </p>
+
+            <a href="#shipping-overview" class="shipping-scroll-hint">
+              EXPLORE THE PROCESS ↓
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction -->
+      <section class="shipping-intro" id="shipping-overview">
+        <div class="container shipping-intro-inner">
+          <div>
+            <p class="shipping-eyebrow">01 / THE JOURNEY</p>
+
+            <h2>
+              GOOD STYLE.
+              <span>ON ITS WAY.</span>
+            </h2>
+          </div>
+
+          <p>
+            Every order starts with attention to detail. Our shipping
+            guide explains how order processing, delivery arrangements,
+            and shipment updates work, so you know what to expect
+            throughout the journey.
+          </p>
+        </div>
+      </section>
+
+      <!-- Shipping Overview Cards -->
+      <section class="shipping-highlights">
+        <div class="container">
+          <div class="shipping-highlights-heading">
+            <p class="shipping-eyebrow">THE DELIVERY EXPERIENCE</p>
+            <h2>FROM CHECKOUT TO YOUR DOOR.</h2>
+          </div>
+
+          <div class="shipping-highlights-grid">
+            <article class="shipping-highlight-card">
+              <span class="shipping-card-number">01 /</span>
+              <div class="shipping-card-icon" aria-hidden="true">↗</div>
+              <h3>ORDER PROCESSING</h3>
+              <p>
+                Orders are reviewed and prepared after confirmation.
+                Processing time depends on availability and order details.
+              </p>
+              <a href="#processing">LEARN MORE <span>↗</span></a>
+            </article>
+
+            <article class="shipping-highlight-card">
+              <span class="shipping-card-number">02 /</span>
+              <div class="shipping-card-icon" aria-hidden="true">→</div>
+              <h3>DELIVERY ESTIMATES</h3>
+              <p>
+                Delivery availability and estimated arrival times depend
+                on your location and the available shipping method.
+              </p>
+              <a href="#delivery">LEARN MORE <span>↗</span></a>
+            </article>
+
+            <article class="shipping-highlight-card">
+              <span class="shipping-card-number">03 /</span>
+              <div class="shipping-card-icon" aria-hidden="true">◎</div>
+              <h3>ORDER TRACKING</h3>
+              <p>
+                When tracking information is available, it may be shared
+                after your order has been dispatched.
+              </p>
+              <a href="#tracking">LEARN MORE <span>↗</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shipping Policy Details -->
+      <section class="shipping-content-section">
+        <div class="container shipping-layout">
+          <!-- Sticky Sidebar -->
+          <aside class="shipping-sidebar">
+            <div class="shipping-sidebar-inner">
+              <p class="shipping-sidebar-title">ON THIS PAGE</p>
+
+              <nav
+                class="shipping-navigation"
+                aria-label="Shipping policy sections"
+              >
+                <a href="#processing" class="is-active">
+                  <span>01</span>
+                  Order Processing
+                </a>
+
+                <a href="#locations">
+                  <span>02</span>
+                  Shipping Locations
+                </a>
+
+                <a href="#delivery">
+                  <span>03</span>
+                  Delivery Estimates
+                </a>
+
+                <a href="#charges">
+                  <span>04</span>
+                  Shipping Charges
+                </a>
+
+                <a href="#tracking">
+                  <span>05</span>
+                  Tracking Your Order
+                </a>
+
+                <a href="#delays">
+                  <span>06</span>
+                  Delays &amp; Disruptions
+                </a>
+
+                <a href="#addresses">
+                  <span>07</span>
+                  Address Information
+                </a>
+
+                <a href="#shipping-help">
+                  <span>08</span>
+                  Shipping Support
+                </a>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Details -->
+          <div class="shipping-details">
+            <article class="shipping-block" id="processing">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">01 /</span>
+                <h2>ORDER PROCESSING</h2>
+              </div>
+
+              <p>
+                Once an order is placed, its details may need to be
+                reviewed and confirmed before preparation begins.
+                Processing includes checking item availability and
+                preparing the order for dispatch.
+              </p>
+
+              <p>
+                Processing time may vary during busy periods, product
+                launches, public holidays, or when additional order
+                verification is required.
+              </p>
+
+              <div class="shipping-note">
+                <span>GOOD TO KNOW ↗</span>
+                <p>
+                  Order processing and delivery transit are separate
+                  stages. A delivery estimate should not be treated as
+                  confirmed until it has been communicated for your order.
+                </p>
+              </div>
+            </article>
+
+            <article class="shipping-block" id="locations">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">02 /</span>
+                <h2>SHIPPING LOCATIONS</h2>
+              </div>
+
+              <p>
+                Shipping availability depends on the destination and
+                the delivery services available for that area.
+              </p>
+
+              <p>
+                If you are unsure whether delivery is available to
+                your location, please contact our team before placing
+                your order.
+              </p>
+
+              <a href="./contact.html" class="shipping-inline-link">
+                ASK ABOUT YOUR LOCATION
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article class="shipping-block" id="delivery">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">03 /</span>
+                <h2>DELIVERY ESTIMATES</h2>
+              </div>
+
+              <p>
+                Estimated delivery times can vary depending on the
+                destination, courier service, order processing
+                requirements, and external conditions.
+              </p>
+
+              <p>
+                Where an estimate is provided, it is intended as a
+                guide rather than a guaranteed arrival date unless
+                expressly confirmed otherwise.
+              </p>
+
+              <div class="shipping-note">
+                <span>DELIVERY TIMEFRAMES ↗</span>
+                <p>
+                  Specific delivery timeframes have not yet been
+                  published. Please contact VOID District for the
+                  latest information about your destination.
+                </p>
+              </div>
+            </article>
+
+            <article class="shipping-block" id="charges">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">04 /</span>
+                <h2>SHIPPING CHARGES</h2>
+              </div>
+
+              <p>
+                Shipping charges, if applicable, depend on the
+                destination and delivery arrangements. Any applicable
+                charges should be communicated before an order is
+                finalized.
+              </p>
+
+              <p>
+                Please review the final order amount and delivery
+                details before confirming your purchase.
+              </p>
+            </article>
+
+            <article class="shipping-block" id="tracking">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">05 /</span>
+                <h2>TRACKING YOUR ORDER</h2>
+              </div>
+
+              <p>
+                If a tracking service is available for your shipment,
+                tracking details may be provided once the parcel has
+                been handed over to the delivery provider.
+              </p>
+
+              <p>
+                Tracking updates depend on the courier and may not
+                appear immediately after dispatch.
+              </p>
+
+              <div class="shipping-note">
+                <span>NEED AN UPDATE? ↗</span>
+                <p>
+                  Contact our support team with your order reference
+                  if you need assistance checking the status of
+                  your shipment.
+                </p>
+              </div>
+            </article>
+
+            <article class="shipping-block" id="delays">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">06 /</span>
+                <h2>DELAYS &amp; DISRUPTIONS</h2>
+              </div>
+
+              <p>
+                Occasionally, deliveries may be affected by weather,
+                courier operations, public holidays, address issues,
+                or other circumstances outside normal control.
+              </p>
+
+              <p>
+                If your order appears delayed, please reach out to
+                our support team so the available shipment information
+                can be reviewed.
+              </p>
+            </article>
+
+            <article class="shipping-block" id="addresses">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">07 /</span>
+                <h2>ADDRESS INFORMATION</h2>
+              </div>
+
+              <p>
+                Please provide an accurate and complete delivery
+                address, along with a reachable phone number and any
+                relevant delivery instructions.
+              </p>
+
+              <p>
+                Incorrect or incomplete address details can lead to
+                delivery delays or unsuccessful delivery attempts.
+                If you notice an error, contact us as soon as possible.
+              </p>
+
+              <div class="shipping-note">
+                <span>IMPORTANT ↗</span>
+                <p>
+                  Address changes may not be possible once an order
+                  has been dispatched.
+                </p>
+              </div>
+            </article>
+
+            <article class="shipping-block" id="shipping-help">
+              <div class="shipping-block-heading">
+                <span class="shipping-number">08 /</span>
+                <h2>SHIPPING SUPPORT</h2>
+              </div>
+
+              <p>
+                Questions about delivery availability, shipping
+                charges, tracking, or a delayed parcel? We're here
+                to help you find the right information.
+              </p>
+
+              <p>
+                When contacting support about an existing order,
+                include your order reference and a brief description
+                of your concern. Do not share sensitive payment
+                information.
+              </p>
+
+              <div class="shipping-link-group">
+                <a href="./contact.html" class="shipping-inline-link">
+                  CONTACT SUPPORT
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="./store-policies.html"
+                  class="shipping-inline-link"
+                >
+                  STORE POLICIES
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support Banner -->
+      <section class="shipping-support-banner">
+        <div class="container shipping-support-inner">
+          <div>
+            <p class="shipping-eyebrow">QUESTIONS ABOUT YOUR ORDER?</p>
+
+            <h2>
+              WE'VE GOT
+              <span>YOUR BACK.</span>
+            </h2>
+
+            <p>
+              Need help with delivery or an order update?
+              Get in touch with the VOID District team.
+            </p>
+          </div>
+
+          <a href="./contact.html" class="shipping-contact-button">
+            GET IN TOUCH
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a class="brand-logo footer-logo" href="./index.html">
+            VOID<span>®</span>
+          </a>
+          <p>WEAR YOUR OWN RULES.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>EXPLORE</h3>
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./blog.html">Blog</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE BRAND</h3>
+          <a href="./about.html">About Us</a>
+          <a href="./contact.html">Contact Us</a>
+          <a href="./about.html#philosophy">Our Philosophy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>CUSTOMER CARE</h3>
+          <a href="./store-policies.html">Store Policies</a>
+          <a href="./shipping-policy.html" aria-current="page">
+            Shipping Policy
+          </a>
+          <a href="./returns.html">Returns &amp; Exchanges</a>
+          <a href="./refund-policy.html">Refund Policy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>LEGAL</h3>
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms.html">Terms &amp; Conditions</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © <span id="currentYear">2026</span>
+          VOID District. All rights reserved.
+        </p>
+
+        <a href="#">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+
+    <!-- Cart Notification -->
+    <div id="cartMessage" role="status" aria-live="polite"></div>
+
+    <!-- Cart Drawer Backdrop -->
+    <div
+      class="cart-drawer-backdrop"
+      id="cartDrawerBackdrop"
+      hidden
+    ></div>
+
+    <!-- Cart Drawer -->
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartDrawerTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cart-drawer-header">
+        <h2 id="cartDrawerTitle">
+          CART (<span id="drawerItemCount">0</span>)
+        </h2>
+
+        <button
+          type="button"
+          class="cart-drawer-close"
+          id="closeCartDrawer"
+          aria-label="Close shopping cart"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent"></div>
+
+      <div class="cart-drawer-footer">
+        <button
+          type="button"
+          class="cart-order-note-toggle"
+          id="orderNoteToggle"
+          aria-expanded="false"
+          aria-controls="orderNoteSection"
+        >
+          <span>Add order note</span>
+          <span aria-hidden="true">+</span>
+        </button>
+
+        <div class="cart-order-note" id="orderNoteSection" hidden>
+          <label for="orderNote">Order note</label>
+
+          <textarea
+            id="orderNote"
+            rows="3"
+            maxlength="500"
+            placeholder="Add a note about your order"
+          ></textarea>
+        </div>
+
+        <p class="cart-drawer-disclaimer">
+          Taxes and shipping calculated at checkout.
+        </p>
+
+        <a
+          href="./cart.html"
+          class="cart-drawer-button cart-drawer-view"
+        >
+          VIEW CART
+        </a>
+
+        <button
+          type="button"
+          class="cart-drawer-button cart-drawer-checkout"
+          id="drawerCheckoutButton"
+        >
+          <span>CHECKOUT</span>
+          <span class="checkout-total" id="drawerCheckoutTotal">
+            Rs. 0
+          </span>
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>
