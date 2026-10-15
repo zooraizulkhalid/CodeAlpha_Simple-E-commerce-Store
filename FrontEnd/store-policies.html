@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Read VOID District's store policies covering orders, payments, shipping, returns, product information, and customer support."
+    />
+
+    <title>Store Policies | VOID District</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./store-policies.css" />
+    <link rel="stylesheet" href="./cart-drawer.css" />
+
+    <!-- JavaScript -->
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
+    <script src="./store-policies.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+      <p>
+        YOUR STYLE. YOUR RULES.
+        <span>WELCOME TO THE DISTRICT.</span>
+      </p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <a class="brand-logo" href="./index.html"> VOID<span>®</span> </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./about.html">Our Story</a>
+        </div>
+
+        <div class="nav-actions">
+          <!-- Search -->
+          <div class="nav-search-container" id="navSearchContainer">
+            <button
+              type="button"
+              class="nav-search"
+              id="navSearchToggle"
+              aria-label="Open product search"
+              aria-expanded="false"
+              aria-controls="navSearchForm"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+              </svg>
+            </button>
+
+            <form
+              class="nav-search-form"
+              id="navSearchForm"
+              role="search"
+              action="./shop.html"
+              method="get"
+            >
+              <label class="sr-only" for="navSearchInput">
+                Search products
+              </label>
+
+              <input
+                type="search"
+                id="navSearchInput"
+                name="search"
+                placeholder="Search products..."
+                autocomplete="off"
+                tabindex="-1"
+              />
+            </form>
+          </div>
+
+          <!-- Wishlist -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="View wishlist"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              ></path>
+            </svg>
+
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
+          </a>
+
+          <!-- Shopping Bag -->
+          <button
+            class="bag-button"
+            id="bagButton"
+            type="button"
+            aria-label="Open shopping bag"
+          >
+            BAG <span id="bagCount">0</span>
+          </button>
+
+          <!-- Mobile Menu -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+      <!-- Page Hero -->
+      <section class="policies-hero">
+        <div class="container">
+          <div class="policies-hero-top">
+            <p class="policies-eyebrow">CUSTOMER CARE / 001</p>
+
+            <span class="policies-edition"> THE VOID DISTRICT GUIDE </span>
+          </div>
+
+          <h1>STORE <span>POLICIES.</span></h1>
+
+          <div class="policies-hero-bottom">
+            <p>
+              Everything you need to know about shopping with VOID District.
+              Clear information, straightforward guidelines, and a better
+              shopping experience.
+            </p>
+
+            <span class="policies-scroll-hint"> KNOW BEFORE YOU SHOP ↓ </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Policies Introduction -->
+      <section class="policies-intro">
+        <div class="container policies-intro-inner">
+          <div>
+            <p class="policies-eyebrow">01 / THE ESSENTIALS</p>
+
+            <h2>
+              YOUR EXPERIENCE.
+              <span>OUR PRIORITY.</span>
+            </h2>
+          </div>
+
+          <p>
+            At VOID District, we believe shopping should feel simple,
+            transparent, and reliable. This page explains our general store
+            guidelines and helps you find the information you need before
+            placing an order.
+          </p>
+        </div>
+      </section>
+
+      <!-- Policy Content -->
+      <section class="policies-content-section">
+        <div class="container policies-layout">
+          <!-- Sidebar Navigation -->
+          <aside class="policies-sidebar">
+            <div class="policies-sidebar-inner">
+              <p class="policies-sidebar-title">ON THIS PAGE</p>
+
+              <nav
+                class="policies-navigation"
+                aria-label="Store policies sections"
+              >
+                <a href="#orders" class="is-active">
+                  <span>01</span>
+                  Orders & Confirmation
+                </a>
+
+                <a href="#payments">
+                  <span>02</span>
+                  Pricing & Payments
+                </a>
+
+                <a href="#shipping">
+                  <span>03</span>
+                  Shipping & Delivery
+                </a>
+
+                <a href="#returns">
+                  <span>04</span>
+                  Returns & Exchanges
+                </a>
+
+                <a href="#products">
+                  <span>05</span>
+                  Product Information
+                </a>
+
+                <a href="#support">
+                  <span>06</span>
+                  Customer Support
+                </a>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Policy Details -->
+          <div class="policies-details">
+            <!-- Orders -->
+            <article class="policy-block" id="orders">
+              <div class="policy-block-heading">
+                <span class="policy-number">01 /</span>
+
+                <h2>ORDERS & CONFIRMATION</h2>
+              </div>
+
+              <p>
+                Please review your selected products, sizes, quantities, and
+                contact details before submitting an order.
+              </p>
+
+              <p>
+                Order requests are subject to product availability and
+                confirmation. If an item becomes unavailable, we aim to
+                communicate the issue before processing the order.
+              </p>
+
+              <div class="policy-note">
+                <span>PLEASE NOTE ↗</span>
+                <p>
+                  Placing an order does not guarantee acceptance until the order
+                  has been confirmed by the store.
+                </p>
+              </div>
+            </article>
+
+            <!-- Payments -->
+            <article class="policy-block" id="payments">
+              <div class="policy-block-heading">
+                <span class="policy-number">02 /</span>
+
+                <h2>PRICING & PAYMENTS</h2>
+              </div>
+
+              <p>
+                Product prices are displayed on the website. Applicable delivery
+                charges and other fees, if any, should be reviewed before
+                confirming an order.
+              </p>
+
+              <p>
+                Available payment methods and their instructions will be shown
+                during the ordering or checkout process.
+              </p>
+
+              <p>
+                We aim to keep pricing information accurate, but errors may
+                occasionally occur. Any pricing discrepancy should be resolved
+                before an affected order is accepted.
+              </p>
+            </article>
+
+            <!-- Shipping -->
+            <article class="policy-block" id="shipping">
+              <div class="policy-block-heading">
+                <span class="policy-number">03 /</span>
+
+                <h2>SHIPPING & DELIVERY</h2>
+              </div>
+
+              <p>
+                Shipping availability, charges, and estimated delivery times may
+                vary depending on the delivery location and the selected
+                shipping method.
+              </p>
+
+              <p>
+                Any delivery estimate is subject to confirmation. Unexpected
+                delays may occur due to courier operations, weather, or other
+                circumstances.
+              </p>
+
+              <a href="./shipping-policy.html" class="policy-inline-link">
+                VIEW SHIPPING POLICY
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <!-- Returns -->
+            <article class="policy-block" id="returns">
+              <div class="policy-block-heading">
+                <span class="policy-number">04 /</span>
+
+                <h2>RETURNS & EXCHANGES</h2>
+              </div>
+
+              <p>
+                If there is an issue with your order, please contact our support
+                team and provide the relevant order details.
+              </p>
+
+              <p>
+                Return and exchange eligibility, applicable time limits, item
+                condition requirements, and shipping responsibilities are
+                governed by the relevant policies.
+              </p>
+
+              <div class="policy-link-group">
+                <a href="./returns.html" class="policy-inline-link">
+                  RETURNS & EXCHANGES
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a href="./refund-policy.html" class="policy-inline-link">
+                  REFUND POLICY
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Products -->
+            <article class="policy-block" id="products">
+              <div class="policy-block-heading">
+                <span class="policy-number">05 /</span>
+
+                <h2>PRODUCT INFORMATION</h2>
+              </div>
+
+              <p>
+                We aim to provide clear product descriptions, images, and
+                available sizing information to help customers make informed
+                choices.
+              </p>
+
+              <p>
+                Actual product colors may appear slightly different depending on
+                screen settings and lighting.
+              </p>
+
+              <p>
+                Please review the product details and available size information
+                carefully before ordering.
+              </p>
+            </article>
+
+            <!-- Support -->
+            <article class="policy-block" id="support">
+              <div class="policy-block-heading">
+                <span class="policy-number">06 /</span>
+
+                <h2>CUSTOMER SUPPORT</h2>
+              </div>
+
+              <p>
+                Have a question about an order, a product, or a store policy?
+                Our contact page is the place to reach out.
+              </p>
+
+              <p>
+                When asking about an existing order, include the relevant order
+                reference and a short description of your concern. Please do not
+                share passwords or sensitive payment information.
+              </p>
+
+              <a href="./contact.html" class="policy-inline-link">
+                CONTACT OUR TEAM
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support CTA -->
+      <section class="policies-support-banner">
+        <div class="container policies-support-inner">
+          <div>
+            <p class="policies-eyebrow">STILL HAVE QUESTIONS?</p>
+
+            <h2>
+              WE'RE HERE
+              <span>TO HELP.</span>
+            </h2>
+
+            <p>
+              Need more information? Get in touch with the VOID District team.
+            </p>
+          </div>
+
+          <a href="./contact.html" class="policies-contact-button">
+            GET IN TOUCH
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a class="brand-logo footer-logo" href="./index.html">
+            VOID<span>®</span>
+          </a>
+
+          <p>WEAR YOUR OWN RULES.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>EXPLORE</h3>
+
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./blog.html">Blog</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE BRAND</h3>
+
+          <a href="./about.html">About Us</a>
+          <a href="./contact.html">Contact Us</a>
+          <a href="./about.html#philosophy"> Our Philosophy </a>
+        </div>
+
+        <div class="footer-column">
+          <h3>CUSTOMER CARE</h3>
+
+          <a href="./store-policies.html" aria-current="page">
+            Store Policies
+          </a>
+          <a href="./shipping-policy.html">Shipping Policy</a>
+          <a href="./returns.html">Returns & Exchanges</a>
+          <a href="./refund-policy.html">Refund Policy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>LEGAL</h3>
+
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms.html">Terms & Conditions</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © <span id="currentYear">2026</span>
+          VOID District. All rights reserved.
+        </p>
+
+        <a href="#">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+
+    <!-- Cart Notification -->
+    <div id="cartMessage" role="status" aria-live="polite"></div>
+
+    <!-- Cart Drawer Backdrop -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" hidden></div>
+
+    <!-- Cart Drawer -->
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartDrawerTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cart-drawer-header">
+        <h2 id="cartDrawerTitle">CART (<span id="drawerItemCount">0</span>)</h2>
+
+        <button
+          type="button"
+          class="cart-drawer-close"
+          id="closeCartDrawer"
+          aria-label="Close shopping cart"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent"></div>
+
+      <div class="cart-drawer-footer">
+        <button
+          type="button"
+          class="cart-order-note-toggle"
+          id="orderNoteToggle"
+          aria-expanded="false"
+          aria-controls="orderNoteSection"
+        >
+          <span>Add order note</span>
+          <span aria-hidden="true">+</span>
+        </button>
+
+        <div class="cart-order-note" id="orderNoteSection" hidden>
+          <label for="orderNote">Order note</label>
+
+          <textarea
+            id="orderNote"
+            rows="3"
+            maxlength="500"
+            placeholder="Add a note about your order"
+          ></textarea>
+        </div>
+
+        <p class="cart-drawer-disclaimer">
+          Taxes and shipping calculated at checkout.
+        </p>
+
+        <a href="./cart.html" class="cart-drawer-button cart-drawer-view">
+          VIEW CART
+        </a>
+
+        <button
+          type="button"
+          class="cart-drawer-button cart-drawer-checkout"
+          id="drawerCheckoutButton"
+        >
+          <span>CHECKOUT</span>
+
+          <span class="checkout-total" id="drawerCheckoutTotal"> Rs. 0 </span>
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>
