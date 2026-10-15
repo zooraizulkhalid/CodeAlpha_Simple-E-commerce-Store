@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Explore streetwear culture, styling guides, and the stories behind VOID District."
+    />
+
+    <meta name="theme-color" content="#101010" />
+
+    <title>The Journal | VOID District</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./blog.css" />
+    <link rel="stylesheet" href="./article.css" />
+    <link rel="stylesheet" href="./cart-drawer.css" />
+
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
+    <script src="./article.js" defer></script>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+      <p>
+        YOUR STYLE. YOUR RULES.
+        <span>WELCOME TO THE DISTRICT.</span>
+      </p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <!-- Logo -->
+        <a class="brand-logo" href="./index.html"> VOID<span>®</span> </a>
+
+        <!-- Navigation Links -->
+        <div class="nav-links" id="navLinks">
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./about.html">Our Story</a>
+        </div>
+
+        <!-- Navigation Actions -->
+        <div class="nav-actions">
+          <!-- Product Search -->
+          <div class="nav-search-container" id="navSearchContainer">
+            <button
+              type="button"
+              class="nav-search"
+              id="navSearchToggle"
+              aria-label="Open product search"
+              aria-expanded="false"
+              aria-controls="navSearchForm"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+              </svg>
+            </button>
+
+            <form
+              class="nav-search-form"
+              id="navSearchForm"
+              role="search"
+              action="./shop.html"
+              method="get"
+            >
+              <label class="sr-only" for="navSearchInput">
+                Search products
+              </label>
+
+              <input
+                type="search"
+                id="navSearchInput"
+                name="search"
+                placeholder="Search products..."
+                autocomplete="off"
+                tabindex="-1"
+              />
+            </form>
+          </div>
+
+          <!-- Wishlist -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="View wishlist"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              ></path>
+            </svg>
+
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
+          </a>
+
+          <!-- Shopping Bag -->
+          <button
+            class="bag-button"
+            id="bagButton"
+            type="button"
+            aria-label="Open shopping bag"
+          >
+            BAG <span id="bagCount">0</span>
+          </button>
+
+          <!-- Mobile Menu -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="mainContent">
+      <!-- BREADCRUMB -->
+
+      <div class="article-breadcrumb">
+        <a href="./index.html">HOME</a>
+        <span aria-hidden="true">/</span>
+        <a href="./blog.html">THE JOURNAL</a>
+        <span aria-hidden="true">/</span>
+        <span id="articleBreadcrumbTitle">ARTICLE</span>
+      </div>
+
+      <!-- LOADING STATE -->
+
+      <div
+        class="article-loading"
+        id="articleLoading"
+        role="status"
+        aria-live="polite"
+      >
+        <p>LOADING STORY...</p>
+      </div>
+
+      <!-- ERROR STATE -->
+
+      <section
+        class="article-error"
+        id="articleError"
+        hidden
+        aria-labelledby="articleErrorTitle"
+      >
+        <p class="article-eyebrow">404 / STORY NOT FOUND</p>
+
+        <h1 id="articleErrorTitle">THIS STORY DOESN'T EXIST.</h1>
+
+        <p>
+          The article you're looking for may have moved or the link may be
+          incorrect.
+        </p>
+
+        <a href="./blog.html" class="article-primary-link">
+          BACK TO THE JOURNAL
+          <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <!-- ARTICLE -->
+
+      <article class="article-page" id="articlePage" hidden>
+        <!-- ARTICLE HEADER -->
+
+        <header class="article-header">
+          <div class="article-meta">
+            <span class="article-category" id="articleCategory"></span>
+
+            <span class="article-meta-divider" aria-hidden="true"> / </span>
+
+            <span id="articleDate"></span>
+
+            <span class="article-meta-divider" aria-hidden="true"> / </span>
+
+            <span id="articleReadTime"></span>
+          </div>
+
+          <h1 id="articleTitle"></h1>
+
+          <p class="article-description" id="articleDescription"></p>
+
+          <div class="article-author">
+            <span class="article-author-mark">VD.</span>
+
+            <div>
+              <strong>VOID DISTRICT EDITORIAL</strong>
+              <span>Culture. Identity. Expression.</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- FEATURED IMAGE -->
+
+        <figure class="article-hero-image">
+          <img id="articleImage" src="" alt="" fetchpriority="high" />
+
+          <figcaption id="articleImageCaption"></figcaption>
+        </figure>
+
+        <!-- ARTICLE BODY -->
+
+        <div class="article-content-layout">
+          <aside class="article-sidebar" aria-label="Article navigation">
+            <span class="article-sidebar-label"> IN THIS STORY </span>
+
+            <nav
+              id="articleTableOfContents"
+              aria-label="Table of contents"
+            ></nav>
+
+            <div class="article-sidebar-divider"></div>
+
+            <span class="article-sidebar-label"> SHARE THIS STORY </span>
+
+            <div class="article-share-actions">
+              <button
+                type="button"
+                id="articleCopyLink"
+                aria-label="Copy article link"
+              >
+                COPY LINK ↗
+              </button>
+
+              <a
+                id="articleShareX"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share article on X"
+              >
+                SHARE ON X ↗
+              </a>
+            </div>
+
+            <p
+              id="articleShareStatus"
+              class="article-share-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </aside>
+
+          <div class="article-body" id="articleBody"></div>
+        </div>
+
+        <!-- ARTICLE END -->
+
+        <div class="article-end">
+          <span class="article-end-mark"> VD. </span>
+
+          <p>STAY DIFFERENT. STAY VOID.</p>
+
+          <a href="./blog.html"> ← BACK TO ALL STORIES </a>
+        </div>
+      </article>
+
+      <!-- RELATED STORIES -->
+
+      <section
+        class="article-related"
+        id="relatedArticlesSection"
+        hidden
+        aria-labelledby="relatedArticlesTitle"
+      >
+        <div class="article-related-heading">
+          <div>
+            <p class="article-eyebrow">KEEP EXPLORING</p>
+
+            <h2 id="relatedArticlesTitle">
+              MORE FROM THE JOURNAL<span>.</span>
+            </h2>
+          </div>
+
+          <a href="./blog.html"> VIEW ALL STORIES ↗ </a>
+        </div>
+
+        <div class="article-related-grid" id="relatedArticlesGrid"></div>
+      </section>
+
+      <!-- NEWSLETTER -->
+
+      <section
+        class="article-newsletter"
+        aria-labelledby="articleNewsletterTitle"
+      >
+        <div class="article-newsletter-content">
+          <p class="article-eyebrow">THE VOID COMMUNITY</p>
+
+          <h2 id="articleNewsletterTitle">
+            DON'T FOLLOW THE CROWD.
+            <span>FOLLOW THE CULTURE.</span>
+          </h2>
+
+          <p>
+            Discover fresh stories, style inspiration, and what's happening
+            inside VOID District.
+          </p>
+
+          <a href="./blog.html" class="article-primary-link">
+            EXPLORE THE JOURNAL
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a class="brand-logo footer-logo" href="./index.html">
+            VOID<span>®</span>
+          </a>
+          <p>WEAR YOUR OWN RULES.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>EXPLORE</h3>
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./blog.html">Blog</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE BRAND</h3>
+          <a href="./about.html">About Us</a>
+          <a href="./contact.html">Contact Us</a>
+          <a href="./about.html#philosophy">Our Philosophy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>CUSTOMER CARE</h3>
+          <a href="./store-policies.html">Store Policies</a>
+          <a href="./shipping-policy.html">Shipping Policy</a>
+          <a href="./returns.html">Returns & Exchanges</a>
+          <a href="./refund-policy.html">Refund Policy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>LEGAL</h3>
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms.html">Terms & Conditions</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © <span id="currentYear">2026</span>
+          VOID District. All rights reserved.
+        </p>
+        <a href="#">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+
+    <!-- CART NOTIFICATION -->
+
+    <div id="cartMessage" role="status" aria-live="polite"></div>
+
+    <!-- CART DRAWER -->
+
+    <!-- Cart Drawer Backdrop -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" hidden></div>
+
+    <!-- Cart Drawer -->
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartDrawerTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cart-drawer-header">
+        <h2 id="cartDrawerTitle">
+          YOUR BAG (<span id="drawerItemCount">0</span>)
+        </h2>
+
+        <button
+          type="button"
+          class="cart-drawer-close"
+          id="closeCartDrawer"
+          aria-label="Close shopping cart"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent"></div>
+
+      <div class="cart-drawer-footer">
+        <button
+          type="button"
+          class="cart-order-note-toggle"
+          id="orderNoteToggle"
+          aria-expanded="false"
+          aria-controls="orderNoteSection"
+        >
+          <span>Add order note</span>
+          <span aria-hidden="true">+</span>
+        </button>
+
+        <div class="cart-order-note" id="orderNoteSection" hidden>
+          <label for="orderNote">Order note</label>
+
+          <textarea
+            id="orderNote"
+            rows="3"
+            maxlength="500"
+            placeholder="Add a note about your order"
+          ></textarea>
+        </div>
+
+        <p class="cart-drawer-disclaimer">
+          Taxes and shipping calculated at checkout.
+        </p>
+
+        <a href="./cart.html" class="cart-drawer-button cart-drawer-view">
+          VIEW CART
+        </a>
+
+        <button
+          type="button"
+          class="cart-drawer-button cart-drawer-checkout"
+          id="drawerCheckoutButton"
+        >
+          <span>CHECKOUT</span>
+          <span class="checkout-total" id="drawerCheckoutTotal"> Rs. 0 </span>
+        </button>
+      </div>
+    </aside>
+    
+  </body>
+</html>
