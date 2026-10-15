@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Explore streetwear trends, styling guides, fashion inspiration, and the latest updates from VOID District."
+    />
+
+    <title>The Journal | VOID District</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./blog.css" />
+    <link rel="stylesheet" href="./cart-drawer.css" />
+
+    <!-- JavaScript -->
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
+    <script src="./blog.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+      <p>
+        YOUR STYLE. YOUR RULES.
+        <span>WELCOME TO THE DISTRICT.</span>
+      </p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <a class="brand-logo" href="./index.html"> VOID<span>®</span> </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./about.html">Our Story</a>
+        </div>
+
+        <div class="nav-actions">
+          <!-- Search -->
+          <div class="nav-search-container" id="navSearchContainer">
+            <button
+              type="button"
+              class="nav-search"
+              id="navSearchToggle"
+              aria-label="Open product search"
+              aria-expanded="false"
+              aria-controls="navSearchForm"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+              </svg>
+            </button>
+
+            <form
+              class="nav-search-form"
+              id="navSearchForm"
+              role="search"
+              action="./shop.html"
+              method="get"
+            >
+              <label class="sr-only" for="navSearchInput">
+                Search products
+              </label>
+
+              <input
+                type="search"
+                id="navSearchInput"
+                name="search"
+                placeholder="Search products..."
+                autocomplete="off"
+                tabindex="-1"
+              />
+            </form>
+          </div>
+
+          <!-- Wishlist -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="View wishlist"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              ></path>
+            </svg>
+
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
+          </a>
+
+          <!-- Shopping Bag -->
+          <button
+            class="bag-button"
+            id="bagButton"
+            type="button"
+            aria-label="Open shopping bag"
+          >
+            BAG <span id="bagCount">0</span>
+          </button>
+
+          <!-- Mobile Menu -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Blog Hero -->
+      <section class="blog-hero container">
+        <div class="blog-hero-top">
+          <p class="eyebrow">STORIES FROM THE DISTRICT</p>
+
+          <span class="blog-edition"> THE VOID JOURNAL / EDITION 001 </span>
+        </div>
+
+        <h1>THE <span>JOURNAL.</span></h1>
+
+        <div class="blog-hero-bottom">
+          <p>
+            Ideas, culture, and conversations shaping the way we dress. Explore
+            streetwear, personal style, and everything happening inside VOID
+            District.
+          </p>
+
+          <span class="blog-scroll-hint"> SCROLL TO EXPLORE ↓ </span>
+        </div>
+      </section>
+
+      <!-- Featured Article -->
+      <section class="blog-featured-section">
+        <div class="container">
+          <div class="blog-section-heading">
+            <p class="eyebrow">01 / EDITOR'S PICK</p>
+
+            <span class="blog-section-label"> FEATURED STORY </span>
+          </div>
+
+          <article class="blog-featured-card">
+            <div class="blog-featured-image">
+              <img
+                src="./images/blog-featured-streetwear.webp"
+                alt="Streetwear clothing hanging on a rack"
+                loading="lazy"
+              />
+
+              <span class="blog-image-tag"> STREETWEAR CULTURE </span>
+            </div>
+
+            <div class="blog-featured-content">
+              <p class="blog-article-meta">
+                STYLE GUIDE
+                <span class="blog-meta-dot">●</span>
+                5 MIN READ
+              </p>
+
+              <h2>STREETWEAR ISN'T JUST FASHION. IT'S AN ATTITUDE.</h2>
+
+              <p>
+                Streetwear has always been about more than what you wear. It's
+                about individuality, creativity, and expressing who you are
+                without following someone else's rules.
+              </p>
+
+              <a
+                class="blog-read-link"
+                href="./article.html?slug=streetwear-attitude"
+              >
+                EXPLORE THE STORY
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Latest Stories -->
+      <section class="blog-stories-section" id="latestStories">
+        <div class="container">
+          <div class="blog-section-heading blog-stories-heading">
+            <div>
+              <p class="eyebrow">02 / FROM THE JOURNAL</p>
+
+              <h2>LATEST <span>STORIES.</span></h2>
+            </div>
+
+            <p class="blog-stories-intro">
+              Fresh perspectives on fashion, creativity, and the VOID District
+              universe.
+            </p>
+          </div>
+
+          <!-- Category Filters -->
+          <div
+            class="blog-filters"
+            id="blogFilters"
+            role="group"
+            aria-label="Filter blog articles"
+          >
+            <button
+              type="button"
+              class="blog-filter is-active"
+              data-category="all"
+              aria-pressed="true"
+            >
+              ALL STORIES
+            </button>
+
+            <button
+              type="button"
+              class="blog-filter"
+              data-category="style"
+              aria-pressed="false"
+            >
+              STYLE GUIDES
+            </button>
+
+            <button
+              type="button"
+              class="blog-filter"
+              data-category="culture"
+              aria-pressed="false"
+            >
+              STREETWEAR CULTURE
+            </button>
+
+            <button
+              type="button"
+              class="blog-filter"
+              data-category="brand"
+              aria-pressed="false"
+            >
+              VOID UPDATES
+            </button>
+          </div>
+
+          <!-- Blog Grid -->
+          <div class="blog-grid" id="blogGrid">
+            <!-- Article 1 -->
+            <article
+              class="blog-card"
+              id="article-streetwear-attitude"
+              data-category="culture"
+            >
+              <div class="blog-card-image">
+                <img
+                  src="./images/blog-streetwear-culture.webp"
+                  alt="Streetwear-inspired fashion outfit"
+                  loading="lazy"
+                />
+
+                <span class="blog-card-category"> STREETWEAR CULTURE </span>
+              </div>
+
+              <div class="blog-card-content">
+                <p class="blog-article-meta">
+                  CULTURE
+                  <span class="blog-meta-dot">●</span>
+                  5 MIN READ
+                </p>
+
+                <h3>Why Streetwear Is More Than Just Clothing</h3>
+
+                <p>
+                  From creative expression to everyday identity, discover why
+                  streetwear continues to influence modern fashion.
+                </p>
+
+                <a
+                  href="./article.html?slug=streetwear-attitude"
+                  class="blog-card-link"
+                >
+                  ARTICLE PREVIEW
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article
+              class="blog-card"
+              id="article-oversized"
+              data-category="style"
+            >
+              <div class="blog-card-image">
+                <img
+                  src="./images/blog-oversized-tshirt.webp"
+                  alt="Casual oversized streetwear outfit"
+                  loading="lazy"
+                />
+
+                <span class="blog-card-category"> STYLE GUIDE </span>
+              </div>
+
+              <div class="blog-card-content">
+                <p class="blog-article-meta">
+                  STYLE GUIDE
+                  <span class="blog-meta-dot">●</span>
+                  4 MIN READ
+                </p>
+
+                <h3>How to Style Oversized T-Shirts Like a Pro</h3>
+
+                <p>
+                  Learn how to balance proportions, layer your essentials, and
+                  create effortless everyday outfits.
+                </p>
+
+                <a
+                  href="./article.html?slug=oversized-tshirts"
+                  class="blog-card-link"
+                >
+                  ARTICLE PREVIEW
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article
+              class="blog-card"
+              id="article-void-identity"
+              data-category="brand"
+            >
+              <div class="blog-card-image">
+                <img
+                  src="./images/blog-void-identity.webp"
+                  alt="Minimal clothing collection"
+                  loading="lazy"
+                />
+
+                <span class="blog-card-category"> VOID UPDATE </span>
+              </div>
+
+              <div class="blog-card-content">
+                <p class="blog-article-meta">
+                  THE BRAND
+                  <span class="blog-meta-dot">●</span>
+                  3 MIN READ
+                </p>
+
+                <h3>Inside VOID District: The Identity Behind the Brand</h3>
+
+                <p>
+                  A closer look at the creative direction, attitude, and ideas
+                  shaping the VOID District concept.
+                </p>
+
+                <a
+                  href="./article.html?slug=void-identity"
+                  class="blog-card-link"
+                >
+                  READ ARTICLE
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article
+              class="blog-card"
+              id="article-capsule"
+              data-category="style"
+            >
+              <div class="blog-card-image">
+                <img
+                  src="./images/blog-capsule-wardrobe.webp"
+                  alt="Fashion clothing and outfit inspiration"
+                  loading="lazy"
+                />
+
+                <span class="blog-card-category"> STYLE GUIDE </span>
+              </div>
+
+              <div class="blog-card-content">
+                <p class="blog-article-meta">
+                  STYLE GUIDE
+                  <span class="blog-meta-dot">●</span>
+                  6 MIN READ
+                </p>
+
+                <h3>Building a Streetwear Capsule Wardrobe</h3>
+
+                <p>
+                  Discover the essential pieces that make mixing and matching
+                  streetwear outfits easier.
+                </p>
+
+                <a
+                  href="./article.html?slug=capsule-wardrobe"
+                  class="blog-card-link"
+                >
+                  ARTICLE PREVIEW
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article
+              class="blog-card"
+              id="article-sneakers"
+              data-category="culture"
+            >
+              <div class="blog-card-image">
+                <img
+                  src="./images/blog-sneaker-culture.webp"
+                  alt="Red sneaker photographed against a red background"
+                  loading="lazy"
+                />
+
+                <span class="blog-card-category"> STREETWEAR CULTURE </span>
+              </div>
+
+              <div class="blog-card-content">
+                <p class="blog-article-meta">
+                  CULTURE
+                  <span class="blog-meta-dot">●</span>
+                  4 MIN READ
+                </p>
+
+                <h3>The Role of Sneakers in Streetwear Culture</h3>
+
+                <p>
+                  Explore how sneakers became one of the most recognizable
+                  elements of streetwear identity.
+                </p>
+
+                <a
+                  href="./article.html?slug=sneaker-culture"
+                  class="blog-card-link"
+                >
+                  ARTICLE PREVIEW
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article
+              class="blog-card"
+              id="article-void-future"
+              data-category="brand"
+            >
+              <div class="blog-card-image">
+                <img
+                  src="./images/blog-void-future.webp"
+                  alt="Modern clothing store interior"
+                  loading="lazy"
+                />
+
+                <span class="blog-card-category"> VOID UPDATE </span>
+              </div>
+
+              <div class="blog-card-content">
+                <p class="blog-article-meta">
+                  THE BRAND
+                  <span class="blog-meta-dot">●</span>
+                  3 MIN READ
+                </p>
+
+                <h3>What's Next for VOID District?</h3>
+
+                <p>
+                  A look at the ideas and possibilities we're exploring as VOID
+                  District develops.
+                </p>
+
+                <a
+                  href="./article.html?slug=void-future"
+                  class="blog-card-link"
+                >
+                  READ ARTICLE
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Empty Filter State -->
+          <p id="blogEmptyState" class="blog-empty-state" hidden>
+            No stories found in this category.
+          </p>
+
+          <!-- Filter Result Announcement -->
+          <p
+            id="blogFilterStatus"
+            class="sr-only"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+      </section>
+
+      <!-- Brand Philosophy Banner -->
+      <section class="blog-philosophy">
+        <div class="container blog-philosophy-inner">
+          <p class="eyebrow">MORE THAN A LABEL</p>
+
+          <h2>
+            DON'T FOLLOW THE CULTURE.
+            <span>CREATE IT.</span>
+          </h2>
+
+          <a href="./about.html#philosophy">
+            DISCOVER OUR PHILOSOPHY
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="blog-newsletter">
+        <div class="container blog-newsletter-grid">
+          <div class="blog-newsletter-content">
+            <p class="eyebrow">STAY IN THE LOOP</p>
+
+            <h2>
+              NEVER MISS
+              <span>A DROP.</span>
+            </h2>
+
+            <p>
+              Streetwear inspiration, fresh stories, and VOID District updates.
+            </p>
+          </div>
+
+          <div class="blog-newsletter-form-wrapper">
+            <form id="blogNewsletterForm">
+              <label for="blogNewsletterEmail"> EMAIL ADDRESS </label>
+
+              <div class="blog-newsletter-input-row">
+                <input
+                  type="email"
+                  id="blogNewsletterEmail"
+                  name="email"
+                  placeholder="Enter your email address"
+                  autocomplete="email"
+                  required
+                />
+
+                <button type="submit">
+                  SUBSCRIBE
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </form>
+
+            <p
+              id="blogNewsletterStatus"
+              class="blog-newsletter-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+            <p class="blog-newsletter-note">
+              Newsletter signup is currently a demo. No emails will be sent or
+              stored.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a class="brand-logo footer-logo" href="./index.html">
+            VOID<span>®</span>
+          </a>
+
+          <p>WEAR YOUR OWN RULES.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>EXPLORE</h3>
+
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./blog.html" aria-current="page">Blog</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE BRAND</h3>
+
+          <a href="./about.html">About Us</a>
+          <a href="./contact.html">Contact Us</a>
+          <a href="./about.html#philosophy">Our Philosophy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>CUSTOMER CARE</h3>
+
+          <a href="./store-policies.html">Store Policies</a>
+          <a href="./shipping-policy.html">Shipping Policy</a>
+          <a href="./returns.html">Returns & Exchanges</a>
+          <a href="./refund-policy.html">Refund Policy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>LEGAL</h3>
+
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms.html">Terms & Conditions</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © <span id="currentYear">2026</span>
+          VOID District. All rights reserved.
+        </p>
+
+        <a href="#">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+
+    <!-- Cart Notification -->
+    <div id="cartMessage" role="status" aria-live="polite"></div>
+
+    <!-- Cart Drawer Backdrop -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" hidden></div>
+
+    <!-- Cart Drawer -->
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartDrawerTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cart-drawer-header">
+        <h2 id="cartDrawerTitle">
+          YOUR BAG (<span id="drawerItemCount">0</span>)
+        </h2>
+
+        <button
+          type="button"
+          class="cart-drawer-close"
+          id="closeCartDrawer"
+          aria-label="Close shopping cart"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent"></div>
+
+      <div class="cart-drawer-footer">
+        <button
+          type="button"
+          class="cart-order-note-toggle"
+          id="orderNoteToggle"
+          aria-expanded="false"
+          aria-controls="orderNoteSection"
+        >
+          <span>Add order note</span>
+          <span aria-hidden="true">+</span>
+        </button>
+
+        <div class="cart-order-note" id="orderNoteSection" hidden>
+          <label for="orderNote"> Order note </label>
+
+          <textarea
+            id="orderNote"
+            rows="3"
+            maxlength="500"
+            placeholder="Add a note about your order"
+          >
+          </textarea>
+        </div>
+
+        <p class="cart-drawer-disclaimer">
+          Taxes and shipping calculated at checkout.
+        </p>
+
+        <a href="./cart.html" class="cart-drawer-button cart-drawer-view">
+          VIEW CART
+        </a>
+
+        <button
+          type="button"
+          class="cart-drawer-button cart-drawer-checkout"
+          id="drawerCheckoutButton"
+        >
+          <span>CHECKOUT</span>
+
+          <span class="checkout-total" id="drawerCheckoutTotal"> Rs. 0 </span>
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>
