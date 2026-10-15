@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Explore VOID District's returns and exchanges guide, including return requests, eligibility, exchanges, damaged items, and customer support."
+    />
+
+    <title>Returns &amp; Exchanges | VOID District</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./returns.css" />
+    <link rel="stylesheet" href="./cart-drawer.css" />
+
+    <!-- Scripts -->
+    <script src="./products.js" defer></script>
+    <script src="./cart.js" defer></script>
+    <script src="./cart-drawer.js" defer></script>
+    <script src="./wishlist.js" defer></script>
+    <script src="./returns.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+      <p>
+        YOUR STYLE. YOUR RULES.
+        <span>WELCOME TO THE DISTRICT.</span>
+      </p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <a class="brand-logo" href="./index.html">
+          VOID<span>®</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./about.html">Our Story</a>
+        </div>
+
+        <div class="nav-actions">
+          <!-- Search -->
+          <div class="nav-search-container" id="navSearchContainer">
+            <button
+              type="button"
+              class="nav-search"
+              id="navSearchToggle"
+              aria-label="Open product search"
+              aria-expanded="false"
+              aria-controls="navSearchForm"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+              </svg>
+            </button>
+
+            <form
+              class="nav-search-form"
+              id="navSearchForm"
+              role="search"
+              action="./shop.html"
+              method="get"
+            >
+              <label class="sr-only" for="navSearchInput">
+                Search products
+              </label>
+
+              <input
+                type="search"
+                id="navSearchInput"
+                name="search"
+                placeholder="Search products..."
+                autocomplete="off"
+                tabindex="-1"
+              />
+            </form>
+          </div>
+
+          <!-- Wishlist -->
+          <a
+            href="./wishlist.html"
+            class="wishlist-nav-link"
+            aria-label="View wishlist"
+            title="My Wishlist"
+          >
+            <svg
+              class="wishlist-nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+              ></path>
+            </svg>
+
+            <span class="wishlist-count" aria-hidden="true" hidden>0</span>
+          </a>
+
+          <!-- Shopping Bag -->
+          <button
+            class="bag-button"
+            id="bagButton"
+            type="button"
+            aria-label="Open shopping bag"
+          >
+            BAG <span id="bagCount">0</span>
+          </button>
+
+          <!-- Mobile Menu -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="mainContent">
+      <!-- Hero -->
+      <section class="returns-hero">
+        <div class="container">
+          <div class="returns-hero-top">
+            <p class="returns-eyebrow">CUSTOMER CARE / 003</p>
+            <span class="returns-edition">
+              THE VOID DISTRICT GUIDE
+            </span>
+          </div>
+
+          <h1>
+            RETURNS <span>&amp; EXCHANGES.</span>
+          </h1>
+
+          <div class="returns-hero-bottom">
+            <p>
+              Sometimes the fit isn't right. Sometimes plans change.
+              Here's how to get in touch about a return or exchange
+              and understand the next steps.
+            </p>
+
+            <a href="#returns-overview" class="returns-scroll-hint">
+              EXPLORE THE PROCESS ↓
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction -->
+      <section class="returns-intro" id="returns-overview">
+        <div class="container returns-intro-inner">
+          <div>
+            <p class="returns-eyebrow">01 / THE APPROACH</p>
+
+            <h2>
+              THE RIGHT FIT.
+              <span>THE RIGHT SUPPORT.</span>
+            </h2>
+          </div>
+
+          <p>
+            We want every VOID District piece to feel right for you.
+            If you have a concern about an order, this guide explains
+            how to request assistance, what information to provide,
+            and how return or exchange requests are reviewed.
+          </p>
+        </div>
+      </section>
+
+      <!-- Process Cards -->
+      <section class="returns-highlights">
+        <div class="container">
+          <div class="returns-highlights-heading">
+            <p class="returns-eyebrow">HOW IT WORKS</p>
+            <h2>A CLEARER WAY FORWARD.</h2>
+          </div>
+
+          <div class="returns-highlights-grid">
+            <article class="returns-highlight-card">
+              <span class="returns-card-number">01 /</span>
+              <div class="returns-card-icon" aria-hidden="true">↗</div>
+
+              <h3>REQUEST SUPPORT</h3>
+
+              <p>
+                Contact our team with your order reference and a
+                description of the item or issue you'd like reviewed.
+              </p>
+
+              <a href="#request-return">
+                LEARN MORE <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article class="returns-highlight-card">
+              <span class="returns-card-number">02 /</span>
+              <div class="returns-card-icon" aria-hidden="true">◎</div>
+
+              <h3>ORDER REVIEW</h3>
+
+              <p>
+                Our team can review your request, product details,
+                and the available return or exchange options.
+              </p>
+
+              <a href="#eligibility">
+                LEARN MORE <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article class="returns-highlight-card">
+              <span class="returns-card-number">03 /</span>
+              <div class="returns-card-icon" aria-hidden="true">→</div>
+
+              <h3>NEXT STEPS</h3>
+
+              <p>
+                If a return or exchange is approved, you'll receive
+                the applicable instructions before sending anything back.
+              </p>
+
+              <a href="#return-shipping">
+                LEARN MORE <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Returns & Exchanges Details -->
+      <section class="returns-content-section">
+        <div class="container returns-layout">
+          <!-- Sticky Sidebar -->
+          <aside class="returns-sidebar">
+            <div class="returns-sidebar-inner">
+              <p class="returns-sidebar-title">ON THIS PAGE</p>
+
+              <nav
+                class="returns-navigation"
+                aria-label="Returns and exchanges sections"
+              >
+                <a href="#request-return" class="is-active">
+                  <span>01</span>
+                  Request a Return
+                </a>
+
+                <a href="#eligibility">
+                  <span>02</span>
+                  Return Eligibility
+                </a>
+
+                <a href="#exchanges">
+                  <span>03</span>
+                  Product Exchanges
+                </a>
+
+                <a href="#item-condition">
+                  <span>04</span>
+                  Item Condition
+                </a>
+
+                <a href="#damaged-items">
+                  <span>05</span>
+                  Damaged or Incorrect Items
+                </a>
+
+                <a href="#return-shipping">
+                  <span>06</span>
+                  Return Shipping
+                </a>
+
+                <a href="#refunds">
+                  <span>07</span>
+                  Refund Information
+                </a>
+
+                <a href="#returns-help">
+                  <span>08</span>
+                  Customer Support
+                </a>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Details -->
+          <div class="returns-details">
+            <!-- 01 -->
+            <article class="returns-block" id="request-return">
+              <div class="returns-block-heading">
+                <span class="returns-number">01 /</span>
+                <h2>REQUEST A RETURN</h2>
+              </div>
+
+              <p>
+                If you'd like to request a return, start by contacting
+                VOID District customer support. Include your order
+                reference, the product involved, and a short explanation
+                of your request.
+              </p>
+
+              <p>
+                Our team can review the information and advise you
+                about the available next steps. Please wait for
+                instructions before sending an item back.
+              </p>
+
+              <div class="returns-note">
+                <span>BEFORE YOU CONTACT US ↗</span>
+                <p>
+                  Have your order reference and product details ready.
+                  For a product issue, photographs may help our team
+                  understand the concern.
+                </p>
+              </div>
+
+              <a href="./contact.html" class="returns-inline-link">
+                CONTACT CUSTOMER SUPPORT
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <!-- 02 -->
+            <article class="returns-block" id="eligibility">
+              <div class="returns-block-heading">
+                <span class="returns-number">02 /</span>
+                <h2>RETURN ELIGIBILITY</h2>
+              </div>
+
+              <p>
+                Return eligibility may depend on the product, its
+                condition, the order details, and the applicable
+                return conditions.
+              </p>
+
+              <p>
+                Please contact our team to confirm whether your item
+                is eligible before arranging a return. Any applicable
+                request deadline should also be confirmed with support.
+              </p>
+
+              <div class="returns-note">
+                <span>RETURN WINDOW ↗</span>
+                <p>
+                  A specific return request period has not yet been
+                  published. Please confirm the applicable timeframe
+                  with VOID District before requesting a return.
+                </p>
+              </div>
+            </article>
+
+            <!-- 03 -->
+            <article class="returns-block" id="exchanges">
+              <div class="returns-block-heading">
+                <span class="returns-number">03 /</span>
+                <h2>PRODUCT EXCHANGES</h2>
+              </div>
+
+              <p>
+                Need a different size or want to ask about another
+                product? Contact our support team with your order
+                details and the exchange you'd like to request.
+              </p>
+
+              <p>
+                Exchange options may depend on product availability,
+                item condition, and the applicable store conditions.
+                An exchange is not confirmed until our team has
+                reviewed and approved the request.
+              </p>
+
+              <div class="returns-note">
+                <span>SIZE &amp; AVAILABILITY ↗</span>
+                <p>
+                  Product sizes and stock levels can change.
+                  Please confirm the availability of your preferred
+                  replacement before making any return arrangements.
+                </p>
+              </div>
+            </article>
+
+            <!-- 04 -->
+            <article class="returns-block" id="item-condition">
+              <div class="returns-block-heading">
+                <span class="returns-number">04 /</span>
+                <h2>ITEM CONDITION</h2>
+              </div>
+
+              <p>
+                The condition of a product may affect whether a return
+                or exchange can be accepted. When submitting a request,
+                please describe the item's current condition accurately.
+              </p>
+
+              <p>
+                Keep any original packaging, labels, tags, and
+                accompanying items available until you receive
+                further instructions from support.
+              </p>
+
+              <div class="returns-note">
+                <span>HELPFUL REMINDER ↗</span>
+                <p>
+                  Avoid sending products back without authorization.
+                  The team may need to review your request before
+                  providing the correct return instructions.
+                </p>
+              </div>
+            </article>
+
+            <!-- 05 -->
+            <article class="returns-block" id="damaged-items">
+              <div class="returns-block-heading">
+                <span class="returns-number">05 /</span>
+                <h2>DAMAGED OR INCORRECT ITEMS</h2>
+              </div>
+
+              <p>
+                If an order arrives damaged, appears defective, or
+                contains an incorrect item, please contact VOID
+                District support with the relevant order details.
+              </p>
+
+              <p>
+                Explain the issue clearly and, where possible,
+                include photographs of the product and packaging.
+                Our team can review the concern and advise you
+                about the available resolution options.
+              </p>
+
+              <a href="./contact.html" class="returns-inline-link">
+                REPORT AN ORDER ISSUE
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <!-- 06 -->
+            <article class="returns-block" id="return-shipping">
+              <div class="returns-block-heading">
+                <span class="returns-number">06 /</span>
+                <h2>RETURN SHIPPING</h2>
+              </div>
+
+              <p>
+                Return shipping arrangements depend on the nature
+                of the request and the instructions provided after
+                review.
+              </p>
+
+              <p>
+                Before sending an item, confirm the correct return
+                address, packaging requirements, available delivery
+                method, and any applicable shipping charges with
+                our support team.
+              </p>
+
+              <div class="returns-note">
+                <span>SHIPPING COSTS ↗</span>
+                <p>
+                  Responsibility for return shipping charges has
+                  not yet been published as a general policy.
+                  Please confirm any applicable costs before
+                  dispatching a return.
+                </p>
+              </div>
+
+              <a href="./shipping-policy.html" class="returns-inline-link">
+                VIEW SHIPPING POLICY
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <!-- 07 -->
+            <article class="returns-block" id="refunds">
+              <div class="returns-block-heading">
+                <span class="returns-number">07 /</span>
+                <h2>REFUND INFORMATION</h2>
+              </div>
+
+              <p>
+                Returns and refunds are related but separate
+                processes. Approval of a return request does not
+                automatically confirm a refund.
+              </p>
+
+              <p>
+                Any refund eligibility, amount, payment method,
+                and processing arrangements are subject to the
+                applicable refund conditions and review.
+              </p>
+
+              <div class="returns-note">
+                <span>REFUND DETAILS ↗</span>
+                <p>
+                  For information about refund eligibility and
+                  processing, refer to our Refund Policy or contact
+                  customer support.
+                </p>
+              </div>
+
+              <a href="./refund-policy.html" class="returns-inline-link">
+                VIEW REFUND POLICY
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <!-- 08 -->
+            <article class="returns-block" id="returns-help">
+              <div class="returns-block-heading">
+                <span class="returns-number">08 /</span>
+                <h2>CUSTOMER SUPPORT</h2>
+              </div>
+
+              <p>
+                Still have questions about returns, exchanges,
+                product condition, or a previous order?
+                Our support team can help you understand the
+                available options.
+              </p>
+
+              <p>
+                When contacting us, include your order reference
+                and a brief description of your concern.
+                Please do not share passwords or sensitive
+                payment information.
+              </p>
+
+              <div class="returns-link-group">
+                <a href="./contact.html" class="returns-inline-link">
+                  CONTACT SUPPORT
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="./store-policies.html"
+                  class="returns-inline-link"
+                >
+                  STORE POLICIES
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support Banner -->
+      <section class="returns-support-banner">
+        <div class="container returns-support-inner">
+          <div>
+            <p class="returns-eyebrow">
+              QUESTIONS ABOUT YOUR ORDER?
+            </p>
+
+            <h2>
+              WE'RE HERE
+              <span>TO HELP.</span>
+            </h2>
+
+            <p>
+              A sizing concern, an order issue, or a return question?
+              Reach out to the VOID District team.
+            </p>
+          </div>
+
+          <a href="./contact.html" class="returns-contact-button">
+            GET IN TOUCH
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a class="brand-logo footer-logo" href="./index.html">
+            VOID<span>®</span>
+          </a>
+          <p>WEAR YOUR OWN RULES.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>EXPLORE</h3>
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./blog.html">Blog</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>THE BRAND</h3>
+          <a href="./about.html">About Us</a>
+          <a href="./contact.html">Contact Us</a>
+          <a href="./about.html#philosophy">Our Philosophy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>CUSTOMER CARE</h3>
+          <a href="./store-policies.html">Store Policies</a>
+          <a href="./shipping-policy.html">Shipping Policy</a>
+          <a href="./returns.html" aria-current="page">
+            Returns &amp; Exchanges
+          </a>
+          <a href="./refund-policy.html">Refund Policy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>LEGAL</h3>
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms.html">Terms &amp; Conditions</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © <span id="currentYear">2026</span>
+          VOID District. All rights reserved.
+        </p>
+
+        <a href="#">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+
+    <!-- Cart Notification -->
+    <div id="cartMessage" role="status" aria-live="polite"></div>
+
+    <!-- Cart Drawer Backdrop -->
+    <div
+      class="cart-drawer-backdrop"
+      id="cartDrawerBackdrop"
+      hidden
+    ></div>
+
+    <!-- Cart Drawer -->
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartDrawerTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cart-drawer-header">
+        <h2 id="cartDrawerTitle">
+          CART (<span id="drawerItemCount">0</span>)
+        </h2>
+
+        <button
+          type="button"
+          class="cart-drawer-close"
+          id="closeCartDrawer"
+          aria-label="Close shopping cart"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent"></div>
+
+      <div class="cart-drawer-footer">
+        <button
+          type="button"
+          class="cart-order-note-toggle"
+          id="orderNoteToggle"
+          aria-expanded="false"
+          aria-controls="orderNoteSection"
+        >
+          <span>Add order note</span>
+          <span aria-hidden="true">+</span>
+        </button>
+
+        <div class="cart-order-note" id="orderNoteSection" hidden>
+          <label for="orderNote">Order note</label>
+
+          <textarea
+            id="orderNote"
+            rows="3"
+            maxlength="500"
+            placeholder="Add a note about your order"
+          ></textarea>
+        </div>
+
+        <p class="cart-drawer-disclaimer">
+          Taxes and shipping calculated at checkout.
+        </p>
+
+        <a
+          href="./cart.html"
+          class="cart-drawer-button cart-drawer-view"
+        >
+          VIEW CART
+        </a>
+
+        <button
+          type="button"
+          class="cart-drawer-button cart-drawer-checkout"
+          id="drawerCheckoutButton"
+        >
+          <span>CHECKOUT</span>
+          <span class="checkout-total" id="drawerCheckoutTotal">
+            Rs. 0
+          </span>
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>
