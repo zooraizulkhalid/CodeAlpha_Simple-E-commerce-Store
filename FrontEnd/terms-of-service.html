@@ -1,0 +1,1289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Read the VOID District Terms of Service covering website access, acceptable use, account security, intellectual property, third-party services, and service availability."
+  />
+
+  <title>Terms of Service | VOID District</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./terms-of-service.css" />
+  <link rel="stylesheet" href="./cart-drawer.css" />
+
+  <!-- JAVASCRIPT -->
+  <script src="./products.js" defer></script>
+  <script src="./cart.js" defer></script>
+  <script src="./cart-drawer.js" defer></script>
+  <script src="./wishlist.js" defer></script>
+  <script src="./terms-of-service.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ==========================================
+       ANNOUNCEMENT BAR
+       ========================================== -->
+
+  <div class="announcement-bar">
+    <p>
+      YOUR STYLE. YOUR RULES.
+      <span>WELCOME TO THE DISTRICT.</span>
+    </p>
+  </div>
+
+  <!-- ==========================================
+       HEADER / NAVIGATION
+       ========================================== -->
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+
+      <a href="./index.html" class="brand-logo">
+        VOID<span>®</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="./index.html">Home</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./index.html#categories">Categories</a>
+        <a href="./index.html#featured">New Drops</a>
+        <a href="./about.html">Our Story</a>
+      </div>
+
+      <div class="nav-actions">
+
+        <!-- SEARCH -->
+        <div
+          class="nav-search-container"
+          id="navSearchContainer"
+        >
+          <button
+            type="button"
+            class="nav-search"
+            id="navSearchToggle"
+            aria-label="Open product search"
+            aria-expanded="false"
+            aria-controls="navSearchForm"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 5 5"></path>
+            </svg>
+          </button>
+
+          <form
+            class="nav-search-form"
+            id="navSearchForm"
+            action="./shop.html"
+            method="get"
+            role="search"
+          >
+            <label
+              class="sr-only"
+              for="navSearchInput"
+            >
+              Search products
+            </label>
+
+            <input
+              type="search"
+              id="navSearchInput"
+              name="search"
+              placeholder="Search products..."
+              autocomplete="off"
+              tabindex="-1"
+            />
+          </form>
+        </div>
+
+        <!-- WISHLIST -->
+        <a
+          href="./wishlist.html"
+          class="wishlist-nav-link"
+          aria-label="View wishlist"
+          title="My Wishlist"
+        >
+          <svg
+            class="wishlist-nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+            ></path>
+          </svg>
+
+          <span
+            class="wishlist-count"
+            aria-hidden="true"
+            hidden
+          >0</span>
+        </a>
+
+        <!-- SHOPPING BAG -->
+        <button
+          class="bag-button"
+          id="bagButton"
+          type="button"
+          aria-label="Open shopping bag"
+        >
+          BAG <span id="bagCount">0</span>
+        </button>
+
+        <!-- MOBILE MENU -->
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+
+  <main id="mainContent">
+
+    <!-- HERO -->
+    <section class="service-hero">
+      <div class="container">
+
+        <div class="service-hero-top">
+          <p class="service-eyebrow">
+            LEGAL / 007
+          </p>
+
+          <span class="service-edition">
+            THE VOID DISTRICT GUIDE
+          </span>
+        </div>
+
+        <h1>
+          TERMS <span>OF SERVICE.</span>
+        </h1>
+
+        <div class="service-hero-bottom">
+          <p>
+            Your experience. Our standards.
+            Understand the rules and responsibilities
+            that help keep VOID District accessible,
+            secure, and fair for everyone.
+          </p>
+
+          <a
+            href="#service-overview"
+            class="service-scroll-hint"
+          >
+            EXPLORE THE SERVICE TERMS ↓
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section
+      class="service-intro"
+      id="service-overview"
+    >
+      <div class="container service-intro-inner">
+
+        <div>
+          <p class="service-eyebrow">
+            01 / THE FOUNDATION
+          </p>
+
+          <h2>
+            BUILT ON
+            <span>TRUST & RESPECT.</span>
+          </h2>
+        </div>
+
+        <p>
+          These Terms of Service explain the rules
+          for accessing and using the VOID District
+          website, its content, and any services
+          made available through it. They address
+          responsible website use, intellectual
+          property, account security, and other
+          important matters. Purchasing conditions
+          are covered separately in our Terms &amp;
+          Conditions. Nothing here overrides
+          mandatory rights under applicable law.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SERVICE PRINCIPLES
+         ========================================== -->
+
+    <section class="service-highlights">
+      <div class="container">
+
+        <div class="service-highlights-heading">
+          <p class="service-eyebrow">
+            OUR DIGITAL STANDARDS
+          </p>
+
+          <h2>
+            THREE CORE PRINCIPLES.
+          </h2>
+        </div>
+
+        <div class="service-highlights-grid">
+
+          <!-- CARD 01 -->
+          <article class="service-highlight-card">
+            <span class="service-card-number">
+              01 /
+            </span>
+
+            <div
+              class="service-card-icon"
+              aria-hidden="true"
+            >
+              ◎
+            </div>
+
+            <h3>RESPECTFUL ACCESS</h3>
+
+            <p>
+              Use VOID District responsibly,
+              respect other users, and avoid
+              activities that disrupt the website.
+            </p>
+
+            <a href="#service-conduct">
+              LEARN MORE
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <!-- CARD 02 -->
+          <article class="service-highlight-card">
+            <span class="service-card-number">
+              02 /
+            </span>
+
+            <div
+              class="service-card-icon"
+              aria-hidden="true"
+            >
+              ◈
+            </div>
+
+            <h3>PROTECTING CREATIVITY</h3>
+
+            <p>
+              Our brand identity, original content,
+              product imagery, and creative materials
+              deserve appropriate protection.
+            </p>
+
+            <a href="#service-intellectual">
+              LEARN MORE
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <!-- CARD 03 -->
+          <article class="service-highlight-card">
+            <span class="service-card-number">
+              03 /
+            </span>
+
+            <div
+              class="service-card-icon"
+              aria-hidden="true"
+            >
+              ↗
+            </div>
+
+            <h3>TRANSPARENT SERVICE</h3>
+
+            <p>
+              Website features may evolve.
+              We aim to communicate important
+              service changes and limitations.
+            </p>
+
+            <a href="#service-availability">
+              LEARN MORE
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TERMS OF SERVICE CONTENT
+         ========================================== -->
+
+    <section class="service-content-section">
+      <div class="container service-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="service-sidebar">
+          <div class="service-sidebar-inner">
+
+            <p class="service-sidebar-title">
+              ON THIS PAGE
+            </p>
+
+            <nav
+              class="service-navigation"
+              aria-label="Terms of Service sections"
+            >
+              <a
+                href="#service-acceptance"
+                class="is-active"
+              >
+                <span>01</span>
+                Acceptance of Terms
+              </a>
+
+              <a href="#service-access">
+                <span>02</span>
+                Website Access
+              </a>
+
+              <a href="#service-accounts">
+                <span>03</span>
+                Accounts & Security
+              </a>
+
+              <a href="#service-conduct">
+                <span>04</span>
+                Acceptable Use
+              </a>
+
+              <a href="#service-intellectual">
+                <span>05</span>
+                Intellectual Property
+              </a>
+
+              <a href="#service-content">
+                <span>06</span>
+                User Content
+              </a>
+
+              <a href="#service-third-party">
+                <span>07</span>
+                Third-Party Services
+              </a>
+
+              <a href="#service-availability">
+                <span>08</span>
+                Service Availability
+              </a>
+
+              <a href="#service-privacy">
+                <span>09</span>
+                Privacy & Security
+              </a>
+
+              <a href="#service-legal">
+                <span>10</span>
+                Legal Notices
+              </a>
+            </nav>
+
+          </div>
+        </aside>
+
+        <!-- MAIN DETAILS -->
+        <div class="service-details">
+
+          <!-- SECTION 01 -->
+          <article
+            class="service-block"
+            id="service-acceptance"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                01 /
+              </span>
+
+              <h2>ACCEPTANCE OF TERMS</h2>
+            </div>
+
+            <p>
+              These Terms of Service describe
+              the conditions for accessing and
+              using the VOID District website.
+              Please review them before using
+              our website or its features.
+            </p>
+
+            <p>
+              By accessing or using the website,
+              you agree to comply with these
+              terms to the extent permitted by
+              applicable law. If you disagree
+              with these terms, you should
+              discontinue use of the website.
+            </p>
+
+            <p>
+              Additional policies may apply
+              when you purchase products,
+              request support, or use specific
+              website features.
+            </p>
+
+            <div class="service-note">
+              <span>IMPORTANT TO KNOW ↗</span>
+
+              <p>
+                These service terms focus on
+                website use. Product purchases
+                are addressed in our separate
+                Terms &amp; Conditions.
+              </p>
+            </div>
+
+            <a
+              href="./terms.html"
+              class="service-inline-link"
+            >
+              VIEW TERMS &amp; CONDITIONS
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <!-- SECTION 02 -->
+          <article
+            class="service-block"
+            id="service-access"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                02 /
+              </span>
+
+              <h2>WEBSITE ACCESS & USE</h2>
+            </div>
+
+            <p>
+              VOID District provides website
+              content and shopping-related
+              features for personal browsing,
+              product discovery, and other
+              permitted activities.
+            </p>
+
+            <p>
+              You are responsible for using
+              a compatible device, maintaining
+              your internet connection, and
+              accessing the website in a
+              lawful manner.
+            </p>
+
+            <p>
+              Some website features may be
+              unavailable, under development,
+              or subject to additional
+              requirements. Access to the
+              website does not guarantee
+              that every feature is available
+              at all times.
+            </p>
+
+            <div class="service-note">
+              <span>FAIR ACCESS ↗</span>
+
+              <p>
+                Automated activity that places
+                an unreasonable burden on
+                the website or interferes
+                with other visitors is not
+                permitted.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 03 -->
+          <article
+            class="service-block"
+            id="service-accounts"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                03 /
+              </span>
+
+              <h2>ACCOUNTS & SECURITY</h2>
+            </div>
+
+            <p>
+              VOID District may introduce
+              optional customer accounts
+              as its online services develop.
+              Until account functionality
+              is available, visitors can
+              use the public sections
+              of the website.
+            </p>
+
+            <p>
+              If account registration becomes
+              available, customers should
+              provide accurate information,
+              keep their login credentials
+              confidential, and promptly
+              report suspected unauthorized
+              account access.
+            </p>
+
+            <p>
+              Users must not access another
+              person's account without
+              authorization or attempt
+              to bypass account security
+              measures.
+            </p>
+
+            <div class="service-note">
+              <span>KEEP YOUR DETAILS SAFE ↗</span>
+
+              <p>
+                Never share passwords,
+                one-time verification codes,
+                card PINs, or payment security
+                codes with anyone claiming
+                to represent VOID District.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 04 -->
+          <article
+            class="service-block"
+            id="service-conduct"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                04 /
+              </span>
+
+              <h2>ACCEPTABLE USE</h2>
+            </div>
+
+            <p>
+              Visitors must use VOID District
+              responsibly and must not
+              engage in unlawful, fraudulent,
+              deceptive, or harmful activity
+              through the website.
+            </p>
+
+            <p>
+              Prohibited conduct includes
+              attempting unauthorized access,
+              distributing malicious code,
+              interfering with website
+              operations, impersonating
+              another person, or abusing
+              customer support channels.
+            </p>
+
+            <p>
+              Users must not attempt to
+              extract restricted information,
+              bypass technical safeguards,
+              or exploit website features
+              in a way that harms other
+              users or the service.
+            </p>
+
+            <div class="service-note">
+              <span>RESPECT THE DISTRICT ↗</span>
+
+              <p>
+                We may take reasonable
+                measures against harmful
+                or unauthorized activity,
+                subject to applicable law
+                and the circumstances
+                involved.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 05 -->
+          <article
+            class="service-block"
+            id="service-intellectual"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                05 /
+              </span>
+
+              <h2>INTELLECTUAL PROPERTY</h2>
+            </div>
+
+            <p>
+              The VOID District name, branding,
+              original website designs,
+              written content, photographs,
+              graphics, and other creative
+              materials may be protected
+              by copyright, trademark,
+              and other applicable laws.
+            </p>
+
+            <p>
+              Except where permitted by law
+              or authorized by the relevant
+              rights holder, visitors must
+              not reproduce, distribute,
+              commercially exploit, or
+              misrepresent protected
+              website materials.
+            </p>
+
+            <p>
+              Viewing the website does not
+              transfer ownership of its
+              intellectual property or
+              grant a general commercial
+              license to use its content.
+            </p>
+
+            <div class="service-note">
+              <span>ORIGINAL BY DESIGN ↗</span>
+
+              <p>
+                If you would like to use
+                VOID District branding
+                or original content for
+                a project or collaboration,
+                contact us for permission.
+              </p>
+            </div>
+
+            <a
+              href="./contact.html"
+              class="service-inline-link"
+            >
+              CONTACT VOID DISTRICT
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <!-- SECTION 06 -->
+          <article
+            class="service-block"
+            id="service-content"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                06 /
+              </span>
+
+              <h2>USER CONTENT & SUBMISSIONS</h2>
+            </div>
+
+            <p>
+              Visitors may communicate with
+              VOID District through available
+              contact forms, support channels,
+              and other submission features.
+            </p>
+
+            <p>
+              Any information submitted
+              should be accurate, lawful,
+              relevant to the request,
+              and free from malicious
+              or infringing material.
+            </p>
+
+            <p>
+              If additional content features,
+              such as reviews or customer
+              uploads, are introduced,
+              separate rules may explain
+              how that content can be
+              displayed, moderated,
+              or removed.
+            </p>
+
+            <div class="service-note">
+              <span>SHARE RESPONSIBLY ↗</span>
+
+              <p>
+                Avoid submitting sensitive
+                payment credentials or
+                confidential information
+                through general contact
+                forms or public channels.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 07 -->
+          <article
+            class="service-block"
+            id="service-third-party"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                07 /
+              </span>
+
+              <h2>THIRD-PARTY SERVICES</h2>
+            </div>
+
+            <p>
+              VOID District may provide
+              links to third-party websites
+              or use external services
+              for certain website functions,
+              such as communications,
+              analytics, or payments
+              when supported.
+            </p>
+
+            <p>
+              External providers may have
+              their own terms, privacy
+              policies, and technical
+              requirements. Visitors
+              should review those
+              policies when interacting
+              with third-party services.
+            </p>
+
+            <p>
+              A link to an external
+              website does not necessarily
+              indicate that VOID District
+              owns, operates, or endorses
+              that website or all of
+              its content.
+            </p>
+
+            <div class="service-note">
+              <span>BEFORE YOU LEAVE ↗</span>
+
+              <p>
+                Check the website address
+                and relevant privacy
+                information before sharing
+                personal or payment details
+                with an external service.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 08 -->
+          <article
+            class="service-block"
+            id="service-availability"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                08 /
+              </span>
+
+              <h2>SERVICE AVAILABILITY</h2>
+            </div>
+
+            <p>
+              VOID District aims to provide
+              a reliable browsing experience,
+              but website access may
+              occasionally be interrupted
+              by maintenance, technical
+              issues, network problems,
+              or circumstances beyond
+              reasonable control.
+            </p>
+
+            <p>
+              Website content, design,
+              product listings, and
+              available features may
+              change as the platform
+              develops.
+            </p>
+
+            <p>
+              Where reasonably necessary,
+              we may restrict access
+              to specific features
+              to address security risks,
+              technical issues, or
+              misuse of the website.
+              Applicable legal obligations
+              and consumer rights
+              remain unaffected.
+            </p>
+
+            <div class="service-note">
+              <span>ALWAYS IMPROVING ↗</span>
+
+              <p>
+                Some shopping and account
+                features are still being
+                developed. Their availability
+                will depend on the
+                website's launch
+                and implementation.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 09 -->
+          <article
+            class="service-block"
+            id="service-privacy"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                09 /
+              </span>
+
+              <h2>PRIVACY & DATA SECURITY</h2>
+            </div>
+
+            <p>
+              Information submitted
+              through the website may
+              be processed to respond
+              to inquiries, provide
+              requested services,
+              and support legitimate
+              website operations.
+            </p>
+
+            <p>
+              Our Privacy Policy explains
+              how personal information
+              may be collected, used,
+              shared, and protected,
+              along with relevant
+              privacy choices and rights.
+            </p>
+
+            <p>
+              Visitors should use the
+              website responsibly and
+              avoid attempting to access,
+              disclose, or misuse
+              another person's data.
+            </p>
+
+            <div class="service-note">
+              <span>YOUR PRIVACY MATTERS ↗</span>
+
+              <p>
+                Please review our Privacy
+                Policy for additional
+                information about data
+                handling and how to
+                contact us with
+                privacy questions.
+              </p>
+            </div>
+
+            <a
+              href="./privacy-policy.html"
+              class="service-inline-link"
+            >
+              READ PRIVACY POLICY
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <!-- SECTION 10 -->
+          <article
+            class="service-block"
+            id="service-legal"
+          >
+            <div class="service-block-heading">
+              <span class="service-number">
+                10 /
+              </span>
+
+              <h2>LEGAL NOTICES & UPDATES</h2>
+            </div>
+
+            <p>
+              VOID District may revise
+              these Terms of Service
+              as website functionality,
+              operational requirements,
+              and applicable laws change.
+              Any legally required
+              notices or consent
+              procedures will apply.
+            </p>
+
+            <p>
+              If a provision of these
+              terms is found to be
+              unenforceable, the
+              remaining provisions
+              should continue to apply
+              to the extent permitted
+              by applicable law.
+            </p>
+
+            <p>
+              These terms should be
+              read alongside our
+              Terms &amp; Conditions,
+              Privacy Policy, and
+              relevant Store Policies.
+              Business identification,
+              governing law, dispute
+              resolution arrangements,
+              and any liability
+              provisions require
+              final review before
+              commercial launch.
+            </p>
+
+            <p>
+              Nothing in these terms
+              is intended to exclude
+              rights or remedies
+              that cannot legally
+              be excluded.
+            </p>
+
+            <div class="service-note">
+              <span>FINAL REVIEW REQUIRED ↗</span>
+
+              <p>
+                This page is a draft
+                for the VOID District
+                website project.
+                It requires business,
+                operational, and
+                appropriate legal
+                review before use
+                for live transactions.
+              </p>
+            </div>
+
+            <div class="service-link-group">
+
+              <a
+                href="./terms.html"
+                class="service-inline-link"
+              >
+                TERMS &amp; CONDITIONS
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <a
+                href="./store-policies.html"
+                class="service-inline-link"
+              >
+                STORE POLICIES
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <a
+                href="./contact.html"
+                class="service-inline-link"
+              >
+                CONTACT US
+                <span aria-hidden="true">↗</span>
+              </a>
+
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SUPPORT BANNER
+         ========================================== -->
+
+    <section class="service-support-banner">
+      <div class="container service-support-inner">
+
+        <div>
+          <p class="service-eyebrow">
+            QUESTIONS ABOUT OUR SERVICES?
+          </p>
+
+          <h2>
+            LET'S CLEAR
+            <span>THINGS UP.</span>
+          </h2>
+
+          <p>
+            Need help understanding our
+            website rules or service
+            policies? Our team is
+            here to help.
+          </p>
+        </div>
+
+        <a
+          href="./contact.html"
+          class="service-contact-button"
+        >
+          GET IN TOUCH
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+
+      <div class="footer-brand">
+        <a
+          href="./index.html"
+          class="brand-logo footer-logo"
+        >
+          VOID<span>®</span>
+        </a>
+
+        <p>WEAR YOUR OWN RULES.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>EXPLORE</h3>
+
+        <a href="./index.html">Home</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./index.html#featured">New Drops</a>
+        <a href="./blog.html">Blog</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>THE BRAND</h3>
+
+        <a href="./about.html">About Us</a>
+        <a href="./contact.html">Contact Us</a>
+        <a href="./about.html#philosophy">
+          Our Philosophy
+        </a>
+      </div>
+
+      <div class="footer-column">
+        <h3>CUSTOMER CARE</h3>
+
+        <a href="./store-policies.html">
+          Store Policies
+        </a>
+
+        <a href="./shipping-policy.html">
+          Shipping Policy
+        </a>
+
+        <a href="./returns.html">
+          Returns &amp; Exchanges
+        </a>
+
+        <a href="./refund-policy.html">
+          Refund Policy
+        </a>
+      </div>
+
+      <div class="footer-column">
+        <h3>LEGAL</h3>
+
+        <a href="./privacy-policy.html">
+          Privacy Policy
+        </a>
+
+        <a href="./terms.html">
+          Terms &amp; Conditions
+        </a>
+
+        <a
+          href="./terms-of-service.html"
+          aria-current="page"
+        >
+          Terms of Service
+        </a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p>
+        © <span id="currentYear">2026</span>
+        VOID District. All rights reserved.
+      </p>
+
+      <a href="#">BACK TO TOP ↑</a>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       CART NOTIFICATION
+       ========================================== -->
+
+  <div
+    id="cartMessage"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+  <!-- ==========================================
+       CART DRAWER BACKDROP
+       ========================================== -->
+
+  <div
+    class="cart-drawer-backdrop"
+    id="cartDrawerBackdrop"
+    hidden
+  ></div>
+
+  <!-- ==========================================
+       CART DRAWER
+       ========================================== -->
+
+  <aside
+    class="cart-drawer"
+    id="cartDrawer"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cartDrawerTitle"
+    aria-hidden="true"
+    inert
+  >
+
+    <!-- DRAWER HEADER -->
+    <div class="cart-drawer-header">
+
+      <h2 id="cartDrawerTitle">
+        CART (<span id="drawerItemCount">0</span>)
+      </h2>
+
+      <button
+        type="button"
+        class="cart-drawer-close"
+        id="closeCartDrawer"
+        aria-label="Close shopping cart"
+      >
+        &times;
+      </button>
+
+    </div>
+
+    <!-- CART ITEMS -->
+    <div
+      class="cart-drawer-content"
+      id="cartDrawerContent"
+    ></div>
+
+    <!-- DRAWER FOOTER -->
+    <div class="cart-drawer-footer">
+
+      <!-- ORDER NOTE -->
+      <button
+        type="button"
+        class="cart-order-note-toggle"
+        id="orderNoteToggle"
+        aria-expanded="false"
+        aria-controls="orderNoteSection"
+      >
+        <span>Add order note</span>
+        <span aria-hidden="true">+</span>
+      </button>
+
+      <div
+        class="cart-order-note"
+        id="orderNoteSection"
+        hidden
+      >
+        <label for="orderNote">
+          Order note
+        </label>
+
+        <textarea
+          id="orderNote"
+          rows="3"
+          maxlength="500"
+          placeholder="Add a note about your order"
+        ></textarea>
+      </div>
+
+      <p class="cart-drawer-disclaimer">
+        Taxes and shipping calculated at checkout.
+      </p>
+
+      <!-- VIEW CART -->
+      <a
+        href="./cart.html"
+        class="cart-drawer-button cart-drawer-view"
+      >
+        VIEW CART
+      </a>
+
+      <!-- CHECKOUT -->
+      <button
+        type="button"
+        class="cart-drawer-button cart-drawer-checkout"
+        id="drawerCheckoutButton"
+      >
+        <span>CHECKOUT</span>
+
+        <span
+          class="checkout-total"
+          id="drawerCheckoutTotal"
+        >
+          Rs. 0
+        </span>
+      </button>
+
+    </div>
+  </aside>
+
+</body>
+</html>
