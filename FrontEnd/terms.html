@@ -1,0 +1,958 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description"
+    content="Read VOID District's Terms and Conditions covering orders, payments, shipping, cancellations, returns, customer responsibilities, and international purchases." />
+
+  <title>Terms & Conditions | VOID District</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./terms.css" />
+  <link rel="stylesheet" href="./cart-drawer.css" />
+
+  <!-- JavaScript -->
+  <script src="./products.js" defer></script>
+  <script src="./cart.js" defer></script>
+  <script src="./cart-drawer.js" defer></script>
+  <script src="./wishlist.js" defer></script>
+  <script src="./terms.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <p>
+      YOUR STYLE. YOUR RULES.
+      <span>WELCOME TO THE DISTRICT.</span>
+    </p>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+
+      <a href="./index.html" class="brand-logo">
+        VOID<span>®</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="./index.html">Home</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./index.html#categories">Categories</a>
+        <a href="./index.html#featured">New Drops</a>
+        <a href="./about.html">Our Story</a>
+      </div>
+
+      <div class="nav-actions">
+
+        <!-- SEARCH -->
+        <div class="nav-search-container" id="navSearchContainer">
+          <button
+            type="button"
+            class="nav-search"
+            id="navSearchToggle"
+            aria-label="Open product search"
+            aria-expanded="false"
+            aria-controls="navSearchForm"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 5 5"></path>
+            </svg>
+          </button>
+
+          <form
+            class="nav-search-form"
+            id="navSearchForm"
+            action="./shop.html"
+            method="get"
+            role="search"
+          >
+            <label class="sr-only" for="navSearchInput">
+              Search products
+            </label>
+            <input
+              type="search"
+              id="navSearchInput"
+              name="search"
+              placeholder="Search products..."
+              autocomplete="off"
+              tabindex="-1"
+            />
+          </form>
+        </div>
+
+        <!-- WISHLIST -->
+        <a
+          href="./wishlist.html"
+          class="wishlist-nav-link"
+          aria-label="View wishlist"
+          title="My Wishlist"
+        >
+          <svg
+            class="wishlist-nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+            ></path>
+          </svg>
+
+          <span class="wishlist-count" aria-hidden="true" hidden>0</span>
+        </a>
+
+        <!-- SHOPPING BAG -->
+        <button
+          class="bag-button"
+          id="bagButton"
+          type="button"
+          aria-label="Open shopping bag"
+        >
+          BAG <span id="bagCount">0</span>
+        </button>
+
+        <!-- MOBILE MENU -->
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- HERO -->
+    <section class="terms-hero">
+      <div class="container">
+
+        <div class="terms-hero-top">
+          <p class="terms-eyebrow">CUSTOMER CARE / 006</p>
+          <span class="terms-edition">
+            THE VOID DISTRICT GUIDE
+          </span>
+        </div>
+
+        <h1>TERMS <span>& CONDITIONS.</span></h1>
+
+        <div class="terms-hero-bottom">
+          <p>
+            Know the details. Shop with confidence.
+            These terms explain the conditions that apply
+            when browsing VOID District and purchasing
+            our products.
+          </p>
+
+          <a href="#terms-overview" class="terms-scroll-hint">
+            EXPLORE THE TERMS ↓
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="terms-intro" id="terms-overview">
+      <div class="container terms-intro-inner">
+
+        <div>
+          <p class="terms-eyebrow">01 / THE AGREEMENT</p>
+          <h2>
+            CLEAR TERMS.
+            <span>BETTER SHOPPING.</span>
+          </h2>
+        </div>
+
+        <p>
+          These Terms & Conditions explain important
+          rules relating to purchases from VOID District,
+          including order acceptance, pricing, delivery,
+          returns, and customer responsibilities.
+          They are intended for customers in Pakistan
+          and other supported countries. Nothing in
+          these terms limits mandatory rights provided
+          by applicable consumer protection laws.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="terms-highlights">
+      <div class="container">
+
+        <div class="terms-highlights-heading">
+          <p class="terms-eyebrow">THE ESSENTIALS</p>
+          <h2>THREE THINGS TO KNOW.</h2>
+        </div>
+
+        <div class="terms-highlights-grid">
+
+          <article class="terms-highlight-card">
+            <span class="terms-card-number">01 /</span>
+            <div class="terms-card-icon" aria-hidden="true">◎</div>
+
+            <h3>ORDER CONFIRMATION</h3>
+            <p>
+              Orders are subject to availability and
+              acceptance by VOID District. Submitting
+              an order does not guarantee acceptance.
+            </p>
+
+            <a href="#terms-orders">
+              LEARN MORE <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="terms-highlight-card">
+            <span class="terms-card-number">02 /</span>
+            <div class="terms-card-icon" aria-hidden="true">↗</div>
+
+            <h3>TRANSPARENT PRICING</h3>
+            <p>
+              Review product prices, delivery charges,
+              and any applicable fees before
+              confirming your purchase.
+            </p>
+
+            <a href="#terms-pricing">
+              LEARN MORE <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="terms-highlight-card">
+            <span class="terms-card-number">03 /</span>
+            <div class="terms-card-icon" aria-hidden="true">✓</div>
+
+            <h3>YOUR CUSTOMER RIGHTS</h3>
+            <p>
+              Our returns and refund policies explain
+              the process, while applicable consumer
+              rights remain protected.
+            </p>
+
+            <a href="#terms-returns">
+              LEARN MORE <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMS CONTENT -->
+    <section class="terms-content-section">
+      <div class="container terms-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="terms-sidebar">
+          <div class="terms-sidebar-inner">
+
+            <p class="terms-sidebar-title">ON THIS PAGE</p>
+
+            <nav
+              class="terms-navigation"
+              aria-label="Terms and conditions sections"
+            >
+              <a href="#terms-orders" class="is-active">
+                <span>01</span> Orders & Acceptance
+              </a>
+
+              <a href="#terms-pricing">
+                <span>02</span> Pricing & Availability
+              </a>
+
+              <a href="#terms-payments">
+                <span>03</span> Payments & Checkout
+              </a>
+
+              <a href="#terms-shipping">
+                <span>04</span> Shipping & Delivery
+              </a>
+
+              <a href="#terms-cancellations">
+                <span>05</span> Order Cancellations
+              </a>
+
+              <a href="#terms-returns">
+                <span>06</span> Returns & Refunds
+              </a>
+
+              <a href="#terms-products">
+                <span>07</span> Product Information
+              </a>
+
+              <a href="#terms-responsibilities">
+                <span>08</span> Customer Responsibilities
+              </a>
+
+              <a href="#terms-international">
+                <span>09</span> International Orders
+              </a>
+
+              <a href="#terms-legal">
+                <span>10</span> General Legal Terms
+              </a>
+            </nav>
+
+          </div>
+        </aside>
+
+        <!-- MAIN DETAILS -->
+        <div class="terms-details">
+
+          <!-- SECTION 01 -->
+          <article class="terms-block" id="terms-orders">
+            <div class="terms-block-heading">
+              <span class="terms-number">01 /</span>
+              <h2>ORDERS & ACCEPTANCE</h2>
+            </div>
+
+            <p>
+              Before submitting an order, customers
+              should review their selected products,
+              sizes, quantities, delivery information,
+              and contact details.
+            </p>
+
+            <p>
+              Orders are subject to product availability
+              and acceptance by VOID District.
+              An order submission or automated
+              acknowledgment does not necessarily mean
+              that the order has been accepted.
+            </p>
+
+            <p>
+              If an item is unavailable or an order
+              cannot be fulfilled, we aim to communicate
+              the issue and explain the available
+              next steps. Any payment already collected
+              will be handled according to applicable
+              law and our refund arrangements.
+            </p>
+
+            <div class="terms-note">
+              <span>ORDER CONFIRMATION ↗</span>
+              <p>
+                An order is accepted when VOID District
+                communicates its confirmation of acceptance.
+                Mandatory consumer rights remain unaffected.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 02 -->
+          <article class="terms-block" id="terms-pricing">
+            <div class="terms-block-heading">
+              <span class="terms-number">02 /</span>
+              <h2>PRICING & PRODUCT AVAILABILITY</h2>
+            </div>
+
+            <p>
+              Product prices and available options
+              are displayed on our website. Prices,
+              promotions, and stock availability
+              may change over time.
+            </p>
+
+            <p>
+              Applicable shipping charges, taxes,
+              and other order-related fees should
+              be disclosed during the checkout
+              process before an order is confirmed.
+            </p>
+
+            <p>
+              Although we aim to keep product and
+              pricing information accurate, occasional
+              errors may occur. Any material pricing
+              discrepancy should be resolved before
+              the affected order is accepted.
+            </p>
+
+            <div class="terms-note">
+              <span>PRICING TRANSPARENCY ↗</span>
+              <p>
+                Customers should review the final
+                order summary before payment.
+                Pricing errors will be handled
+                consistently with applicable law.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 03 -->
+          <article class="terms-block" id="terms-payments">
+            <div class="terms-block-heading">
+              <span class="terms-number">03 /</span>
+              <h2>PAYMENTS & CHECKOUT</h2>
+            </div>
+
+            <p>
+              Available payment methods and their
+              instructions will be presented during
+              checkout when online ordering becomes
+              available. Accepted payment methods
+              may depend on the customer's location.
+            </p>
+
+            <p>
+              Payment transactions may be handled
+              by selected third-party payment
+              providers. Their processing requirements
+              and applicable terms may also apply.
+            </p>
+
+            <p>
+              VOID District plans to support guest
+              checkout and optional customer accounts.
+              Account registration will not be
+              required solely to use guest checkout
+              once that option is available.
+            </p>
+
+            <div class="terms-note">
+              <span>SECURE SHOPPING ↗</span>
+              <p>
+                Never send passwords, card PINs,
+                one-time verification codes, or
+                card security codes through
+                customer support messages.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 04 -->
+          <article class="terms-block" id="terms-shipping">
+            <div class="terms-block-heading">
+              <span class="terms-number">04 /</span>
+              <h2>SHIPPING & DELIVERY</h2>
+            </div>
+
+            <p>
+              Delivery availability, shipping charges,
+              and estimated delivery times may vary
+              based on the destination, courier,
+              and shipping method.
+            </p>
+
+            <p>
+              Delivery estimates are subject to
+              confirmation and may be affected
+              by courier operations, customs,
+              weather, or other circumstances.
+              Any mandatory delivery obligations
+              under applicable law still apply.
+            </p>
+
+            <p>
+              Customers should provide accurate
+              delivery details and contact support
+              if they notice an error in their
+              shipping information.
+            </p>
+
+            <div class="terms-link-group">
+              <a href="./shipping-policy.html" class="terms-inline-link">
+                VIEW SHIPPING POLICY
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- SECTION 05 -->
+          <article class="terms-block" id="terms-cancellations">
+            <div class="terms-block-heading">
+              <span class="terms-number">05 /</span>
+              <h2>ORDER CANCELLATIONS</h2>
+            </div>
+
+            <p>
+              Customers who wish to cancel or modify
+              an order should contact VOID District
+              support as soon as possible and provide
+              the relevant order reference.
+            </p>
+
+            <p>
+              Whether an order can be changed or
+              cancelled may depend on its processing
+              or dispatch status and the circumstances
+              of the request.
+            </p>
+
+            <p>
+              If an order has already been dispatched,
+              the applicable returns process may
+              be relevant. Nothing in this section
+              limits cancellation or withdrawal
+              rights provided by applicable law.
+            </p>
+
+            <div class="terms-note">
+              <span>NEED TO MAKE A CHANGE? ↗</span>
+              <p>
+                Contact support promptly. Do not
+                assume that an order has been
+                cancelled until confirmation
+                is received.
+              </p>
+            </div>
+
+            <a href="./contact.html" class="terms-inline-link">
+              CONTACT CUSTOMER SUPPORT
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <!-- SECTION 06 -->
+          <article class="terms-block" id="terms-returns">
+            <div class="terms-block-heading">
+              <span class="terms-number">06 /</span>
+              <h2>RETURNS, EXCHANGES & REFUNDS</h2>
+            </div>
+
+            <p>
+              VOID District provides separate
+              Returns & Exchanges and Refund Policy
+              pages explaining request procedures,
+              eligibility, and available resolutions.
+            </p>
+
+            <p>
+              Under our standard Refund Policy,
+              customers should submit refund
+              requests within 14 calendar days
+              after delivery. This general period
+              does not restrict longer periods
+              or additional remedies required
+              by applicable consumer law.
+            </p>
+
+            <p>
+              Refund eligibility depends on the
+              relevant circumstances and applicable
+              legal requirements. Approved refunds
+              are normally issued to the original
+              payment method where supported,
+              subject to provider limitations
+              and applicable law.
+            </p>
+
+            <div class="terms-note">
+              <span>YOUR RIGHTS MATTER ↗</span>
+              <p>
+                Nothing in these Terms & Conditions
+                removes statutory remedies for
+                defective, damaged, incorrect,
+                or otherwise nonconforming goods.
+              </p>
+            </div>
+
+            <div class="terms-link-group">
+              <a href="./returns.html" class="terms-inline-link">
+                RETURNS & EXCHANGES
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <a href="./refund-policy.html" class="terms-inline-link">
+                REFUND POLICY
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- SECTION 07 -->
+          <article class="terms-block" id="terms-products">
+            <div class="terms-block-heading">
+              <span class="terms-number">07 /</span>
+              <h2>PRODUCT INFORMATION</h2>
+            </div>
+
+            <p>
+              VOID District aims to provide clear
+              product descriptions, photographs,
+              size information, and other details
+              to help customers make informed
+              purchasing decisions.
+            </p>
+
+            <p>
+              Actual colors and appearance may
+              differ slightly depending on screen
+              settings, lighting, and photographic
+              conditions.
+            </p>
+
+            <p>
+              Customers should review the available
+              product and sizing information before
+              placing an order. Any rights relating
+              to inaccurate descriptions or
+              nonconforming goods remain protected
+              under applicable law.
+            </p>
+
+            <div class="terms-note">
+              <span>CHECK BEFORE ORDERING ↗</span>
+              <p>
+                If you need help with sizing or
+                product information, contact
+                our support team before purchasing.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 08 -->
+          <article class="terms-block" id="terms-responsibilities">
+            <div class="terms-block-heading">
+              <span class="terms-number">08 /</span>
+              <h2>CUSTOMER RESPONSIBILITIES</h2>
+            </div>
+
+            <p>
+              Customers should provide accurate
+              information when placing orders,
+              contacting support, or creating
+              accounts when that feature is available.
+            </p>
+
+            <p>
+              Customers must not misuse the website,
+              attempt unauthorized access, interfere
+              with website operations, or use
+              VOID District services for unlawful
+              purposes.
+            </p>
+
+            <p>
+              Registered customers should keep
+              account credentials confidential
+              and notify VOID District if they
+              suspect unauthorized access.
+            </p>
+
+            <div class="terms-note">
+              <span>RESPONSIBLE USE ↗</span>
+              <p>
+                These responsibilities apply
+                alongside any mandatory rights
+                and protections available to
+                customers under applicable law.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 09 -->
+          <article class="terms-block" id="terms-international">
+            <div class="terms-block-heading">
+              <span class="terms-number">09 /</span>
+              <h2>INTERNATIONAL ORDERS</h2>
+            </div>
+
+            <p>
+              VOID District intends to serve
+              customers in Pakistan and selected
+              international destinations.
+              Available countries and shipping
+              options will be confirmed during
+              the ordering process.
+            </p>
+
+            <p>
+              International shipments may involve
+              customs inspections, import duties,
+              local taxes, currency conversion,
+              or other charges. Responsibility
+              for these amounts must be clearly
+              disclosed where applicable.
+            </p>
+
+            <p>
+              Cross-border orders may be subject
+              to local consumer protection rules,
+              import restrictions, and other
+              mandatory legal requirements.
+            </p>
+
+            <div class="terms-note">
+              <span>BEFORE YOU ORDER ↗</span>
+              <p>
+                Review destination availability,
+                delivery charges, applicable
+                import costs, and the final
+                checkout summary.
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 10 -->
+          <article class="terms-block" id="terms-legal">
+            <div class="terms-block-heading">
+              <span class="terms-number">10 /</span>
+              <h2>GENERAL LEGAL TERMS</h2>
+            </div>
+
+            <p>
+              VOID District may update these
+              Terms & Conditions as its products,
+              services, and business operations
+              develop. Material changes should
+              be communicated where required
+              by applicable law.
+            </p>
+
+            <p>
+              These terms should be read together
+              with our Store Policies, Shipping
+              Policy, Returns & Exchanges,
+              Refund Policy, and Privacy Policy.
+            </p>
+
+            <p>
+              Any contractual limitations,
+              applicable governing law,
+              dispute resolution arrangements,
+              and business identification details
+              must be finalized and reviewed
+              before these terms are used
+              for live commercial transactions.
+              Nothing in these terms excludes
+              mandatory consumer protections.
+            </p>
+
+            <div class="terms-note">
+              <span>QUESTIONS ABOUT THESE TERMS? ↗</span>
+              <p>
+                Contact VOID District for
+                clarification before placing
+                an order. The current draft
+                requires final legal and
+                operational review before launch.
+              </p>
+            </div>
+
+            <div class="terms-link-group">
+              <a href="./contact.html" class="terms-inline-link">
+                CONTACT VOID DISTRICT
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <a href="./store-policies.html" class="terms-inline-link">
+                VIEW STORE POLICIES
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SUPPORT BANNER -->
+    <section class="terms-support-banner">
+      <div class="container terms-support-inner">
+
+        <div>
+          <p class="terms-eyebrow">STILL HAVE QUESTIONS?</p>
+
+          <h2>
+            WE'RE HERE
+            <span>TO HELP.</span>
+          </h2>
+
+          <p>
+            Need clarification about an order,
+            a purchase condition, or our policies?
+            Reach out to VOID District.
+          </p>
+        </div>
+
+        <a href="./contact.html" class="terms-contact-button">
+          GET IN TOUCH
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-main">
+
+      <div class="footer-brand">
+        <a href="./index.html" class="brand-logo footer-logo">
+          VOID<span>®</span>
+        </a>
+        <p>WEAR YOUR OWN RULES.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>EXPLORE</h3>
+        <a href="./index.html">Home</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./index.html#featured">New Drops</a>
+        <a href="./blog.html">Blog</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>THE BRAND</h3>
+        <a href="./about.html">About Us</a>
+        <a href="./contact.html">Contact Us</a>
+        <a href="./about.html#philosophy">Our Philosophy</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>CUSTOMER CARE</h3>
+        <a href="./store-policies.html">Store Policies</a>
+        <a href="./shipping-policy.html">Shipping Policy</a>
+        <a href="./returns.html">Returns &amp; Exchanges</a>
+        <a href="./refund-policy.html">Refund Policy</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>LEGAL</h3>
+        <a href="./privacy-policy.html">Privacy Policy</a>
+        <a href="./terms.html" aria-current="page">
+          Terms &amp; Conditions
+        </a>
+        <a href="./terms-of-service.html">Terms of Service</a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p>
+        © <span id="currentYear">2026</span>
+        VOID District. All rights reserved.
+      </p>
+
+      <a href="#">BACK TO TOP ↑</a>
+    </div>
+  </footer>
+
+  <!-- CART NOTIFICATION -->
+  <div id="cartMessage" role="status" aria-live="polite"></div>
+
+  <!-- CART DRAWER BACKDROP -->
+  <div
+    class="cart-drawer-backdrop"
+    id="cartDrawerBackdrop"
+    hidden
+  ></div>
+
+  <!-- CART DRAWER -->
+  <aside
+    class="cart-drawer"
+    id="cartDrawer"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cartDrawerTitle"
+    aria-hidden="true"
+    inert
+  >
+    <div class="cart-drawer-header">
+      <h2 id="cartDrawerTitle">
+        CART (<span id="drawerItemCount">0</span>)
+      </h2>
+
+      <button
+        type="button"
+        class="cart-drawer-close"
+        id="closeCartDrawer"
+        aria-label="Close shopping cart"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="cart-drawer-content" id="cartDrawerContent"></div>
+
+    <div class="cart-drawer-footer">
+
+      <button
+        type="button"
+        class="cart-order-note-toggle"
+        id="orderNoteToggle"
+        aria-expanded="false"
+        aria-controls="orderNoteSection"
+      >
+        <span>Add order note</span>
+        <span aria-hidden="true">+</span>
+      </button>
+
+      <div
+        class="cart-order-note"
+        id="orderNoteSection"
+        hidden
+      >
+        <label for="orderNote">Order note</label>
+        <textarea
+          id="orderNote"
+          rows="3"
+          maxlength="500"
+          placeholder="Add a note about your order"
+        ></textarea>
+      </div>
+
+      <p class="cart-drawer-disclaimer">
+        Taxes and shipping calculated at checkout.
+      </p>
+
+      <a
+        href="./cart.html"
+        class="cart-drawer-button cart-drawer-view"
+      >
+        VIEW CART
+      </a>
+
+      <button
+        type="button"
+        class="cart-drawer-button cart-drawer-checkout"
+        id="drawerCheckoutButton"
+      >
+        <span>CHECKOUT</span>
+        <span
+          class="checkout-total"
+          id="drawerCheckoutTotal"
+        >
+          Rs. 0
+        </span>
+      </button>
+
+    </div>
+  </aside>
+
+</body>
+</html>
