@@ -11,7 +11,7 @@
 
     <title>Product Details | VOID District</title>
 
-    <!-- Google Fonts: same as homepage -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -20,24 +20,23 @@
       rel="stylesheet"
     />
 
-    <!-- Shared homepage styles -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="./style.css" />
-
-    <!-- Product page styles -->
     <link rel="stylesheet" href="./product.css" />
     <link rel="stylesheet" href="./cart-drawer.css" />
 
-    <!-- Shared and product-specific JavaScript -->
+    <!-- JavaScript -->
     <script src="./products.js" defer></script>
     <script src="./cart.js" defer></script>
     <script src="./cart-drawer.js" defer></script>
     <script src="./wishlist.js" defer></script>
     <script src="./script.js" defer></script>
+    <script src="./api.js" defer></script>
     <script src="./product.js" defer></script>
   </head>
 
   <body>
-    <!-- Announcement bar -->
+    <!-- Announcement Bar -->
     <div class="announcement-bar">
       <p>
         YOUR STYLE. YOUR RULES.
@@ -45,7 +44,7 @@
       </p>
     </div>
 
-    <!-- Main navigation -->
+    <!-- Main Navigation -->
     <header class="site-header">
       <nav class="navbar container" aria-label="Main navigation">
         <a
@@ -113,6 +112,7 @@
             <span class="wishlist-count" aria-hidden="true" hidden>0</span>
           </a>
 
+          <!-- Shopping Bag -->
           <button
             class="bag-button"
             id="bagButton"
@@ -126,28 +126,29 @@
     </header>
 
     <main>
-      <!-- Breadcrumb navigation -->
+      <!-- Breadcrumb -->
       <nav class="product-breadcrumb container" aria-label="Breadcrumb">
         <a href="./index.html">Home</a>
         <span aria-hidden="true">/</span>
         <a href="./shop.html">Shop</a>
         <span aria-hidden="true">/</span>
+
         <span id="breadcrumbProduct" aria-current="page">
           Product details
         </span>
       </nav>
 
-      <!-- Product details -->
+      <!-- Product Details -->
       <section class="product-page-section container">
         <div class="product-layout">
-          <!-- Product image -->
+          <!-- Product Image -->
           <div class="product-gallery">
             <div class="product-main-image">
               <span class="product-page-badge" id="productBadge">
                 COLLECTION 001
               </span>
 
-              <!-- Product Wishlist Heart -->
+              <!-- Wishlist Heart -->
               <button
                 type="button"
                 id="productWishlistButton"
@@ -171,11 +172,15 @@
                 </svg>
               </button>
 
+              <!--
+              UPDATED:
+              No default image is loaded.
+              Correct image will come from MongoDB API.
+            -->
               <img
                 id="productImage"
-                src="./images/product-tee.jpg"
-                alt="VOID District product"
-                fetchpriority="high"
+                alt="Product image loading"
+                style="visibility: hidden"
               />
 
               <span class="product-image-caption">
@@ -186,42 +191,39 @@
             <p class="product-image-note">EVERYDAY ESSENTIALS. NO UNIFORM.</p>
           </div>
 
-          <!-- Product information -->
+          <!-- Product Information -->
           <div class="product-information">
             <p class="eyebrow">
               <span class="status-dot"></span>
               VOID DISTRICT / PRODUCT DETAILS
             </p>
 
-            <h1 id="productName">Essential Oversized Tee</h1>
+            <h1 id="productName">Loading product...</h1>
 
-            <p class="product-subtitle" id="productSubtitle">
-              RELAXED FIT / UNISEX
-            </p>
+            <p class="product-subtitle" id="productSubtitle"></p>
 
-            <p class="product-detail-price" id="productPrice">Rs. 1,890</p>
+            <p class="product-detail-price" id="productPrice"></p>
 
+            <!-- Rating Summary -->
             <div
               class="product-rating-summary"
               aria-label="Product rating information"
             >
-              <span class="rating-stars" aria-hidden="true"> ★★★★★ </span>
+              <span class="rating-stars" aria-hidden="true"> ☆☆☆☆☆ </span>
+
               <a href="#customerReviews" id="ratingLink">
-                <span id="ratingSummary">Sample reviews</span>
+                <span id="ratingSummary"> Loading reviews... </span>
               </a>
             </div>
 
             <div class="product-info-divider"></div>
 
-            <p class="product-description" id="productDescription">
-              Everyday comfort with a relaxed silhouette. A versatile streetwear
-              essential designed to fit your own style.
-            </p>
+            <p class="product-description" id="productDescription"></p>
 
-            <!-- Size selection -->
+            <!-- Size Selection -->
             <div class="product-option-group">
               <div class="product-option-heading">
-                <label for="productSize">SELECT SIZE</label>
+                <label for="productSize"> SELECT SIZE </label>
 
                 <button
                   class="size-guide-trigger"
@@ -238,28 +240,15 @@
                 role="group"
                 aria-label="Choose product size"
               >
-                <button type="button" class="size-option" data-size="S">
-                  S
-                </button>
-                <button type="button" class="size-option" data-size="M">
-                  M
-                </button>
-                <button type="button" class="size-option" data-size="L">
-                  L
-                </button>
-                <button type="button" class="size-option" data-size="XL">
-                  XL
-                </button>
+                <!-- Sizes rendered by product.js -->
               </div>
 
               <input type="hidden" id="productSize" value="" />
 
-              <p class="product-selection-message" id="sizeMessage">
-                Please select a size.
-              </p>
+              <p class="product-selection-message" id="sizeMessage"></p>
             </div>
 
-            <!-- Quantity selector -->
+            <!-- Quantity -->
             <div class="product-option-group">
               <label class="quantity-label" for="productQuantity">
                 QUANTITY
@@ -294,13 +283,15 @@
               </div>
             </div>
 
-            <!-- Add to bag -->
+            <!-- Add to Bag -->
             <button
               class="button button-primary product-add-button"
               id="productAddToBag"
               type="button"
+              disabled
             >
-              ADD TO BAG <span aria-hidden="true">+</span>
+              ADD TO BAG
+              <span aria-hidden="true">+</span>
             </button>
 
             <p
@@ -316,7 +307,7 @@
               </p>
             </div>
 
-            <!-- Product highlights -->
+            <!-- Highlights -->
             <div class="product-highlights">
               <div>
                 <span class="highlight-number">01</span>
@@ -337,25 +328,23 @@
         </div>
       </section>
 
-      <!-- Product information notes -->
+      <!-- Product Extra Information -->
       <section class="product-extra-section">
         <div class="container product-extra-grid">
           <article class="product-extra-card">
             <p class="eyebrow">01 / THE DETAILS</p>
+
             <h2>MADE FOR <span>YOUR ROTATION.</span></h2>
-            <p id="productDetailsText">
-              A versatile everyday piece designed to complement your personal
-              streetwear rotation.
-            </p>
+
+            <p id="productDetailsText">Loading product details...</p>
           </article>
 
           <article class="product-extra-card">
             <p class="eyebrow">02 / FIT & SIZING</p>
+
             <h2>FIND YOUR <span>FIT.</span></h2>
-            <p id="productFitText">
-              Review the available sizes and consult the size guide before
-              choosing your fit.
-            </p>
+
+            <p id="productFitText">Loading fit information...</p>
 
             <button
               class="text-link product-size-guide-link"
@@ -368,11 +357,12 @@
         </div>
       </section>
 
-      <!-- Customer reviews -->
+      <!-- Customer Reviews -->
       <section class="customer-reviews-section container" id="customerReviews">
         <div class="section-heading">
           <div>
             <p class="eyebrow">THE DISTRICT COMMUNITY</p>
+
             <h2>THE <span>REVIEWS.</span></h2>
           </div>
 
@@ -388,13 +378,16 @@
 
         <div class="review-summary">
           <div class="review-score-block">
-            <span class="review-score" id="averageRating">—</span>
-            <span class="rating-stars" aria-hidden="true">★★★★★</span>
-            <p id="reviewSummaryText">Sample review data</p>
+            <span class="review-score" id="averageRating"> — </span>
+
+            <span class="rating-stars" aria-hidden="true"> ☆☆☆☆☆ </span>
+
+            <p id="reviewSummaryText">Loading reviews...</p>
           </div>
 
           <div class="review-summary-note">
             <p class="eyebrow">YOUR VOICE. YOUR DISTRICT.</p>
+
             <p>
               Customer ratings can be added when genuine customer reviews are
               available.
@@ -403,11 +396,11 @@
         </div>
 
         <div class="review-list" id="reviewList">
-          <!-- Sample review cards will be rendered by product.js. -->
+          <!-- Reviews rendered by product.js -->
         </div>
       </section>
 
-      <!-- Size guide modal -->
+      <!-- Size Guide Modal -->
       <div class="size-guide-modal" id="sizeGuideModal" aria-hidden="true">
         <div class="size-guide-backdrop" id="sizeGuideBackdrop"></div>
 
@@ -420,6 +413,7 @@
           <div class="size-guide-header">
             <div>
               <p class="eyebrow">FIND YOUR FIT</p>
+
               <h2 id="sizeGuideTitle">SIZE <span>GUIDE.</span></h2>
             </div>
 
@@ -454,7 +448,7 @@
               </thead>
 
               <tbody id="sizeGuideBody">
-                <!-- Measurements will be populated by product.js. -->
+                <!-- Rendered by product.js -->
               </tbody>
             </table>
           </div>
@@ -474,17 +468,22 @@
         </section>
       </div>
 
-      <!-- Newsletter: shared homepage section -->
+      <!-- Newsletter -->
       <section class="newsletter-section">
         <div class="container newsletter-content">
           <div>
             <p class="eyebrow">STAY IN THE LOOP</p>
-            <h2>FIRST IN.<br />NEVER <span>ORDINARY.</span></h2>
+
+            <h2>
+              FIRST IN.<br />
+              NEVER <span>ORDINARY.</span>
+            </h2>
+
             <p>New drops and District updates. No unnecessary noise.</p>
           </div>
 
           <form class="newsletter-form" id="newsletterForm">
-            <label for="newsletterEmail">YOUR EMAIL ADDRESS</label>
+            <label for="newsletterEmail"> YOUR EMAIL ADDRESS </label>
 
             <div class="newsletter-input-row">
               <input
@@ -507,11 +506,11 @@
       </section>
     </main>
 
-    <!-- Footer: shared homepage section -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container footer-main">
         <div class="footer-brand">
-          <a class="brand-logo footer-logo" href="./index.html#home">
+          <a href="./index.html" class="brand-logo footer-logo">
             VOID<span>®</span>
           </a>
 
@@ -520,33 +519,46 @@
 
         <div class="footer-column">
           <h3>EXPLORE</h3>
-          <a href="./index.html#home">Home</a>
-          <a href="./index.html#categories">Categories</a>
-          <a href="./index.html#featured">New drops</a>
+          <a href="./index.html">Home</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./index.html#featured">New Drops</a>
+          <a href="./blog.html">Blog</a>
         </div>
 
         <div class="footer-column">
           <h3>THE BRAND</h3>
-          <a href="./index.html#about">Our story</a>
-          <a href="./index.html#about">Our philosophy</a>
+          <a href="./about.html">About Us</a>
+          <a href="./contact.html">Contact Us</a>
+          <a href="./about.html#philosophy"> Our Philosophy </a>
         </div>
 
         <div class="footer-column">
-          <h3>THE DISTRICT</h3>
-          <p>Independent style.<br />Everyday expression.</p>
+          <h3>CUSTOMER CARE</h3>
+          <a href="./store-policies.html"> Store Policies </a>
+          <a href="./shipping-policy.html"> Shipping Policy </a>
+          <a href="./returns.html"> Returns &amp; Exchanges </a>
+          <a href="./refund-policy.html"> Refund Policy </a>
+        </div>
+
+        <div class="footer-column">
+          <h3>LEGAL</h3>
+          <a href="./privacy-policy.html"> Privacy Policy </a>
+          <a href="./terms.html"> Terms &amp; Conditions </a>
+          <a href="./terms-of-service.html"> Terms of Service </a>
         </div>
       </div>
 
       <div class="container footer-bottom">
         <p>
-          © <span id="currentYear"></span> VOID District. All rights reserved.
+          © <span id="currentYear">2026</span>
+          VOID District. All rights reserved.
         </p>
 
-        <a href="#top">BACK TO TOP ↑</a>
+        <a href="#top"> BACK TO TOP ↑ </a>
       </div>
     </footer>
 
-    <!-- Accessible feedback for cart interactions -->
+    <!-- Accessible Cart Feedback -->
     <div class="sr-only" id="cartMessage" aria-live="polite"></div>
 
     <!-- Cart Drawer -->
@@ -575,7 +587,7 @@
       </div>
 
       <div class="cart-drawer-content" id="cartDrawerContent">
-        <!-- Cart products will be rendered here by JavaScript. -->
+        <!-- Cart products rendered by JavaScript -->
       </div>
 
       <div class="cart-drawer-footer">
@@ -591,7 +603,8 @@
         </button>
 
         <div class="cart-order-note" id="orderNoteSection" hidden>
-          <label for="orderNote">Order note</label>
+          <label for="orderNote"> Order note </label>
+
           <textarea
             id="orderNote"
             rows="3"
@@ -614,10 +627,10 @@
           type="button"
         >
           <span>CHECKOUT</span>
-          <span class="checkout-total" id="drawerCheckoutTotal">Rs. 0</span>
+
+          <span class="checkout-total" id="drawerCheckoutTotal"> Rs. 0 </span>
         </button>
       </div>
     </aside>
-    <!-- End Cart Drawer -->
   </body>
 </html>

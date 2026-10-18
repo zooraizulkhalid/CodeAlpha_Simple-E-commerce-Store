@@ -12,11 +12,16 @@ const resetFilters = document.getElementById("resetFilters");
 
 const shopSearchInput = document.getElementById("shopSearchInput");
 
+// Products loaded from MongoDB through backend API.
+let shopProductsData = [];
+
 /* =========================================
    NAVBAR SEARCH ICON
 ========================================= */
 
-const shopNavSearch = document.querySelector(".nav-actions .nav-search");
+const shopNavSearch = document.querySelector(
+  ".nav-actions .nav-search"
+);
 
 if (shopNavSearch && shopSearchInput) {
   shopNavSearch.addEventListener("click", (event) => {
@@ -38,7 +43,9 @@ const maxPriceInput = document.getElementById("maxPrice");
 const sizeFilter = document.getElementById("sizeFilter");
 const sortFilter = document.getElementById("sortFilter");
 const clearAllFilters = document.getElementById("clearAllFilters");
-const filterAnnouncement = document.getElementById("shopFilterAnnouncement");
+const filterAnnouncement = document.getElementById(
+  "shopFilterAnnouncement"
+);
 
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
@@ -47,7 +54,9 @@ const bagCount = document.getElementById("bagCount");
 const currentYear = document.getElementById("currentYear");
 const newsletterForm = document.getElementById("newsletterForm");
 const newsletterEmail = document.getElementById("newsletterEmail");
-const newsletterMessage = document.getElementById("newsletterMessage");
+const newsletterMessage = document.getElementById(
+  "newsletterMessage"
+);
 
 /* =========================================
    FILTER STATE
@@ -78,7 +87,9 @@ function createShopWishlistButton(product) {
   button.className = "product-wishlist-btn";
   button.dataset.wishlistId = String(product.id);
 
-  const saved = typeof isInWishlist === "function" && isInWishlist(product.id);
+  const saved =
+    typeof isInWishlist === "function" &&
+    isInWishlist(product.id);
 
   button.classList.toggle("is-saved", saved);
 
@@ -88,10 +99,12 @@ function createShopWishlistButton(product) {
     "aria-label",
     saved
       ? `Remove ${product.name} from wishlist`
-      : `Add ${product.name} to wishlist`,
+      : `Add ${product.name} to wishlist`
   );
 
-  button.title = saved ? "Remove from Wishlist" : "Add to Wishlist";
+  button.title = saved
+    ? "Remove from Wishlist"
+    : "Add to Wishlist";
 
   button.innerHTML = `
     <svg
@@ -117,7 +130,8 @@ function createShopWishlistButton(product) {
 ========================================= */
 
 function createProductCard(product) {
-  const productLink = `./product.html?product=${encodeURIComponent(product.id)}`;
+  const productLink =
+    `./product.html?product=${encodeURIComponent(product.id)}`;
 
   const article = document.createElement("article");
   article.className = "product-card";
@@ -129,14 +143,20 @@ function createProductCard(product) {
   badge.className = "product-badge";
   badge.textContent = product.badge || "VOID DISTRICT";
 
-  if (product.badge === "JUST DROPPED" || product.badge === "NEW COLOUR") {
+  if (
+    product.badge === "JUST DROPPED" ||
+    product.badge === "NEW COLOUR"
+  ) {
     badge.classList.add("badge-new");
   }
 
   const imageLink = document.createElement("a");
   imageLink.href = productLink;
 
-  imageLink.setAttribute("aria-label", `View ${product.name} details`);
+  imageLink.setAttribute(
+    "aria-label",
+    `View ${product.name} details`
+  );
 
   const image = document.createElement("img");
   image.src = product.image;
@@ -161,7 +181,10 @@ function createProductCard(product) {
   addButton.type = "button";
   addButton.className = "quick-add";
 
-  addButton.setAttribute("aria-label", `Choose size for ${product.name}`);
+  addButton.setAttribute(
+    "aria-label",
+    `Choose size for ${product.name}`
+  );
 
   addButton.append("ADD TO BAG ");
 
@@ -175,7 +198,12 @@ function createProductCard(product) {
     window.location.href = productLink;
   });
 
-  imageWrap.append(badge, imageLink, wishlistButton, addButton);
+  imageWrap.append(
+    badge,
+    imageLink,
+    wishlistButton,
+    addButton
+  );
 
   const details = document.createElement("div");
   details.className = "product-details";
@@ -196,7 +224,8 @@ function createProductCard(product) {
   const price = document.createElement("span");
   price.className = "product-price";
 
-  price.textContent = `Rs. ${product.price.toLocaleString("en-PK")}`;
+  price.textContent =
+    `Rs. ${Number(product.price).toLocaleString("en-PK")}`;
 
   details.append(detailsText, price);
   article.append(imageWrap, details);
@@ -210,9 +239,14 @@ function createProductCard(product) {
 
 if (shopProductGrid) {
   shopProductGrid.addEventListener("click", (event) => {
-    const wishlistButton = event.target.closest(".product-wishlist-btn");
+    const wishlistButton = event.target.closest(
+      ".product-wishlist-btn"
+    );
 
-    if (!wishlistButton || !shopProductGrid.contains(wishlistButton)) {
+    if (
+      !wishlistButton ||
+      !shopProductGrid.contains(wishlistButton)
+    ) {
       return;
     }
 
@@ -230,7 +264,9 @@ if (shopProductGrid) {
 
     const saved = isInWishlist(productId);
 
-    wishlistButton.title = saved ? "Remove from Wishlist" : "Add to Wishlist";
+    wishlistButton.title = saved
+      ? "Remove from Wishlist"
+      : "Add to Wishlist";
   });
 }
 
@@ -239,24 +275,31 @@ if (shopProductGrid) {
 ========================================= */
 
 function getFilteredProducts() {
-  if (typeof products === "undefined" || !Array.isArray(products)) {
+  if (!Array.isArray(shopProductsData)) {
     return [];
   }
 
-  const searchTerm = shopSearchInput.value.trim().toLowerCase();
+  const searchTerm = shopSearchInput.value
+    .trim()
+    .toLowerCase();
 
   const minPrice =
-    minPriceInput.value.trim() === "" ? null : Number(minPriceInput.value);
+    minPriceInput.value.trim() === ""
+      ? null
+      : Number(minPriceInput.value);
 
   const maxPrice =
-    maxPriceInput.value.trim() === "" ? null : Number(maxPriceInput.value);
+    maxPriceInput.value.trim() === ""
+      ? null
+      : Number(maxPriceInput.value);
 
   const selectedSize = sizeFilter.value;
   const selectedSort = sortFilter.value;
 
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = shopProductsData.filter((product) => {
     const matchesCategory =
-      activeCategory === "all" || product.category === activeCategory;
+      activeCategory === "all" ||
+      product.category === activeCategory;
 
     /*
        Search only product name and category.
@@ -264,25 +307,40 @@ function getFilteredProducts() {
        descriptions or product details.
     */
 
-    const searchableText = [product.name, product.category]
+    const searchableText = [
+      product.name,
+      product.category
+    ]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();
 
     const matchesSearch =
-      searchTerm === "" || searchableText.includes(searchTerm);
+      searchTerm === "" ||
+      searchableText.includes(searchTerm);
 
     const matchesMinPrice =
       minPrice === null ||
-      (Number.isFinite(minPrice) && minPrice >= 0 && product.price >= minPrice);
+      (
+        Number.isFinite(minPrice) &&
+        minPrice >= 0 &&
+        product.price >= minPrice
+      );
 
     const matchesMaxPrice =
       maxPrice === null ||
-      (Number.isFinite(maxPrice) && maxPrice >= 0 && product.price <= maxPrice);
+      (
+        Number.isFinite(maxPrice) &&
+        maxPrice >= 0 &&
+        product.price <= maxPrice
+      );
 
     const matchesSize =
       selectedSize === "all" ||
-      (Array.isArray(product.sizes) && product.sizes.includes(selectedSize));
+      (
+        Array.isArray(product.sizes) &&
+        product.sizes.includes(selectedSize)
+      );
 
     return (
       matchesCategory &&
@@ -303,11 +361,15 @@ function getFilteredProducts() {
       break;
 
     case "name-asc":
-      filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+      filteredProducts.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
       break;
 
     case "name-desc":
-      filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+      filteredProducts.sort((a, b) =>
+        b.name.localeCompare(a.name)
+      );
       break;
 
     default:
@@ -323,10 +385,12 @@ function getFilteredProducts() {
 ========================================= */
 
 function renderShopProducts() {
-  if (!shopProductGrid) return;
+  if (!shopProductGrid) {
+    return;
+  }
 
-  if (typeof products === "undefined" || !Array.isArray(products)) {
-    console.error("Product data is unavailable.");
+  if (!Array.isArray(shopProductsData)) {
+    console.error("MongoDB product data is unavailable.");
     return;
   }
 
@@ -335,25 +399,37 @@ function renderShopProducts() {
   shopProductGrid.replaceChildren();
 
   filteredProducts.forEach((product) => {
-    shopProductGrid.appendChild(createProductCard(product));
+    shopProductGrid.appendChild(
+      createProductCard(product)
+    );
   });
 
   const count = filteredProducts.length;
 
-  shopProductCount.textContent = `${count} ${count === 1 ? "PRODUCT" : "PRODUCTS"}`;
+  if (shopProductCount) {
+    shopProductCount.textContent =
+      `${count} ${count === 1 ? "PRODUCT" : "PRODUCTS"}`;
+  }
 
-  shopEmpty.hidden = count > 0;
+  if (shopEmpty) {
+    shopEmpty.hidden = count > 0;
+  }
 
   if (filterAnnouncement) {
-    filterAnnouncement.textContent = `${count} ${count === 1 ? "product" : "products"} found.`;
+    filterAnnouncement.textContent =
+      `${count} ${count === 1 ? "product" : "products"} found.`;
   }
 
   shopFilters.forEach((button) => {
-    const isActive = button.dataset.category === activeCategory;
+    const isActive =
+      button.dataset.category === activeCategory;
 
     button.classList.toggle("is-active", isActive);
 
-    button.setAttribute("aria-pressed", String(isActive));
+    button.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
   });
 
   // Sync saved heart states and navbar counter.
@@ -372,7 +448,10 @@ function updateFilterUrl() {
   if (activeCategory === "all") {
     newUrl.searchParams.delete("category");
   } else {
-    newUrl.searchParams.set("category", activeCategory);
+    newUrl.searchParams.set(
+      "category",
+      activeCategory
+    );
   }
 
   const searchTerm = shopSearchInput.value.trim();
@@ -411,18 +490,35 @@ shopFilters.forEach((button) => {
    SEARCH & ADVANCED FILTER EVENTS
 ========================================= */
 
-shopSearchInput.addEventListener("input", () => {
-  updateFilterUrl();
-  renderShopProducts();
-});
+if (shopSearchInput) {
+  shopSearchInput.addEventListener("input", () => {
+    updateFilterUrl();
+    renderShopProducts();
+  });
+}
 
 [minPriceInput, maxPriceInput].forEach((input) => {
-  input.addEventListener("input", renderShopProducts);
+  if (input) {
+    input.addEventListener(
+      "input",
+      renderShopProducts
+    );
+  }
 });
 
-sizeFilter.addEventListener("change", renderShopProducts);
+if (sizeFilter) {
+  sizeFilter.addEventListener(
+    "change",
+    renderShopProducts
+  );
+}
 
-sortFilter.addEventListener("change", renderShopProducts);
+if (sortFilter) {
+  sortFilter.addEventListener(
+    "change",
+    renderShopProducts
+  );
+}
 
 /* =========================================
    CLEAR ALL FILTERS
@@ -442,22 +538,37 @@ function clearFilters() {
   renderShopProducts();
 }
 
-clearAllFilters.addEventListener("click", clearFilters);
+if (clearAllFilters) {
+  clearAllFilters.addEventListener(
+    "click",
+    clearFilters
+  );
+}
 
-resetFilters.addEventListener("click", clearFilters);
+if (resetFilters) {
+  resetFilters.addEventListener(
+    "click",
+    clearFilters
+  );
+}
 
 /* =========================================
    BROWSER BACK / FORWARD
 ========================================= */
 
 window.addEventListener("popstate", () => {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(
+    window.location.search
+  );
 
   const category = params.get("category");
 
-  activeCategory = validCategories.includes(category) ? category : "all";
+  activeCategory = validCategories.includes(category)
+    ? category
+    : "all";
 
-  shopSearchInput.value = params.get("search") || "";
+  shopSearchInput.value =
+    params.get("search") || "";
 
   renderShopProducts();
 });
@@ -470,21 +581,36 @@ if (menuToggle && navLinks) {
   function closeMobileMenu() {
     navLinks.classList.remove("is-open");
 
-    menuToggle.setAttribute("aria-expanded", "false");
-
-    menuToggle.setAttribute("aria-label", "Open navigation menu");
-  }
-
-  menuToggle.addEventListener("click", () => {
-    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
-
-    navLinks.classList.toggle("is-open", !expanded);
-
-    menuToggle.setAttribute("aria-expanded", String(!expanded));
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
 
     menuToggle.setAttribute(
       "aria-label",
-      expanded ? "Open navigation menu" : "Close navigation menu",
+      "Open navigation menu"
+    );
+  }
+
+  menuToggle.addEventListener("click", () => {
+    const expanded =
+      menuToggle.getAttribute("aria-expanded") === "true";
+
+    navLinks.classList.toggle(
+      "is-open",
+      !expanded
+    );
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(!expanded)
+    );
+
+    menuToggle.setAttribute(
+      "aria-label",
+      expanded
+        ? "Open navigation menu"
+        : "Close navigation menu"
     );
   });
 
@@ -510,48 +636,143 @@ function updateShopBagCount() {
     return;
   }
 
-  const count = typeof getCartCount === "function" ? getCartCount() : 0;
+  const count =
+    typeof getCartCount === "function"
+      ? getCartCount()
+      : 0;
 
   bagCount.textContent = String(count);
 
   bagButton.setAttribute(
     "aria-label",
-    `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`,
+    `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`
   );
 }
 
 if (bagButton) {
   bagButton.addEventListener("click", () => {
-    if (typeof window.openCartDrawer === "function") {
+    if (
+      typeof window.openCartDrawer === "function"
+    ) {
       window.openCartDrawer();
     }
   });
 }
 
-window.addEventListener("pageshow", updateShopBagCount);
+window.addEventListener(
+  "pageshow",
+  updateShopBagCount
+);
 
-window.addEventListener("storage", updateShopBagCount);
+window.addEventListener(
+  "storage",
+  updateShopBagCount
+);
 
 /* =========================================
    NEWSLETTER DEMO
 ========================================= */
 
-if (newsletterForm) {
-  newsletterForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+if (
+  newsletterForm &&
+  newsletterEmail &&
+  newsletterMessage
+) {
+  newsletterForm.addEventListener(
+    "submit",
+    (event) => {
+      event.preventDefault();
 
-    const email = newsletterEmail.value.trim();
+      const email =
+        newsletterEmail.value.trim();
 
-    if (!newsletterEmail.checkValidity() || !email) {
-      newsletterEmail.reportValidity();
-      return;
+      if (
+        !newsletterEmail.checkValidity() ||
+        !email
+      ) {
+        newsletterEmail.reportValidity();
+        return;
+      }
+
+      newsletterMessage.textContent =
+        "Thanks for your interest! Newsletter sign-up is a demo for now.";
+
+      newsletterForm.reset();
+    }
+  );
+}
+
+/* =========================================
+   LOAD PRODUCTS FROM MONGODB API
+========================================= */
+
+async function loadShopProducts() {
+  if (shopProductGrid) {
+    shopProductGrid.textContent =
+      "Loading products...";
+  }
+
+  try {
+    // Fetch all products from backend API.
+    shopProductsData =
+      await fetchProductsFromAPI();
+
+    // Preserve original product order.
+    if (
+      typeof products !== "undefined" &&
+      Array.isArray(products)
+    ) {
+      const productOrder = new Map(
+        products.map((product, index) => [
+          String(product.id),
+          index
+        ])
+      );
+
+      shopProductsData.sort(
+        (a, b) =>
+          (
+            productOrder.get(String(a.id)) ??
+            Infinity
+          ) -
+          (
+            productOrder.get(String(b.id)) ??
+            Infinity
+          )
+      );
     }
 
-    newsletterMessage.textContent =
-      "Thanks for your interest! Newsletter sign-up is a demo for now.";
+    // Render MongoDB products.
+    renderShopProducts();
 
-    newsletterForm.reset();
-  });
+    console.info(
+      `${shopProductsData.length} shop products loaded from MongoDB API.`
+    );
+  } catch (error) {
+    console.error(
+      "Unable to load shop products:",
+      error
+    );
+
+    if (shopProductGrid) {
+      shopProductGrid.textContent =
+        "Products could not be loaded. Please try again later.";
+    }
+
+    if (shopProductCount) {
+      shopProductCount.textContent =
+        "PRODUCTS UNAVAILABLE";
+    }
+
+    if (filterAnnouncement) {
+      filterAnnouncement.textContent =
+        "Unable to load products. Please try again later.";
+    }
+
+    if (shopEmpty) {
+      shopEmpty.hidden = true;
+    }
+  }
 }
 
 /* =========================================
@@ -559,10 +780,11 @@ if (newsletterForm) {
 ========================================= */
 
 if (currentYear) {
-  currentYear.textContent = new Date().getFullYear();
+  currentYear.textContent =
+    new Date().getFullYear();
 }
 
-renderShopProducts();
+loadShopProducts();
 updateShopBagCount();
 
 /* =========================================
@@ -572,9 +794,13 @@ updateShopBagCount();
 // Auto-scroll only when a search query exists
 // in the URL on initial page load.
 
-const initialSearchTerm = urlParams.get("search");
+const initialSearchTerm =
+  urlParams.get("search");
 
-if (initialSearchTerm && initialSearchTerm.trim()) {
+if (
+  initialSearchTerm &&
+  initialSearchTerm.trim()
+) {
   window.addEventListener("load", () => {
     if (!shopProductGrid) {
       return;
@@ -588,3 +814,7 @@ if (initialSearchTerm && initialSearchTerm.trim()) {
     });
   });
 }
+
+console.info(
+  "VOID District shop interactions initialized."
+);

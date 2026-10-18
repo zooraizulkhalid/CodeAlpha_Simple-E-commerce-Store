@@ -16,6 +16,9 @@ const newsletterMessage = document.querySelector("#newsletterMessage");
 const currentYear = document.querySelector("#currentYear");
 const productGrid = document.querySelector("#productGrid");
 
+// Store products fetched from MongoDB API.
+let homepageProductsData = [];
+
 // Read the count from the shared cart.
 function readCartCount() {
   if (typeof getCartCount === "function") {
@@ -31,13 +34,14 @@ function readCartCount() {
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
-    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+    const isExpanded =
+      menuToggle.getAttribute("aria-expanded") === "true";
 
     menuToggle.setAttribute("aria-expanded", String(!isExpanded));
 
     menuToggle.setAttribute(
       "aria-label",
-      isExpanded ? "Open navigation menu" : "Close navigation menu",
+      isExpanded ? "Open navigation menu" : "Close navigation menu"
     );
 
     navLinks.classList.toggle("is-open", !isExpanded);
@@ -70,7 +74,9 @@ if (menuToggle && navLinks) {
    EXPANDABLE NAVBAR SEARCH
 ========================================= */
 
-const navSearchContainer = document.querySelector("#navSearchContainer");
+const navSearchContainer = document.querySelector(
+  "#navSearchContainer"
+);
 
 const navSearchToggle = document.querySelector("#navSearchToggle");
 
@@ -78,7 +84,12 @@ const navSearchForm = document.querySelector("#navSearchForm");
 
 const navSearchInput = document.querySelector("#navSearchInput");
 
-if (navSearchContainer && navSearchToggle && navSearchForm && navSearchInput) {
+if (
+  navSearchContainer &&
+  navSearchToggle &&
+  navSearchForm &&
+  navSearchInput
+) {
   // Open or close the search bar.
   function setSearchOpen(isOpen) {
     navSearchContainer.classList.toggle("is-open", isOpen);
@@ -87,7 +98,7 @@ if (navSearchContainer && navSearchToggle && navSearchForm && navSearchInput) {
 
     navSearchToggle.setAttribute(
       "aria-label",
-      isOpen ? "Close product search" : "Open product search",
+      isOpen ? "Close product search" : "Open product search"
     );
 
     // Hidden search input should not receive keyboard focus.
@@ -100,7 +111,8 @@ if (navSearchContainer && navSearchToggle && navSearchForm && navSearchInput) {
 
   // Toggle search on icon click.
   navSearchToggle.addEventListener("click", () => {
-    const isOpen = navSearchContainer.classList.contains("is-open");
+    const isOpen =
+      navSearchContainer.classList.contains("is-open");
 
     setSearchOpen(!isOpen);
   });
@@ -187,7 +199,9 @@ function createWishlistButton(product) {
   // Shared wishlist.js identifies products using this attribute.
   button.dataset.wishlistId = String(product.id);
 
-  const saved = typeof isInWishlist === "function" && isInWishlist(product.id);
+  const saved =
+    typeof isInWishlist === "function" &&
+    isInWishlist(product.id);
 
   button.classList.toggle("is-saved", saved);
 
@@ -197,10 +211,12 @@ function createWishlistButton(product) {
     "aria-label",
     saved
       ? `Remove ${product.name} from wishlist`
-      : `Add ${product.name} to wishlist`,
+      : `Add ${product.name} to wishlist`
   );
 
-  button.title = saved ? "Remove from Wishlist" : "Add to Wishlist";
+  button.title = saved
+    ? "Remove from Wishlist"
+    : "Add to Wishlist";
 
   // Heart SVG.
   button.innerHTML = `
@@ -231,7 +247,7 @@ function renderProducts() {
     return;
   }
 
-  if (typeof products === "undefined" || !Array.isArray(products)) {
+  if (!Array.isArray(homepageProductsData)) {
     console.error("VOID District: Product data could not be loaded.");
     return;
   }
@@ -240,12 +256,12 @@ function renderProducts() {
   productGrid.replaceChildren();
 
   // First four products will always stay fixed.
-  const fixedProducts = products.slice(0, 4);
+  const fixedProducts = homepageProductsData.slice(0, 4);
 
-  // Remaining six products.
-  const remainingProducts = products.slice(4);
+  // Remaining products.
+  const remainingProducts = homepageProductsData.slice(4);
 
-  // Shuffle the remaining six products.
+  // Shuffle remaining products.
   const shuffledProducts = shuffleProducts(remainingProducts);
 
   // Pick four random products.
@@ -256,7 +272,8 @@ function renderProducts() {
 
   // Display selected products.
   homepageProducts.forEach((product) => {
-    const productLink = `./product.html?product=${encodeURIComponent(product.id)}`;
+    const productLink =
+      `./product.html?product=${encodeURIComponent(product.id)}`;
 
     // Main product card.
     const article = document.createElement("article");
@@ -270,7 +287,10 @@ function renderProducts() {
     const badge = document.createElement("span");
     badge.className = "product-badge";
 
-    if (product.badge === "JUST DROPPED" || product.badge === "NEW COLOUR") {
+    if (
+      product.badge === "JUST DROPPED" ||
+      product.badge === "NEW COLOUR"
+    ) {
       badge.classList.add("badge-new");
     }
 
@@ -280,12 +300,15 @@ function renderProducts() {
     const imageLink = document.createElement("a");
     imageLink.href = productLink;
 
-    imageLink.setAttribute("aria-label", `View ${product.name} details`);
+    imageLink.setAttribute(
+      "aria-label",
+      `View ${product.name} details`
+    );
 
     // Product image.
     const image = document.createElement("img");
     image.src = product.image;
-    image.alt = product.alt;
+    image.alt = product.alt || product.name;
     image.loading = "lazy";
 
     setupImageFallback(image);
@@ -310,7 +333,12 @@ function renderProducts() {
 
     addButton.appendChild(plusIcon);
 
-    imageWrap.append(badge, imageLink, wishlistButton, addButton);
+    imageWrap.append(
+      badge,
+      imageLink,
+      wishlistButton,
+      addButton
+    );
 
     // Product details.
     const details = document.createElement("div");
@@ -326,7 +354,7 @@ function renderProducts() {
     nameHeading.appendChild(nameLink);
 
     const subtitle = document.createElement("p");
-    subtitle.textContent = product.subtitle;
+    subtitle.textContent = product.subtitle || "";
 
     detailsText.append(nameHeading, subtitle);
 
@@ -334,7 +362,8 @@ function renderProducts() {
     const price = document.createElement("span");
     price.className = "product-price";
 
-    price.textContent = `Rs. ${product.price.toLocaleString("en-PK")}`;
+    price.textContent =
+      `Rs. ${Number(product.price).toLocaleString("en-PK")}`;
 
     details.append(detailsText, price);
 
@@ -350,14 +379,62 @@ function renderProducts() {
 }
 
 /* =========================================
+   LOAD PRODUCTS FROM MONGODB API
+========================================= */
+
+async function loadHomepageProducts() {
+  try {
+    homepageProductsData = await fetchProductsFromAPI();
+
+    // Preserve the original order of the 10 products
+    // for the homepage's fixed/random selection.
+    if (
+      typeof products !== "undefined" &&
+      Array.isArray(products)
+    ) {
+      const order = new Map(
+        products.map((product, index) => [
+          String(product.id),
+          index
+        ])
+      );
+
+      homepageProductsData.sort(
+        (a, b) =>
+          (order.get(String(a.id)) ?? Infinity) -
+          (order.get(String(b.id)) ?? Infinity)
+      );
+    }
+
+    renderProducts();
+
+    console.info(
+      `${homepageProductsData.length} products loaded from MongoDB API.`
+    );
+  } catch (error) {
+    console.error("Unable to load homepage products:", error);
+
+    if (productGrid) {
+      productGrid.textContent =
+        "Products could not be loaded. Please try again later.";
+    }
+  }
+}
+
+/* =========================================
    WISHLIST CLICK HANDLING
 ========================================= */
 
 if (productGrid) {
   productGrid.addEventListener("click", (event) => {
-    const wishlistButton = event.target.closest(".product-wishlist-btn");
+    const wishlistButton = event.target.closest(
+      ".product-wishlist-btn"
+    );
 
-    if (!wishlistButton || !productGrid.contains(wishlistButton)) {
+    if (
+      !wishlistButton ||
+      !productGrid.contains(wishlistButton)
+    ) {
       return;
     }
 
@@ -381,7 +458,9 @@ if (productGrid) {
 
     const saved = isInWishlist(productId);
 
-    wishlistButton.title = saved ? "Remove from Wishlist" : "Add to Wishlist";
+    wishlistButton.title = saved
+      ? "Remove from Wishlist"
+      : "Add to Wishlist";
 
     // Navbar count and all heart states are updated
     // automatically by wishlist.js.
@@ -403,7 +482,7 @@ function updateBagCount() {
 
   bagButton.setAttribute(
     "aria-label",
-    `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`,
+    `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`
   );
 }
 
@@ -422,14 +501,17 @@ if (productGrid) {
   productGrid.addEventListener("click", (event) => {
     const addButton = event.target.closest(".quick-add");
 
-    if (!addButton || !productGrid.contains(addButton)) {
+    if (
+      !addButton ||
+      !productGrid.contains(addButton)
+    ) {
       return;
     }
 
     const productId = addButton.dataset.productId;
 
-    const selectedProduct = products.find(
-      (product) => String(product.id) === productId,
+    const selectedProduct = homepageProductsData.find(
+      (product) => String(product.id) === productId
     );
 
     if (!selectedProduct) {
@@ -437,9 +519,8 @@ if (productGrid) {
       return;
     }
 
-    window.location.href = `./product.html?product=${encodeURIComponent(
-      selectedProduct.id,
-    )}`;
+    window.location.href =
+      `./product.html?product=${encodeURIComponent(selectedProduct.id)}`;
   });
 }
 
@@ -459,14 +540,22 @@ if (bagButton) {
    NEWSLETTER — FRONTEND DEMO
 ========================================= */
 
-if (newsletterForm && newsletterEmail && newsletterMessage) {
+if (
+  newsletterForm &&
+  newsletterEmail &&
+  newsletterMessage
+) {
   newsletterForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const email = newsletterEmail.value.trim();
 
-    if (!newsletterEmail.checkValidity() || email === "") {
-      newsletterMessage.textContent = "Please enter a valid email address.";
+    if (
+      !newsletterEmail.checkValidity() ||
+      email === ""
+    ) {
+      newsletterMessage.textContent =
+        "Please enter a valid email address.";
 
       newsletterEmail.reportValidity();
       return;
@@ -491,22 +580,4 @@ if (currentYear) {
    INITIALIZE
 ========================================= */
 
-renderProducts();
-updateBagCount();
-
-/* =========================================
-   CART COUNT SYNCHRONIZATION
-========================================= */
-
-// Update cart count when returning to this page.
-window.addEventListener("pageshow", () => {
-  updateBagCount();
-});
-
-// Update cart count when localStorage changes
-// in another browser tab.
-window.addEventListener("storage", () => {
-  updateBagCount();
-});
-
-console.info("VOID District homepage interactions initialized.");
+loadHomepageProducts();

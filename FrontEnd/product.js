@@ -1,6 +1,10 @@
 "use strict";
 
-// Get product elements
+/* =========================================
+   VOID DISTRICT — PRODUCT DETAILS PAGE
+========================================= */
+
+// Product elements
 const productImage = document.getElementById("productImage");
 const productBadge = document.getElementById("productBadge");
 const productName = document.getElementById("productName");
@@ -49,15 +53,13 @@ const reviewList = document.getElementById("reviewList");
 const urlParameters = new URLSearchParams(window.location.search);
 const requestedProduct = urlParameters.get("product") || "tee";
 
-// Find the matching product in products.js
-const currentProduct =
-  products.find((item) => item.id === requestedProduct) || products[0];
+// Product fetched from MongoDB API.
+let currentProduct = null;
 
 /* =========================================
    PRODUCT DETAILS — WISHLIST
 ========================================= */
 
-// Update the heart according to the current product.
 function updateProductWishlistButton() {
   if (!productWishlistButton || !currentProduct) {
     return;
@@ -65,13 +67,11 @@ function updateProductWishlistButton() {
 
   const productId = String(currentProduct.id);
 
-  // Connect this heart to the correct product.
   productWishlistButton.dataset.wishlistId = productId;
 
   const saved = typeof isInWishlist === "function" && isInWishlist(productId);
 
   productWishlistButton.classList.toggle("is-saved", saved);
-
   productWishlistButton.setAttribute("aria-pressed", String(saved));
 
   productWishlistButton.setAttribute(
@@ -86,7 +86,7 @@ function updateProductWishlistButton() {
     : "Add to Wishlist";
 }
 
-// Save or remove the current product.
+// Save or remove current product.
 if (productWishlistButton) {
   productWishlistButton.addEventListener("click", () => {
     if (!currentProduct || typeof toggleWishlist !== "function") {
@@ -95,27 +95,32 @@ if (productWishlistButton) {
     }
 
     toggleWishlist(String(currentProduct.id));
-
     updateProductWishlistButton();
   });
 }
 
-// Keep heart synchronized with the shared wishlist.
+// Synchronize wishlist.
 window.addEventListener("wishlistUpdated", updateProductWishlistButton);
 
 window.addEventListener("storage", updateProductWishlistButton);
 
 window.addEventListener("pageshow", updateProductWishlistButton);
 
-// Format price
+/* =========================================
+   FORMAT PRICE
+========================================= */
+
 function formatPrice(price) {
-  return `Rs. ${price.toLocaleString("en-PK")}`;
+  return `Rs. ${Number(price).toLocaleString("en-PK")}`;
 }
 
-// Display product information
+/* =========================================
+   DISPLAY PRODUCT DETAILS
+========================================= */
+
 function displayProduct(product) {
   if (!product) {
-    console.error("No products were found in products.js.");
+    console.error("Product data is unavailable.");
     return;
   }
 
@@ -123,17 +128,18 @@ function displayProduct(product) {
 
   productName.textContent = product.name;
   productPrice.textContent = formatPrice(product.price);
-  productDescription.textContent = product.description;
-  productDetailsText.textContent = product.details;
-  productFitText.textContent = product.fit;
+  productDescription.textContent = product.description || "";
+  productDetailsText.textContent = product.details || "";
+  productFitText.textContent = product.fit || "";
 
   productImage.src = product.image;
-  productImage.alt = product.alt;
+  productImage.alt = product.alt || product.name;
 
-  productBadge.textContent = product.badge;
-  productSubtitle.textContent = product.subtitle;
+  productBadge.textContent = product.badge || "";
+  productSubtitle.textContent = product.subtitle || "";
   breadcrumbProduct.textContent = product.name;
 
+  // Reset size and quantity.
   productSize.value = "";
   productQuantity.value = "1";
   sizeMessage.textContent = "";
@@ -144,11 +150,16 @@ function displayProduct(product) {
   renderReviews(product);
 }
 
-// Create size selection buttons
+/* =========================================
+   SIZE SELECTION
+========================================= */
+
 function renderSizeOptions(product) {
   productSizeOptions.replaceChildren();
 
-  product.sizes.forEach((size) => {
+  const availableSizes = Array.isArray(product.sizes) ? product.sizes : [];
+
+  availableSizes.forEach((size) => {
     const button = document.createElement("button");
 
     button.type = "button";
@@ -174,7 +185,9 @@ function renderSizeOptions(product) {
   });
 }
 
-// Validate and update quantity
+/* =========================================
+   QUANTITY CONTROLS
+========================================= */
 
 function getValidQuantity() {
   const quantity = Number(productQuantity.value);
@@ -202,11 +215,15 @@ increaseQuantity.addEventListener("click", () => {
 
 productQuantity.addEventListener("change", updateQuantity);
 
-// Build size guide table from product data
+/* =========================================
+   SIZE GUIDE TABLE
+========================================= */
+
 function renderSizeGuide(product) {
   const guide = product.sizeGuide;
 
   sizeGuideTitle.textContent = `${product.name} — Size Guide`;
+
   sizeGuideCaption.textContent =
     "Measurements are illustrative. Please verify actual garment measurements before purchase.";
 
@@ -216,10 +233,20 @@ function renderSizeGuide(product) {
   sizeGuideHead.replaceChildren();
   sizeGuideBody.replaceChildren();
 
+  if (
+    !guide ||
+    !Array.isArray(guide.columns) ||
+    !Array.isArray(guide.measurements)
+  ) {
+    return;
+  }
+
   guide.columns.forEach((column) => {
     const heading = document.createElement("th");
+
     heading.scope = "col";
     heading.textContent = column.label;
+
     sizeGuideHead.appendChild(heading);
   });
 
@@ -228,7 +255,9 @@ function renderSizeGuide(product) {
 
     guide.columns.forEach((column) => {
       const cell = document.createElement("td");
-      cell.textContent = measurement[column.key];
+
+      cell.textContent = measurement[column.key] ?? "";
+
       row.appendChild(cell);
     });
 
@@ -236,26 +265,35 @@ function renderSizeGuide(product) {
   });
 }
 
-// Open and close size guide modal
+/* =========================================
+   SIZE GUIDE MODAL
+========================================= */
+
 let previousFocusedElement = null;
 
 function showSizeGuide() {
-  if (!sizeGuideModal) return;
+  if (!sizeGuideModal || !currentProduct) {
+    return;
+  }
 
   previousFocusedElement = document.activeElement;
 
   sizeGuideModal.classList.add("is-open");
   sizeGuideModal.setAttribute("aria-hidden", "false");
+
   document.body.classList.add("size-guide-open");
 
   closeSizeGuide.focus();
 }
 
 function hideSizeGuide() {
-  if (!sizeGuideModal) return;
+  if (!sizeGuideModal) {
+    return;
+  }
 
   sizeGuideModal.classList.remove("is-open");
   sizeGuideModal.setAttribute("aria-hidden", "true");
+
   document.body.classList.remove("size-guide-open");
 
   if (previousFocusedElement) {
@@ -264,9 +302,13 @@ function hideSizeGuide() {
 }
 
 openSizeGuide.addEventListener("click", showSizeGuide);
+
 openSizeGuideSecondary.addEventListener("click", showSizeGuide);
+
 closeSizeGuide.addEventListener("click", hideSizeGuide);
+
 sizeGuideDone.addEventListener("click", hideSizeGuide);
+
 sizeGuideBackdrop.addEventListener("click", hideSizeGuide);
 
 document.addEventListener("keydown", (event) => {
@@ -275,10 +317,8 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// Display sample customer reviews
-
 /* =========================================
-   PRODUCT REVIEWS — CONSISTENT DEMO DISPLAY
+   PRODUCT REVIEWS — DEMO DISPLAY
 ========================================= */
 
 function renderReviews(product) {
@@ -289,11 +329,13 @@ function renderReviews(product) {
   const totalReviews = reviews.length;
 
   const average = totalReviews
-    ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews
+    ? reviews.reduce((sum, review) => sum + Number(review.rating), 0) /
+      totalReviews
     : 0;
 
-  // Review count and average.
-  reviewCount.textContent = `${totalReviews} SAMPLE ${totalReviews === 1 ? "REVIEW" : "REVIEWS"}`;
+  reviewCount.textContent = `${totalReviews} SAMPLE ${
+    totalReviews === 1 ? "REVIEW" : "REVIEWS"
+  }`;
 
   averageRating.textContent = totalReviews ? average.toFixed(1) : "—";
 
@@ -301,7 +343,6 @@ function renderReviews(product) {
     ? `Based on ${totalReviews} illustrative demo reviews.`
     : "No sample reviews available.";
 
-  // Update rating summary near product title.
   const ratingSummary = document.getElementById("ratingSummary");
 
   const ratingStars = document.querySelector(
@@ -312,7 +353,7 @@ function renderReviews(product) {
     ".review-score-block .rating-stars",
   );
 
-  const roundedRating = Math.round(average);
+  const roundedRating = Math.max(0, Math.min(5, Math.round(average)));
 
   const starsText = totalReviews
     ? "★".repeat(roundedRating) + "☆".repeat(5 - roundedRating)
@@ -332,7 +373,6 @@ function renderReviews(product) {
     reviewScoreStars.textContent = starsText;
   }
 
-  // Show an empty state when there are no reviews.
   if (!totalReviews) {
     const emptyMessage = document.createElement("p");
 
@@ -344,7 +384,6 @@ function renderReviews(product) {
     return;
   }
 
-  // Create review cards.
   reviews.forEach((review) => {
     const article = document.createElement("article");
     article.className = "review-card";
@@ -354,13 +393,12 @@ function renderReviews(product) {
 
     const reviewer = document.createElement("p");
     reviewer.className = "review-author";
-
     reviewer.textContent = `${review.name} · DEMO REVIEW`;
 
     const stars = document.createElement("p");
     stars.className = "review-rating";
 
-    const rating = Math.max(0, Math.min(5, Math.round(review.rating)));
+    const rating = Math.max(0, Math.min(5, Math.round(Number(review.rating))));
 
     stars.textContent =
       `${"★".repeat(rating)}` + `${"☆".repeat(5 - rating)} ${rating}/5`;
@@ -374,9 +412,17 @@ function renderReviews(product) {
   });
 }
 
-// Validate size and show a demo confirmation
+/* =========================================
+   ADD PRODUCT TO CART
+========================================= */
 
 productAddToBag.addEventListener("click", () => {
+  if (!currentProduct) {
+    productActionMessage.textContent =
+      "Product is still loading. Please try again.";
+    return;
+  }
+
   const selectedSize = productSize.value;
   const quantity = getValidQuantity();
 
@@ -384,14 +430,22 @@ productAddToBag.addEventListener("click", () => {
 
   if (!selectedSize) {
     sizeMessage.textContent = "Please select a size first.";
+
     productActionMessage.textContent = "";
+
     productSizeOptions.querySelector(".size-option")?.focus();
+
     return;
   }
 
   sizeMessage.textContent = "";
 
-  // Add the actual product to the shared cart.
+  if (typeof addToCart !== "function") {
+    productActionMessage.textContent =
+      "Shopping cart is currently unavailable.";
+    return;
+  }
+
   const result = addToCart(currentProduct, selectedSize, quantity);
 
   if (!result.success) {
@@ -399,8 +453,8 @@ productAddToBag.addEventListener("click", () => {
     return;
   }
 
-  // Update the navbar bag count.
   const bagCountDisplay = document.getElementById("bagCount");
+
   const bagButtonDisplay = document.getElementById("bagButton");
 
   if (bagCountDisplay) {
@@ -414,21 +468,70 @@ productAddToBag.addEventListener("click", () => {
     );
   }
 
-  // Show confirmation.
   productActionMessage.textContent =
-    `${quantity} × ${currentProduct.name} (Size ${selectedSize}) ` +
-    `— ${formatPrice(currentProduct.price * quantity)}. ` +
+    `${quantity} × ${currentProduct.name} ` +
+    `(Size ${selectedSize}) — ` +
+    `${formatPrice(currentProduct.price * quantity)}. ` +
     "Added to your bag successfully.";
 
-  // Open the drawer after the product has been saved.
   if (typeof window.openCartDrawer === "function") {
     window.openCartDrawer();
   }
 });
 
-// Load the selected product
-// Load the selected product
-displayProduct(currentProduct);
+/* =========================================
+   LOAD PRODUCT FROM MONGODB API
+========================================= */
 
-// Initialize product wishlist heart
-updateProductWishlistButton();
+async function loadProductFromAPI() {
+  try {
+    // Disable Add to Bag while loading.
+    productAddToBag.disabled = true;
+
+    productName.textContent = "Loading product...";
+    productActionMessage.textContent = "";
+
+    // Fetch the selected product from MongoDB.
+    currentProduct = await fetchProductById(requestedProduct);
+
+    // Display database product.
+    displayProduct(currentProduct);
+    const loadedImage = new Image();
+
+    loadedImage.onload = () => {
+      productImage.style.visibility = "visible";
+    };
+
+    loadedImage.onerror = () => {
+      console.error("Product image failed to load.");
+      productImage.alt = "Product image unavailable";
+    };
+
+    loadedImage.src = currentProduct.image;
+
+    // Update wishlist heart.
+    updateProductWishlistButton();
+
+    // Enable Add to Bag after successful load.
+    productAddToBag.disabled = false;
+
+    console.info(`${currentProduct.name} loaded from MongoDB API.`);
+  } catch (error) {
+    console.error("Unable to load product details:", error);
+
+    productName.textContent = "Product unavailable";
+
+    productActionMessage.textContent =
+      "Product details could not be loaded. Please try again later.";
+
+    productAddToBag.disabled = true;
+  }
+}
+
+/* =========================================
+   INITIALIZE PRODUCT PAGE
+========================================= */
+
+loadProductFromAPI();
+
+console.info("VOID District product details initialized.");
